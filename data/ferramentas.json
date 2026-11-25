@@ -1741,5 +1741,32 @@
     "ultimo_push": "20/04/2026",
     "situacao": "Oficial",
     "situacao_alerta": false
+  },
+  {
+    "nome": "Impeccable",
+    "repo": "pbakaus/impeccable",
+    "url": "https://impeccable.style",
+    "tipo": "skill",
+    "categoria": "skill",
+    "destaque": "alta",
+    "o_que_faz": "Vocabulário de design para o agente: comandos para revisar (critique, audit), dar acabamento (polish, bolder, quieter) e um detector com 62 regras que pega a cara de IA antes de publicar.",
+    "para_que_serve": [
+      "Achar a cara de IA numa página pronta: Inter em tudo, degradê roxo, card dentro de card, contraste ruim",
+      "Pedir ao agente uma crítica de UX ou uma passada final de acabamento com um comando só",
+      "Rodar \"npx impeccable detect\" numa pasta ou num endereço, sem instalar nada"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code",
+      "Terminal"
+    ],
+    "atencao": "Ao instalar, cria um hook que verifica toda edição de interface e baixa um programa próprio. Tem telemetria anônima, que desliga com \"npx impeccable telemetry off\". Mesmo espaço da Taste Skill, da Hallmark e do Unslop.",
+    "atencao_forte": false,
+    "licenca": "Apache-2.0",
+    "licenca_alerta": false,
+    "estrelas": "117k",
+    "ultimo_push": "25/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
   }
 ]

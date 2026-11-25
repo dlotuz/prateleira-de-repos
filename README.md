@@ -1,6 +1,6 @@
 # Prateleira de Repositórios
 
-Repositórios de IA de código aberto, separados pelo que você quer fazer. São 69 até agora. Cada um diz o que faz, o que precisa para rodar, quanto custa e qual produto conhecido ele substitui.
+Repositórios de IA de código aberto, separados pelo que você quer fazer. São 70 até agora. Cada um diz o que faz, o que precisa para rodar, quanto custa e qual produto conhecido ele substitui.
 
 **Versão com filtros:** https://www.productweekly.com.br/prateleira
 
@@ -21,6 +21,7 @@ Um projeto do [Product Weekly](https://productweekly.com.br), o que importa em p
 - [Firecrawl](#firecrawl): Lê sites inteiros e devolve o conteúdo limpo, em Markdown ou JSON, pronto para um agente usar.
 - [Humanizer](#humanizer): Skill que reescreve texto gerado por IA para soar como uma pessoa escreveu, sem mudar o que ele diz.
 - [Hyperframes](#hyperframes): Transforma HTML em vídeo.
+- [Impeccable](#impeccable): Vocabulário de design para o agente.
 - [MarkItDown](#markitdown): Converte PDF, Word, Excel, PowerPoint e HTML em Markdown, que é o formato que o agente lê melhor.
 - [Postiz](#postiz): Agenda e publica posts em várias redes (Instagram, LinkedIn, TikTok, YouTube e outras), com um agente de IA que ajuda a criar e programar.
 - [video-use](#video-use): Skill do Claude Code que edita vídeo conversando.
@@ -34,7 +35,7 @@ Um projeto do [Product Weekly](https://productweekly.com.br), o que importa em p
 - [Transcrever e trabalhar com voz](#transcrever-e-trabalhar-com-voz) (5)
 - [Criar e editar vídeo](#criar-e-editar-video) (19)
 - [Design, apresentações e imagens](#design-apresentacoes-e-imagens) (9)
-- [Deixar o design feito com IA mais bonito](#deixar-o-design-feito-com-ia-mais-bonito) (8)
+- [Deixar o design feito com IA mais bonito](#deixar-o-design-feito-com-ia-mais-bonito) (9)
 - [Organizar o dia a dia](#organizar-o-dia-a-dia) (8)
 - [Finanças, viagem e currículo](#financas-viagem-e-curriculo) (4)
 - [Agentes e automação](#agentes-e-automacao) (6)
@@ -597,6 +598,21 @@ Transforma um print, ou uma gravação de tela, em código pronto: HTML com Tail
 
 
 ## Deixar o design feito com IA mais bonito
+
+### Impeccable
+
+`Skill` · comece por esta · [pbakaus/impeccable](https://impeccable.style)
+
+Vocabulário de design para o agente: comandos para revisar (critique, audit), dar acabamento (polish, bolder, quieter) e um detector com 62 regras que pega a cara de IA antes de publicar.
+
+**Para que serve:**
+- Achar a cara de IA numa página pronta: Inter em tudo, degradê roxo, card dentro de card, contraste ruim
+- Pedir ao agente uma crítica de UX ou uma passada final de acabamento com um comando só
+- Rodar "npx impeccable detect" numa pasta ou num endereço, sem instalar nada
+
+**Nível:** Médio · **Precisa de:** Claude Code, Terminal · **Licença:** Apache-2.0 · **Estrelas:** 117k · **Último push:** 25/11/2026 · **Situação:** Ativo
+
+> **Atenção:** Ao instalar, cria um hook que verifica toda edição de interface e baixa um programa próprio. Tem telemetria anônima, que desliga com "npx impeccable telemetry off". Mesmo espaço da Taste Skill, da Hallmark e do Unslop.
 
 ### Hallmark
 
