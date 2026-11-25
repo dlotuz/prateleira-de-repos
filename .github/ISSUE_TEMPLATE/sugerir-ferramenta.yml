@@ -1,0 +1,39 @@
+name: Sugerir ferramenta
+description: Indique um repositório de IA de código aberto para a prateleira.
+title: "Sugestão: "
+labels: ["sugestão"]
+body:
+  - type: input
+    id: link
+    attributes:
+      label: Link do repositório
+      placeholder: https://github.com/dono/repositorio
+    validations:
+      required: true
+  - type: textarea
+    id: resolve
+    attributes:
+      label: Que problema ele resolve?
+      description: Uma ou duas frases, do jeito que você explicaria para um amigo.
+    validations:
+      required: true
+  - type: input
+    id: alternativa
+    attributes:
+      label: É alternativa a algum produto conhecido?
+      placeholder: "Ex.: Loom, Figma, ElevenLabs"
+  - type: dropdown
+    id: usou
+    attributes:
+      label: Você já usou?
+      options:
+        - Sim, uso hoje
+        - Testei uma vez
+        - Ainda não, só achei interessante
+    validations:
+      required: true
+  - type: textarea
+    id: atencao
+    attributes:
+      label: Algo que a pessoa deve saber antes de usar?
+      description: Custo, licença, só roda em um sistema, precisa de GPU…

@@ -1,0 +1,1745 @@
+[
+  {
+    "nome": "MarkItDown",
+    "repo": "microsoft/markitdown",
+    "url": "https://github.com/microsoft/markitdown",
+    "tipo": "terminal",
+    "categoria": "doc",
+    "destaque": "alta",
+    "o_que_faz": "Converte PDF, Word, Excel, PowerPoint e HTML em Markdown, que é o formato que o agente lê melhor.",
+    "para_que_serve": [
+      "Manual ou especificação de API em PDF vira texto para o agente analisar",
+      "Planilha lida e resumida sem abrir o Excel",
+      "Apresentações antigas viram texto pesquisável"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Terminal"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "194k",
+    "ultimo_push": "28/10/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Whisper",
+    "repo": "openai/whisper",
+    "url": "https://github.com/openai/whisper",
+    "tipo": "modelo",
+    "categoria": "audio",
+    "destaque": "alta",
+    "o_que_faz": "Transcreve áudio e vídeo localmente, em português e outras línguas, sem serviço externo.",
+    "para_que_serve": [
+      "Gravação de reunião vira transcrição e depois ata",
+      "Aulas e treinamentos viram material de consulta",
+      "Entrevistas transcritas sem o áudio sair do Mac"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Terminal"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "112k",
+    "ultimo_push": "31/08/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Firecrawl",
+    "repo": "firecrawl/firecrawl",
+    "url": "https://github.com/firecrawl/firecrawl",
+    "tipo": "terminal",
+    "categoria": "doc",
+    "destaque": "alta",
+    "o_que_faz": "Lê sites inteiros e devolve o conteúdo limpo, em Markdown ou JSON, pronto para um agente usar.",
+    "para_que_serve": [
+      "Pesquisa de mercado: preços e recursos de concorrentes",
+      "Documentação pública de API puxada para análise",
+      "Acompanhar mudanças em sites que você monitora"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Docker ou servidor"
+    ],
+    "atencao": "Licença AGPL: uso próprio tudo bem, mas não pode ir dentro de um produto que seja vendido.",
+    "atencao_forte": false,
+    "licenca": "AGPL-3.0",
+    "licenca_alerta": true,
+    "estrelas": "198k",
+    "ultimo_push": "03/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Humanizer",
+    "repo": "blader/humanizer",
+    "url": "https://github.com/blader/humanizer",
+    "tipo": "skill",
+    "categoria": "doc",
+    "destaque": "alta",
+    "o_que_faz": "Skill que reescreve texto gerado por IA para soar como uma pessoa escreveu, sem mudar o que ele diz. Usa o guia da Wikipedia de sinais de escrita por IA (26 padrões).",
+    "para_que_serve": [
+      "Post do LinkedIn sem cara de texto de chatbot",
+      "Revisar e-mail, apresentação e documento antes de mandar",
+      "Corrigir vícios como \"não é só X, é Y\" e frases de efeito no fim"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "O objetivo é ler melhor, não enganar detector de IA: os próprios autores dizem que os detectores ainda marcam a maior parte.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "66k",
+    "ultimo_push": "28/10/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Hyperframes",
+    "repo": "heygen-com/hyperframes",
+    "url": "https://github.com/heygen-com/hyperframes",
+    "tipo": "terminal",
+    "categoria": "video",
+    "destaque": "alta",
+    "o_que_faz": "Transforma HTML em vídeo. O agente escreve as animações em código e ele renderiza o arquivo final.",
+    "para_que_serve": [
+      "Motor de várias skills de vídeo para o Claude Code",
+      "Vídeo de tutorial com animação no ritmo da fala",
+      "Abertura e vinheta para apresentação e posts"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Terminal"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "Apache-2.0",
+    "licenca_alerta": false,
+    "estrelas": "79k",
+    "ultimo_push": "05/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "video-use",
+    "repo": "browser-use/video-use",
+    "url": "https://github.com/browser-use/video-use",
+    "tipo": "skill",
+    "categoria": "video",
+    "destaque": "alta",
+    "o_que_faz": "Skill do Claude Code que edita vídeo conversando: você coloca as gravações numa pasta, pede o vídeo e recebe o arquivo final.",
+    "para_que_serve": [
+      "Gravação de tutorial sem \"éé\", pausas e falsos começos",
+      "Legenda no seu estilo e correção de cor automáticas",
+      "Animações por cima feitas com o Hyperframes"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code",
+      "Chave de API paga"
+    ],
+    "atencao": "Transcreve pela ElevenLabs, que é paga e manda o áudio para fora do computador. Evite em gravação com dado sensível.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "30k",
+    "ultimo_push": "08/10/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "whisper.cpp",
+    "repo": "ggml-org/whisper.cpp",
+    "url": "https://github.com/ggml-org/whisper.cpp",
+    "tipo": "terminal",
+    "categoria": "audio",
+    "destaque": "alta",
+    "o_que_faz": "O Whisper reescrito para rodar rápido no Mac. Transcreve e gera legenda SRT com o tempo de cada palavra.",
+    "para_que_serve": [
+      "Transcrever uma gravação e sincronizar cada animação com a fala",
+      "Legenda automática para vídeo de tutorial",
+      "Transcrever reunião mais rápido que o Whisper original no Mac"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Terminal"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "55k",
+    "ultimo_push": "05/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "claude-video (/watch)",
+    "repo": "bradautomates/claude-video",
+    "url": "https://github.com/bradautomates/claude-video",
+    "tipo": "skill",
+    "categoria": "video",
+    "destaque": "alta",
+    "o_que_faz": "Dá ao Claude a capacidade de assistir um vídeo: baixa, extrai quadros com horário e transcreve, e entrega tudo para ele analisar.",
+    "para_que_serve": [
+      "Mandar o link de um vídeo do YouTube e o Claude resumir, citar trechos e mostrar o que aparece na tela",
+      "Analisar vídeos de referência antes de criar os seus",
+      "Revisar o seu próprio vídeo antes de publicar"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "Funciona sem chave de API no modo local (ffmpeg e yt-dlp); a transcrição local usa WhisperX.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "21k",
+    "ultimo_push": "25/09/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Postiz",
+    "repo": "gitroomhq/postiz-app",
+    "url": "https://github.com/gitroomhq/postiz-app",
+    "tipo": "app",
+    "categoria": "prod",
+    "destaque": "alta",
+    "o_que_faz": "Agenda e publica posts em várias redes (Instagram, LinkedIn, TikTok, YouTube e outras), com um agente de IA que ajuda a criar e programar.",
+    "para_que_serve": [
+      "Programar a semana inteira de posts de uma vez",
+      "Pedir ao Claude para agendar as peças prontas nos dias certos",
+      "Ver num calendário só o que sai em cada rede"
+    ],
+    "alternativa_a": "Buffer, Hootsuite e mLabs",
+    "precisa": [
+      "Docker ou servidor"
+    ],
+    "atencao": "AGPL. Tem versão de nuvem paga; a versão que você mesmo hospeda é grátis.",
+    "atencao_forte": false,
+    "licenca": "AGPL-3.0",
+    "licenca_alerta": true,
+    "estrelas": "42k",
+    "ultimo_push": "18/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "anarlog",
+    "repo": "fastrepl/anarlog",
+    "url": "https://github.com/fastrepl/anarlog",
+    "tipo": "app",
+    "categoria": "prod",
+    "destaque": "alta",
+    "o_que_faz": "Anotador de reuniões no estilo do Granola, que roda no computador: escuta o áudio do Mac, transcreve localmente e monta as notas, sem bot entrando na chamada.",
+    "para_que_serve": [
+      "Notas e resumo de reunião sem mandar a conversa para a nuvem",
+      "Ata pronta logo depois da chamada"
+    ],
+    "alternativa_a": "Granola e Otter",
+    "precisa": [
+      "Instalar e usar"
+    ],
+    "atencao": "A equipe agora toca um produto pago (char.com); o anarlog segue aberto e mantido, mas vale acompanhar.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "9,9k",
+    "ultimo_push": "18/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Yogurt",
+    "repo": "FrigadeHQ/yogurt",
+    "url": "https://github.com/FrigadeHQ/yogurt",
+    "tipo": "app",
+    "categoria": "prod",
+    "destaque": "alta",
+    "o_que_faz": "Anotações de reunião que ficam no computador: grava o microfone e o áudio da chamada, transcreve, resume e responde perguntas sobre as reuniões, sem bot entrando na chamada.",
+    "para_que_serve": [
+      "Ata e resumo de reunião do Zoom, Teams ou Meet sem nuvem",
+      "Perguntar \"o que ficou combinado sobre X?\" e receber a resposta com o trecho da reunião",
+      "Exportar notas e transcrição em Markdown"
+    ],
+    "alternativa_a": "Granola, Otter e Fireflies",
+    "precisa": [
+      "Instalar e usar"
+    ],
+    "atencao": "Tem instalador para Mac e é mais simples de começar que o anarlog, que faz o mesmo. Projeto de nov/2026. Avisar quem está na chamada que ela está sendo gravada.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "3,4k",
+    "ultimo_push": "25/11/2026",
+    "situacao": "Novo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Presenton",
+    "repo": "presenton/presenton",
+    "url": "https://github.com/presenton/presenton",
+    "tipo": "app",
+    "categoria": "visual",
+    "destaque": "media",
+    "o_que_faz": "Gera apresentações com IA a partir de um tema ou documento, com API. Alternativa aberta ao Gamma.",
+    "para_que_serve": [
+      "Primeiro rascunho de apresentação em minutos",
+      "Deck gerado por API a partir de dados, como um relatório semanal",
+      "Comparar antes com os Slides que o Claude já faz"
+    ],
+    "alternativa_a": "Gamma, Canva e Beautiful.ai",
+    "precisa": [
+      "Docker ou servidor"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "Apache-2.0",
+    "licenca_alerta": false,
+    "estrelas": "12k",
+    "ultimo_push": "02/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "GPT-SoVITS",
+    "repo": "RVC-Boss/GPT-SoVITS",
+    "url": "https://github.com/RVC-Boss/GPT-SoVITS",
+    "tipo": "app",
+    "categoria": "audio",
+    "destaque": "media",
+    "o_que_faz": "Transforma texto em fala e clona uma voz a partir de cerca de 1 minuto de áudio.",
+    "para_que_serve": [
+      "Narração de vídeos sem precisar gravar",
+      "Áudio de tutorial atualizado sem regravar a cada versão"
+    ],
+    "alternativa_a": "ElevenLabs (clonagem de voz)",
+    "precisa": [
+      "Terminal",
+      "GPU"
+    ],
+    "atencao": "Só clonar a voz de alguém com o consentimento da pessoa.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "65k",
+    "ultimo_push": "31/10/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "VoiceStudio",
+    "repo": "debpalash/VoiceStudio",
+    "url": "https://github.com/debpalash/VoiceStudio",
+    "tipo": "app",
+    "categoria": "audio",
+    "destaque": "media",
+    "o_que_faz": "Estúdio de voz que roda no computador, alternativa local à ElevenLabs: clona e cria vozes, dubla vídeo, dita, transcreve e narra em 646 línguas.",
+    "para_que_serve": [
+      "Dublar um vídeo para inglês ou espanhol mantendo o tempo da fala",
+      "Narração com uma voz criada a partir de uma descrição",
+      "Ditado e transcrição sem o áudio sair do Mac"
+    ],
+    "alternativa_a": "ElevenLabs",
+    "precisa": [
+      "Instalar e usar"
+    ],
+    "atencao": "AGPL, e trabalho pago para cliente pede a licença Pro. Faz mais que o GPT-SoVITS e tem interface: preferir este. Clonar voz só com consentimento.",
+    "atencao_forte": false,
+    "licenca": "AGPL-3.0",
+    "licenca_alerta": true,
+    "estrelas": "104k",
+    "ultimo_push": "08/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "LobeHub",
+    "repo": "lobehub/lobehub",
+    "url": "https://github.com/lobehub/lobehub",
+    "tipo": "app",
+    "categoria": "agent",
+    "destaque": "media",
+    "o_que_faz": "Plataforma de chat e agentes com vários modelos de IA, que você mesmo hospeda.",
+    "para_que_serve": [
+      "Um chat de agentes prontos e compartilhados para um time",
+      "Base de conhecimento consultável por quem não usa Claude Code"
+    ],
+    "alternativa_a": "ChatGPT e Claude no navegador",
+    "precisa": [
+      "Docker ou servidor",
+      "Chave de API paga"
+    ],
+    "atencao": "Licença própria: confirmar as condições antes de qualquer uso comercial.",
+    "atencao_forte": false,
+    "licenca": "Licença própria",
+    "licenca_alerta": true,
+    "estrelas": "84k",
+    "ultimo_push": "03/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "ComfyUI",
+    "repo": "Comfy-Org/ComfyUI",
+    "url": "https://github.com/Comfy-Org/ComfyUI",
+    "tipo": "app",
+    "categoria": "visual",
+    "destaque": "media",
+    "o_que_faz": "Gera imagens com IA no próprio computador, montando o processo em blocos ligados.",
+    "para_que_serve": [
+      "Imagens para posts no LinkedIn e capas de apresentação",
+      "Ilustrações para tutoriais e páginas"
+    ],
+    "alternativa_a": "Midjourney",
+    "precisa": [
+      "Instalar e usar",
+      "GPU"
+    ],
+    "atencao": "Pede GPU. No Mac roda, mas devagar. Licença GPL.",
+    "atencao_forte": false,
+    "licenca": "GPL-3.0",
+    "licenca_alerta": true,
+    "estrelas": "145k",
+    "ultimo_push": "03/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Doop",
+    "repo": "kgoedecke/doop",
+    "url": "https://github.com/kgoedecke/doop",
+    "tipo": "app",
+    "categoria": "visual",
+    "destaque": "media",
+    "o_que_faz": "Canvas de design em que pessoas e agentes de IA desenham juntos, ao vivo. O Claude Code entra pelo MCP e as telas são HTML de verdade.",
+    "para_que_serve": [
+      "Protótipo de tela feito com o agente, com outras pessoas comentando no mesmo canvas",
+      "Fluxo clicável para validar uma ideia antes de desenvolver",
+      "Guardar as regras de estilo de um design system para todo agente seguir"
+    ],
+    "alternativa_a": "Paper.design e Claude Design",
+    "precisa": [
+      "Docker ou servidor"
+    ],
+    "atencao": "Projeto novo (ago/2026) e AGPL. Faz quase o mesmo que o Design do Claude: vale se você precisa de um canvas hospedado por você ou de um agente que não seja o Claude.",
+    "atencao_forte": false,
+    "licenca": "AGPL-3.0",
+    "licenca_alerta": true,
+    "estrelas": "1,7k",
+    "ultimo_push": "04/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "FigCraft",
+    "repo": "storytold/figcraft",
+    "url": "https://github.com/storytold/figcraft",
+    "tipo": "app",
+    "categoria": "visual",
+    "destaque": "media",
+    "o_que_faz": "Editor de design no estilo do Figma, aberto e nativo: componentes, auto layout, variáveis, protótipo e modo dev. Abre arquivos .fig, e o agente controla tudo por MCP, com mais de 400 comandos.",
+    "para_que_serve": [
+      "Abrir um arquivo do Figma no computador, sem nuvem, e pedir para o agente mexer",
+      "Montar um design system com componentes e variáveis pelo Claude",
+      "Exportar tela em PNG, SVG, PDF ou código React"
+    ],
+    "alternativa_a": "Figma",
+    "precisa": [
+      "Instalar e usar"
+    ],
+    "atencao": "Em alpha: o próprio projeto diz que está a cerca de 49% de substituir o Figma. Abre .fig \"no melhor esforço\" e a colaboração ao vivo ainda é prévia.",
+    "atencao_forte": false,
+    "licenca": "Apache-2.0",
+    "licenca_alerta": false,
+    "estrelas": "4,7k",
+    "ultimo_push": "07/11/2026",
+    "situacao": "Alpha",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "UI UX Pro Max",
+    "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+    "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+    "tipo": "skill",
+    "categoria": "skill",
+    "destaque": "media",
+    "o_que_faz": "Catálogo de design com buscador, que o agente consulta enquanto desenha: estilos, paletas, fontes, regras de UX e um checklist de entrega.",
+    "para_que_serve": [
+      "Checklist de UX e acessibilidade antes de entregar uma tela ou protótipo",
+      "Regras de texto que quebra e rótulo curto, problema comum em formulário",
+      "Cobre 22 stacks, de React e Angular a SwiftUI e Flutter"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "Quando o projeto já tem um padrão visual, usar só as regras de UX dele, não a paleta e as fontes.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "145k",
+    "ultimo_push": "04/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Taste Skill",
+    "repo": "Leonxlnx/taste-skill",
+    "url": "https://github.com/Leonxlnx/taste-skill",
+    "tipo": "skill",
+    "categoria": "skill",
+    "destaque": "media",
+    "o_que_faz": "Faz o papel de diretor de arte do agente: define uma direção visual, busca fotos reais em acervos abertos e confere o resultado em screenshot no navegador.",
+    "para_que_serve": [
+      "Landing page, post do LinkedIn e página com cara menos \"feita por IA\"",
+      "Revisão visual por screenshot antes de entregar um artefato"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "Ocupa o mesmo espaço do Hallmark, do Unslop e do Impeccable. Teste na mesma página antes de escolher um.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "110k",
+    "ultimo_push": "04/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "UI Skills",
+    "repo": "ibelick/ui-skills",
+    "url": "https://github.com/ibelick/ui-skills",
+    "tipo": "skill",
+    "categoria": "skill",
+    "destaque": "media",
+    "o_que_faz": "Catálogo de skills para quem faz interface (motion, tipografia, layout), com buscador pelo terminal e por MCP.",
+    "para_que_serve": [
+      "Achar uma skill pronta para um problema de interface específico",
+      "Ler o playbook, que resume as lições das melhores skills de design"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "O MCP aponta para o site deles (ui-skills.com), que é um serviço de terceiro.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "10,8k",
+    "ultimo_push": "07/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Photo Flipbook",
+    "repo": "HaichaoLihc/create-photo-flipbook-ui",
+    "url": "https://github.com/HaichaoLihc/create-photo-flipbook-ui",
+    "tipo": "skill",
+    "categoria": "skill",
+    "destaque": "media",
+    "o_que_faz": "Skill que transforma uma pasta de fotos num livro de fotos 3D interativo, com páginas que viram, entregue como site.",
+    "para_que_serve": [
+      "Álbum de viagem, casamento ou aniversário como site para presentear",
+      "Base para um serviço de fotolivro digital",
+      "Templates extras de galeria: anel de fotos, estante e atlas por ano"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Codex",
+      "Chave de API paga"
+    ],
+    "atencao": "Feita para o Codex: gera a arte das páginas com o gerador de imagens da OpenAI. No Claude Code essa parte precisa de outro caminho; o livro 3D funciona igual.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "657",
+    "ultimo_push": "20/10/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "scroll-craft",
+    "repo": "nateherkai/scroll-craft",
+    "url": "https://github.com/nateherkai/scroll-craft",
+    "tipo": "skill",
+    "categoria": "skill",
+    "destaque": "media",
+    "o_que_faz": "Skill para sites imersivos que contam a história pela rolagem, com padrão de design e checagem de contraste e de celular.",
+    "para_que_serve": [
+      "Landing page de lançamento ou portfólio que prende quem rola",
+      "Estudar os dez sites aprovados que vêm como exemplo"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "4,7k",
+    "ultimo_push": "30/09/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "auto-editor",
+    "repo": "WyattBlue/auto-editor",
+    "url": "https://github.com/WyattBlue/auto-editor",
+    "tipo": "terminal",
+    "categoria": "video",
+    "destaque": "media",
+    "o_que_faz": "Corta sozinho os silêncios e as pausas de um vídeo gravado.",
+    "para_que_serve": [
+      "Limpar a gravação de um tutorial antes de montar o vídeo",
+      "Enxugar gravação de reunião ou demo antes de compartilhar"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Terminal"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "Domínio público",
+    "licenca_alerta": false,
+    "estrelas": "5,8k",
+    "ultimo_push": "05/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "MoviePy",
+    "repo": "Zulko/moviepy",
+    "url": "https://github.com/Zulko/moviepy",
+    "tipo": "lib",
+    "categoria": "video",
+    "destaque": "media",
+    "o_que_faz": "Biblioteca Python para editar vídeo por script: cortar, juntar, pôr trilha e texto. O Claude escreve o script.",
+    "para_que_serve": [
+      "Mesmo modelo de vídeo aplicado a vários temas, sem editar um por um",
+      "Juntar abertura, gravação e encerramento padrão automaticamente"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Programar"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "15k",
+    "ultimo_push": "26/08/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "DaVinci Resolve MCP",
+    "repo": "samuelgursky/davinci-resolve-mcp",
+    "url": "https://github.com/samuelgursky/davinci-resolve-mcp",
+    "tipo": "mcp",
+    "categoria": "video",
+    "destaque": "media",
+    "o_que_faz": "Deixa o Claude controlar o DaVinci Resolve, um editor profissional: linha do tempo, cortes, cor e exportação.",
+    "para_que_serve": [
+      "Edição de nível profissional comandada por conversa, para vídeo de lançamento",
+      "Ajuste fino depois que o video-use fizer o primeiro corte"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code",
+      "DaVinci Resolve"
+    ],
+    "atencao": "A descrição cita o Resolve Studio, que é a versão paga. Confirmar se funciona na versão grátis antes de instalar.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "4k",
+    "ultimo_push": "05/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Fluxo de edição",
+    "repo": "LeiteZ/fluxo-de-edicao",
+    "url": "https://github.com/LeiteZ/fluxo-de-edicao",
+    "tipo": "skill",
+    "categoria": "video",
+    "destaque": "media",
+    "o_que_faz": "Skill do Claude Code, em português, que não edita o vídeo: ela entrevista você, analisa vídeos de referência que você gosta e escreve as suas próprias skills de edição, uma por etapa.",
+    "para_que_serve": [
+      "Montar um fluxo de edição no seu estilo: cortes, animação, movimento de câmera e efeito sonoro",
+      "Ganhar uma skill \"/editar\" que guia cada vídeo novo etapa por etapa",
+      "Aproveitar os cuidados com Hyperframes e com a entrega para o Premiere que vêm nos guias"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "Projeto de 4 dias, feito por uma pessoa. É só texto, então dá para ler o SKILL.md antes de instalar e conferir o que ele vai pedir para instalar.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "53",
+    "ultimo_push": "04/11/2026",
+    "situacao": "Novo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "huashu-motion",
+    "repo": "alchaincyf/huashu-motion",
+    "url": "https://github.com/alchaincyf/huashu-motion",
+    "tipo": "skill",
+    "categoria": "video",
+    "destaque": "media",
+    "o_que_faz": "Faz filmes de lançamento de produto com o agente, inclusive a trilha: compõe a música no computador, com instrumentos reais, e coloca efeito sonoro em cada movimento.",
+    "para_que_serve": [
+      "Vídeo de lançamento de 30 segundos a partir do site do produto",
+      "Trilha original sem pagar banco de música",
+      "Apontar para o quadro do vídeo e pedir a mudança ali"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "Documentação principalmente em chinês.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "2,9k",
+    "ultimo_push": "16/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "rea-video",
+    "repo": "JuneYaooo/rea-video",
+    "url": "https://github.com/JuneYaooo/rea-video",
+    "tipo": "skill",
+    "categoria": "video",
+    "destaque": "media",
+    "o_que_faz": "Desmonta qualquer vídeo plano a plano: diz se cada trecho foi filmado, gerado por IA ou feito em código, e como refazer.",
+    "para_que_serve": [
+      "Entender como foi feito um vídeo de referência",
+      "Transformar a análise num roteiro para recriar no seu estilo"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "Apache-2.0",
+    "licenca_alerta": false,
+    "estrelas": "10,5k",
+    "ultimo_push": "18/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "reanimate",
+    "repo": "NiazMorshed2007/reanimate",
+    "url": "https://github.com/NiazMorshed2007/reanimate",
+    "tipo": "skill",
+    "categoria": "video",
+    "destaque": "media",
+    "o_que_faz": "Skill que desmonta uma animação quadro a quadro, recria em código e prova que a cópia se mexe igual.",
+    "para_que_serve": [
+      "Reproduzir uma animação de interface que você viu num site ou app",
+      "Aprender o tempo e a curva de um movimento bem feito"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "Usar como estudo, não para copiar o trabalho de alguém sem crédito.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "1,8k",
+    "ultimo_push": "31/10/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "shorts-kit",
+    "repo": "howznguyen/shorts-kit",
+    "url": "https://github.com/howznguyen/shorts-kit",
+    "tipo": "skill",
+    "categoria": "video",
+    "destaque": "media",
+    "o_que_faz": "Kit para fazer vídeos verticais narrados (TikTok, Shorts, Reels) com o agente: mais de 20 roteiros prontos, conferência de fatos e efeitos sonoros livres.",
+    "para_que_serve": [
+      "Explicar um conceito em 60 segundos com narração e animação",
+      "Série de vídeos curtos com o mesmo formato"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "Usa o Remotion, que é grátis para pessoa física. Projeto de nov/2026.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "190",
+    "ultimo_push": "09/11/2026",
+    "situacao": "Novo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Lemo-Opuscar",
+    "repo": "lemomo-ai/lemo-opuscar",
+    "url": "https://github.com/lemomo-ai/lemo-opuscar",
+    "tipo": "skill",
+    "categoria": "video",
+    "destaque": "media",
+    "o_que_faz": "Caixa de estilos de filme feitos em código: 99 estilos prontos, cada um com um prompt de estilo e um filme de exemplo feito só com código, sem modelo de vídeo.",
+    "para_que_serve": [
+      "Escolher um estilo pronto em vez de começar do zero",
+      "Criar e guardar um estilo seu para usar em todos os vídeos"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "Código MIT; os textos dos estilos são CC BY-NC, mas liberados para fazer os próprios filmes, inclusive pagos. Não pode revender os estilos.",
+    "atencao_forte": false,
+    "licenca": "MIT + CC BY-NC",
+    "licenca_alerta": true,
+    "estrelas": "18k",
+    "ultimo_push": "17/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Cap",
+    "repo": "CapSoftware/Cap",
+    "url": "https://github.com/CapSoftware/Cap",
+    "tipo": "app",
+    "categoria": "video",
+    "destaque": "media",
+    "o_que_faz": "Gravador de tela aberto, alternativa ao Loom: grava, edita e gera um link para compartilhar.",
+    "para_que_serve": [
+      "Gravar demo de produto ou tutorial com a sua câmera no canto",
+      "Mandar explicação gravada em vez de marcar reunião"
+    ],
+    "alternativa_a": "Loom",
+    "precisa": [
+      "Instalar e usar"
+    ],
+    "atencao": "Licença mista: parte é MIT, o resto tem termos próprios. Conferir antes de uso comercial.",
+    "atencao_forte": false,
+    "licenca": "Mista",
+    "licenca_alerta": true,
+    "estrelas": "25k",
+    "ultimo_push": "18/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Kokoro",
+    "repo": "hexgrad/kokoro",
+    "url": "https://github.com/hexgrad/kokoro",
+    "tipo": "modelo",
+    "categoria": "audio",
+    "destaque": "media",
+    "o_que_faz": "Modelo leve de voz (82 milhões de parâmetros) que transforma texto em fala com boa qualidade e roda no computador.",
+    "para_que_serve": [
+      "Narração rápida para vídeo curto",
+      "Locução de teste antes de gravar a sua voz"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Terminal"
+    ],
+    "atencao": "Sem atualização no repositório desde ago/2025, mas o modelo é estável e outras ferramentas, como o huashu-motion, usam.",
+    "atencao_forte": false,
+    "licenca": "Apache-2.0",
+    "licenca_alerta": false,
+    "estrelas": "10,2k",
+    "ultimo_push": "06/08/2025",
+    "situacao": "Estável",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Penpot",
+    "repo": "penpot/penpot",
+    "url": "https://github.com/penpot/penpot",
+    "tipo": "app",
+    "categoria": "visual",
+    "destaque": "media",
+    "o_que_faz": "Plataforma de design aberta e madura, alternativa ao Figma: roda no navegador ou no seu servidor, trabalha com SVG, CSS e HTML e tem servidor MCP para o agente.",
+    "para_que_serve": [
+      "Design de telas com colaboração, hospedado por você",
+      "Ligar design e código pelo MCP, com tokens de design",
+      "Alternativa mais madura ao FigCraft quando você precisa de um Figma aberto"
+    ],
+    "alternativa_a": "Figma",
+    "precisa": [
+      "Navegador",
+      "Docker ou servidor"
+    ],
+    "atencao": "Projeto de 10 anos, bem mais estável que o FigCraft. Ainda assim é design vetorial, não HTML como o Doop.",
+    "atencao_forte": false,
+    "licenca": "MPL-2.0",
+    "licenca_alerta": false,
+    "estrelas": "63k",
+    "ultimo_push": "18/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "frontend-slides",
+    "repo": "zarazhangrui/frontend-slides",
+    "url": "https://github.com/zarazhangrui/frontend-slides",
+    "tipo": "skill",
+    "categoria": "visual",
+    "destaque": "media",
+    "o_que_faz": "Skill que faz apresentações bonitas na web, usando o que o agente sabe de front-end.",
+    "para_que_serve": [
+      "Apresentação em HTML com animação, sem PowerPoint",
+      "Deck rápido a partir de um texto ou de um roteiro"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "Comparar com os Slides do Claude antes de adotar.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "32k",
+    "ultimo_push": "23/06/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Logo Design Skill",
+    "repo": "kaankiziltug/logo-design-skill",
+    "url": "https://github.com/kaankiziltug/logo-design-skill",
+    "tipo": "skill",
+    "categoria": "skill",
+    "destaque": "media",
+    "o_que_faz": "Skill completa de design de logo: princípios, processo, desenho em SVG, ferramentas de teste e uma biblioteca de mais de 1.400 logos de referência.",
+    "para_que_serve": [
+      "Criar logo em vetor (SVG) para um projeto novo",
+      "Testar o logo em tamanho pequeno, em preto e branco e em fundo escuro"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "7,2k",
+    "ultimo_push": "13/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Hallmark",
+    "repo": "Nutlope/hallmark",
+    "url": "https://github.com/Nutlope/hallmark",
+    "tipo": "skill",
+    "categoria": "skill",
+    "destaque": "media",
+    "o_que_faz": "Skill contra o \"design com cara de IA\" para o Claude Code, com regras de layout, tipografia e cor.",
+    "para_que_serve": [
+      "Dar acabamento de designer a páginas e telas feitas pelo agente"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "Mesmo espaço da Taste Skill, do Unslop e do Impeccable. Escolher um só depois de testar na mesma página.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "57k",
+    "ultimo_push": "11/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Unslop",
+    "repo": "heydamir/unslop",
+    "url": "https://github.com/heydamir/unslop",
+    "tipo": "skill",
+    "categoria": "skill",
+    "destaque": "media",
+    "o_que_faz": "Skill que transforma uma interface com cara de feita por IA numa interface desenhada.",
+    "para_que_serve": [
+      "Revisar uma tela pronta e tirar os vícios visuais de IA"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "Licença CC BY 4.0: pode usar, mas precisa dar crédito. Mesmo espaço do Hallmark e da Taste Skill.",
+    "atencao_forte": false,
+    "licenca": "CC-BY-4.0",
+    "licenca_alerta": true,
+    "estrelas": "18k",
+    "ultimo_push": "15/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "gstack",
+    "repo": "garrytan/gstack",
+    "url": "https://github.com/garrytan/gstack",
+    "tipo": "skill",
+    "categoria": "agent",
+    "destaque": "media",
+    "o_que_faz": "O setup do Claude Code do Garry Tan: 23 ferramentas que fazem papel de CEO, designer, gerente de engenharia, release, documentação e QA.",
+    "para_que_serve": [
+      "Estudar como ele organiza papéis e revisões com o agente",
+      "Pegar uma ou outra skill (revisão, QA) para o seu fluxo"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "A instalação manda mexer no CLAUDE.md e proibir as ferramentas do Chrome. Leia antes e não instale inteiro se você já tem um setup próprio.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "142k",
+    "ultimo_push": "18/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "claude-hud",
+    "repo": "jarrodwatts/claude-hud",
+    "url": "https://github.com/jarrodwatts/claude-hud",
+    "tipo": "plugin",
+    "categoria": "prod",
+    "destaque": "media",
+    "o_que_faz": "Plugin do Claude Code que mostra o que está acontecendo: uso de contexto, ferramentas ativas, agentes rodando e progresso das tarefas.",
+    "para_que_serve": [
+      "Ver quanto do contexto já foi usado antes de a conversa ficar longa",
+      "Acompanhar subagentes e tarefas em andamento"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "29k",
+    "ultimo_push": "10/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Marketing Skills",
+    "repo": "coreyhaines31/marketingskills",
+    "url": "https://github.com/coreyhaines31/marketingskills",
+    "tipo": "skill",
+    "categoria": "doc",
+    "destaque": "media",
+    "o_que_faz": "Pacote de skills de marketing para o Claude Code: conversão, copy, SEO, analytics e growth.",
+    "para_que_serve": [
+      "Melhorar bio, chamadas e texto de lançamento de um perfil ou produto",
+      "Revisar uma landing page com olhar de conversão"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "61k",
+    "ultimo_push": "18/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "AI File Sorter",
+    "repo": "hyperfield/ai-file-sorter",
+    "url": "https://github.com/hyperfield/ai-file-sorter",
+    "tipo": "app",
+    "categoria": "prod",
+    "destaque": "media",
+    "o_que_faz": "Organiza pastas bagunçadas com IA: sugere uma categoria e um nome melhor para cada arquivo (fotos, documentos, áudio e vídeo) e só mexe depois que você aprova.",
+    "para_que_serve": [
+      "Arrumar a pasta de Downloads e o HD externo de uma vez",
+      "Renomear fotos como IMG_2048.jpg para nomes que dizem o que tem nelas"
+    ],
+    "alternativa_a": "Hazel (Mac)",
+    "precisa": [
+      "Instalar e usar"
+    ],
+    "atencao": "Roda com modelo local, sem mandar nada para fora. Se você ligar o nome do lugar nas fotos, as coordenadas vão para o OpenStreetMap.",
+    "atencao_forte": false,
+    "licenca": "AGPL-3.0",
+    "licenca_alerta": true,
+    "estrelas": "1,9k",
+    "ultimo_push": "21/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "TaxHacker",
+    "repo": "vas3k/TaxHacker",
+    "url": "https://github.com/vas3k/TaxHacker",
+    "tipo": "app",
+    "categoria": "vida",
+    "destaque": "media",
+    "o_que_faz": "Contabilidade com IA que você mesmo hospeda: tira foto do recibo ou sobe a nota em PDF, e ele extrai valor, data, loja, itens e impostos e lança como despesa ou receita.",
+    "para_que_serve": [
+      "Controlar as despesas de um projeto pessoal ou de PJ sem digitar nota por nota",
+      "Separar os gastos por projeto e categoria e exportar para o contador"
+    ],
+    "alternativa_a": "Expensify",
+    "precisa": [
+      "Docker ou servidor",
+      "Chave de API paga"
+    ],
+    "atencao": "Ainda em desenvolvimento inicial, nas palavras do autor. Usa OpenAI, Gemini ou Mistral, que são pagos, ou um modelo local.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "6,9k",
+    "ultimo_push": "20/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "TREK",
+    "repo": "liketrek/TREK",
+    "url": "https://github.com/liketrek/TREK",
+    "tipo": "app",
+    "categoria": "vida",
+    "destaque": "media",
+    "o_que_faz": "Planejador de viagem completo, hospedado por você: roteiro no mapa editado em tempo real por quem vai junto, reservas, custos divididos, lista de mala e diário da viagem.",
+    "para_que_serve": [
+      "Montar uma viagem em família ou com amigos, todo mundo editando junto",
+      "Dividir os gastos e guardar as reservas num lugar só"
+    ],
+    "alternativa_a": "Wanderlog e TripIt",
+    "precisa": [
+      "Docker ou servidor"
+    ],
+    "atencao": "AGPL. Tem servidor MCP, então o Claude pode montar o roteiro dentro do app.",
+    "atencao_forte": false,
+    "licenca": "AGPL-3.0",
+    "licenca_alerta": true,
+    "estrelas": "15,9k",
+    "ultimo_push": "25/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Sure",
+    "repo": "we-promise/sure",
+    "url": "https://github.com/we-promise/sure",
+    "tipo": "app",
+    "categoria": "vida",
+    "destaque": "media",
+    "o_que_faz": "App de finanças pessoais que você mesmo hospeda: contas, gastos, orçamento e patrimônio num lugar só. É a continuação, feita pela comunidade, do Maybe Finance.",
+    "para_que_serve": [
+      "Controlar gastos e patrimônio sem entregar os dados a um app de terceiro",
+      "Consultar as suas finanças por um agente de IA, que tem acesso próprio ao app"
+    ],
+    "alternativa_a": "Mobills, Organizze e YNAB",
+    "precisa": [
+      "Docker ou servidor"
+    ],
+    "atencao": "AGPL. A conexão automática com banco foi pensada para fora do Brasil: confira como importar extrato de banco brasileiro antes de adotar.",
+    "atencao_forte": false,
+    "licenca": "AGPL-3.0",
+    "licenca_alerta": true,
+    "estrelas": "17,9k",
+    "ultimo_push": "25/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Reactive Resume",
+    "repo": "reactive-resume/reactive-resume",
+    "url": "https://github.com/reactive-resume/reactive-resume",
+    "tipo": "app",
+    "categoria": "vida",
+    "destaque": "media",
+    "o_que_faz": "Criador de currículo aberto e gratuito: você escreve e vê a página pronta ao lado, baixa em PDF, Word ou Markdown, ou compartilha por link.",
+    "para_que_serve": [
+      "Manter o currículo atualizado num modelo bonito, sem pagar assinatura",
+      "Gerar versões do currículo para vagas diferentes"
+    ],
+    "alternativa_a": "Canva e Zety (currículo)",
+    "precisa": [
+      "Navegador"
+    ],
+    "atencao": "Grátis no site deles ou hospedado por você. A IA é opcional e usa um provedor que você conecta.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "46k",
+    "ultimo_push": "20/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Screenshot to Code",
+    "repo": "abi/screenshot-to-code",
+    "url": "https://github.com/abi/screenshot-to-code",
+    "tipo": "app",
+    "categoria": "visual",
+    "destaque": "baixa",
+    "o_que_faz": "Transforma um print, ou uma gravação de tela, em código pronto: HTML com Tailwind, React, Vue ou Bootstrap.",
+    "para_que_serve": [
+      "Print de uma tela vira protótipo editável para propor melhoria",
+      "Gravação do fluxo de outro app vira protótipo clicável para comparar"
+    ],
+    "alternativa_a": "v0 e Lovable (a partir de um print)",
+    "precisa": [
+      "Terminal",
+      "Chave de API paga"
+    ],
+    "atencao": "Precisa de chave de API paga (Anthropic, OpenAI ou Gemini), não usa a assinatura do Claude. O Claude Code já transforma print em HTML, inclusive direto no Doop. A versão de nuvem não deve receber tela com dado sensível.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "81k",
+    "ultimo_push": "05/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "OpenHands",
+    "repo": "OpenHands/OpenHands",
+    "url": "https://github.com/OpenHands/OpenHands",
+    "tipo": "app",
+    "categoria": "agent",
+    "destaque": "baixa",
+    "o_que_faz": "Agente que escreve e roda código sozinho, num ambiente isolado.",
+    "para_que_serve": [
+      "Protótipo de tela ou script feito do zero, num ambiente separado",
+      "Vale se você quer um agente hospedado por você ou com outro modelo; quem já usa o Claude Code tem quase tudo isso"
+    ],
+    "alternativa_a": "Devin",
+    "precisa": [
+      "Docker ou servidor",
+      "Chave de API paga"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "93k",
+    "ultimo_push": "03/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Fooocus",
+    "repo": "lllyasviel/Fooocus",
+    "url": "https://github.com/lllyasviel/Fooocus",
+    "tipo": "app",
+    "categoria": "visual",
+    "destaque": "baixa",
+    "o_que_faz": "Gera imagens com IA de um jeito simples: escreve o pedido e pronto.",
+    "para_que_serve": [
+      "Mesmo uso do ComfyUI, para quem quer só digitar e gerar"
+    ],
+    "alternativa_a": "Midjourney",
+    "precisa": [
+      "Terminal",
+      "GPU"
+    ],
+    "atencao": "Sem atualização desde dez/2025. Preferir o ComfyUI.",
+    "atencao_forte": true,
+    "licenca": "GPL-3.0",
+    "licenca_alerta": true,
+    "estrelas": "54k",
+    "ultimo_push": "01/12/2025",
+    "situacao": "Parado",
+    "situacao_alerta": true
+  },
+  {
+    "nome": "Flowise",
+    "repo": "FlowiseAI/Flowise",
+    "url": "https://github.com/FlowiseAI/Flowise",
+    "tipo": "app",
+    "categoria": "agent",
+    "destaque": "baixa",
+    "o_que_faz": "Monta agentes e fluxos de IA arrastando blocos, sem programar.",
+    "para_que_serve": [
+      "Protótipo de ideia para mostrar: triagem automática de chamados, chatbot de suporte"
+    ],
+    "alternativa_a": "n8n e Make (fluxos com IA)",
+    "precisa": [
+      "Docker ou servidor"
+    ],
+    "atencao": "Repositório arquivado: sem manutenção. Só para protótipo, nunca em produção.",
+    "atencao_forte": true,
+    "licenca": "Licença própria",
+    "licenca_alerta": true,
+    "estrelas": "56k",
+    "ultimo_push": "13/08/2026",
+    "situacao": "Arquivado",
+    "situacao_alerta": true
+  },
+  {
+    "nome": "MetaGPT",
+    "repo": "FoundationAgents/MetaGPT",
+    "url": "https://github.com/FoundationAgents/MetaGPT",
+    "tipo": "lib",
+    "categoria": "agent",
+    "destaque": "baixa",
+    "o_que_faz": "Monta uma \"empresa de software\" feita de agentes: a partir de um requisito de uma linha, papéis de PM, arquiteto e engenheiro geram histórias, análise competitiva, PRD, APIs e código.",
+    "para_que_serve": [
+      "Referência de como dividir papéis e passos entre agentes",
+      "Rascunho de PRD a partir de uma ideia"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Programar",
+      "Chave de API paga"
+    ],
+    "atencao": "Sem atualização desde jan/2026, pede Python abaixo do 3.12 e chave de API paga. Ler as ideias, não instalar.",
+    "atencao_forte": true,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "71k",
+    "ultimo_push": "21/01/2026",
+    "situacao": "Parado",
+    "situacao_alerta": true
+  },
+  {
+    "nome": "Remotion",
+    "repo": "remotion-dev/remotion",
+    "url": "https://github.com/remotion-dev/remotion",
+    "tipo": "lib",
+    "categoria": "video",
+    "destaque": "baixa",
+    "o_que_faz": "Faz vídeo com código React. Cumpre o mesmo papel do Hyperframes.",
+    "para_que_serve": [
+      "Alternativa ao Hyperframes, caso algum dia ele deixe de atender"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Programar"
+    ],
+    "atencao": "Licença própria: grátis para pessoa física e empresa pequena. Empresa maior precisa de licença paga.",
+    "atencao_forte": false,
+    "licenca": "Licença própria",
+    "licenca_alerta": true,
+    "estrelas": "71k",
+    "ultimo_push": "05/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "OpenCut",
+    "repo": "OpenCut-app/OpenCut",
+    "url": "https://github.com/OpenCut-app/OpenCut",
+    "tipo": "app",
+    "categoria": "video",
+    "destaque": "baixa",
+    "o_que_faz": "Editor de vídeo aberto e gratuito, no estilo do CapCut. A edição é manual, sem o Claude.",
+    "para_que_serve": [
+      "Ajuste manual rápido num vídeo que o Claude já montou"
+    ],
+    "alternativa_a": "CapCut",
+    "precisa": [
+      "Navegador"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "97k",
+    "ultimo_push": "24/09/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "LosslessCut",
+    "repo": "mifi/lossless-cut",
+    "url": "https://github.com/mifi/lossless-cut",
+    "tipo": "app",
+    "categoria": "video",
+    "destaque": "baixa",
+    "o_que_faz": "Corta trechos de vídeo e áudio sem recodificar, então não perde qualidade e é instantâneo. Edição manual.",
+    "para_que_serve": [
+      "Tirar o começo e o fim de uma gravação de reunião ou demo antes de compartilhar"
+    ],
+    "alternativa_a": "Cortes rápidos no Premiere ou no CapCut",
+    "precisa": [
+      "Instalar e usar"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "GPL-2.0",
+    "licenca_alerta": true,
+    "estrelas": "46k",
+    "ultimo_push": "03/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Laya",
+    "repo": "NandhaKishorM/laya",
+    "url": "https://github.com/NandhaKishorM/laya",
+    "tipo": "lib",
+    "categoria": "agent",
+    "destaque": "baixa",
+    "o_que_faz": "Motor de decisão rápido para desenvolvedor: classifica um texto, dá nota ou responde sim ou não em mais de 100 línguas, em milissegundos, sem chamar um modelo grande.",
+    "para_que_serve": [
+      "Triagem automática de mensagens ou chamados (urgente, reclamação, cancelamento) a custo quase zero",
+      "Filtro barato antes de mandar algo para um agente mais caro"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Programar"
+    ],
+    "atencao": "Ferramenta de programador, em Python. Projeto de set/2026.",
+    "atencao_forte": false,
+    "licenca": "Apache-2.0",
+    "licenca_alerta": false,
+    "estrelas": "35k",
+    "ultimo_push": "08/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "BoardUI",
+    "repo": "BoardUI/boardui",
+    "url": "https://github.com/BoardUI/boardui",
+    "tipo": "comp",
+    "categoria": "ui",
+    "destaque": "baixa",
+    "o_que_faz": "Biblioteca de componentes React para produtos com IA: chat, indicador de \"pensando\", log de agente, tabelas e formulários, com tema claro e escuro.",
+    "para_que_serve": [
+      "Base visual para um app próprio com chat de IA"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Programar"
+    ],
+    "atencao": "Só vale se você for construir um produto em React. Esta é a parte grátis; o resto é pago.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "1,1k",
+    "ultimo_push": "02/10/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "ThreeUI",
+    "repo": "MengTo/threeui",
+    "url": "https://github.com/MengTo/threeui",
+    "tipo": "comp",
+    "categoria": "ui",
+    "destaque": "baixa",
+    "o_que_faz": "Catálogo de componentes 3D e interativos para sites, com o código pronto para copiar.",
+    "para_que_serve": [
+      "Efeito 3D pontual numa landing page"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Programar"
+    ],
+    "atencao": "Edição aberta de um produto pago: os componentes Pro ficam de fora.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "7,2k",
+    "ultimo_push": "03/09/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Remotion Skills",
+    "repo": "remotion-dev/skills",
+    "url": "https://github.com/remotion-dev/skills",
+    "tipo": "skill",
+    "categoria": "video",
+    "destaque": "baixa",
+    "o_que_faz": "Skills oficiais do Remotion para o agente criar vídeo em React.",
+    "para_que_serve": [
+      "Criar vídeo em React com o agente, se você usa o Remotion"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": "Sem licença declarada no repositório. O Remotion é grátis para pessoa física; empresa maior paga.",
+    "atencao_forte": false,
+    "licenca": "Sem licença",
+    "licenca_alerta": true,
+    "estrelas": "7,5k",
+    "ultimo_push": "18/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "freefield",
+    "repo": "neuregex/freefield",
+    "url": "https://github.com/neuregex/freefield",
+    "tipo": "app",
+    "categoria": "video",
+    "destaque": "baixa",
+    "o_que_faz": "Versão aberta do Higgsfield em cima do ComfyUI: 120 apps de imagem, vídeo, efeitos e áudio, todos com modelos abertos.",
+    "para_que_serve": [
+      "Gerar vídeo a partir de foto, como no Higgsfield, sem assinatura"
+    ],
+    "alternativa_a": "Higgsfield e Runway",
+    "precisa": [
+      "GPU",
+      "Docker ou servidor"
+    ],
+    "atencao": "Precisa de GPU: alugada por hora (Modal, RunPod) ou própria. Não roda bem no Mac.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "1,6k",
+    "ultimo_push": "18/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "raea",
+    "repo": "shinyobjectz/raea",
+    "url": "https://github.com/shinyobjectz/raea",
+    "tipo": "terminal",
+    "categoria": "video",
+    "destaque": "baixa",
+    "o_que_faz": "Motor que renderiza vídeo, motion, 3D e jogos escritos em React e TypeScript, na GPU do computador.",
+    "para_que_serve": [
+      "Cenas 3D e animações pesadas que o Hyperframes não dá conta"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Terminal",
+      "GPU"
+    ],
+    "atencao": "Licença FSL 1.1: uso comum liberado, mas não pode virar produto concorrente; vira Apache depois de 2 anos.",
+    "atencao_forte": false,
+    "licenca": "FSL-1.1",
+    "licenca_alerta": true,
+    "estrelas": "2,8k",
+    "ultimo_push": "18/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "sand3d",
+    "repo": "Sandflow-ai/sand3d",
+    "url": "https://github.com/Sandflow-ai/sand3d",
+    "tipo": "lib",
+    "categoria": "visual",
+    "destaque": "baixa",
+    "o_que_faz": "Modelagem 3D em Python feita para o agente usar.",
+    "para_que_serve": [
+      "Peça 3D simples (ícone, objeto) gerada por descrição"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Programar"
+    ],
+    "atencao": "Projeto de nov/2026.",
+    "atencao_forte": false,
+    "licenca": "Apache-2.0",
+    "licenca_alerta": false,
+    "estrelas": "2,1k",
+    "ultimo_push": "18/11/2026",
+    "situacao": "Novo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Plane",
+    "repo": "makeplane/plane",
+    "url": "https://github.com/makeplane/plane",
+    "tipo": "app",
+    "categoria": "prod",
+    "destaque": "baixa",
+    "o_que_faz": "Gestão de projetos aberta, alternativa ao Jira, Linear e ClickUp: tarefas, sprints, documentos e triagem.",
+    "para_que_serve": [
+      "Organizar um projeto pessoal com quadro, ciclos e documentos",
+      "Hospedar para um time pequeno sem pagar por usuário"
+    ],
+    "alternativa_a": "Jira, Linear, Monday e ClickUp",
+    "precisa": [
+      "Docker ou servidor"
+    ],
+    "atencao": "AGPL. Para projeto pessoal, um quadro simples pode bastar.",
+    "atencao_forte": false,
+    "licenca": "AGPL-3.0",
+    "licenca_alerta": true,
+    "estrelas": "63k",
+    "ultimo_push": "17/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "airhand",
+    "repo": "sqlpxc/airhand",
+    "url": "https://github.com/sqlpxc/airhand",
+    "tipo": "app",
+    "categoria": "prod",
+    "destaque": "baixa",
+    "o_que_faz": "Acesso remoto ao computador com baixa latência, até 120 quadros por segundo, em Windows, Mac, Linux, Android e navegador.",
+    "para_que_serve": [
+      "Usar o Mac de outro lugar com fluidez"
+    ],
+    "alternativa_a": "TeamViewer, AnyDesk e Parsec",
+    "precisa": [
+      "Instalar e usar"
+    ],
+    "atencao": "Projeto de out/2026. Acesso remoto exige cuidado com segurança.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "1,4k",
+    "ultimo_push": "18/11/2026",
+    "situacao": "Novo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "global-law",
+    "repo": "lexifina/global-law",
+    "url": "https://github.com/lexifina/global-law",
+    "tipo": "dados",
+    "categoria": "doc",
+    "destaque": "baixa",
+    "o_que_faz": "As leis do mundo num repositório git: qualquer artigo, de qualquer país, em qualquer data, com a lei que escreveu cada palavra.",
+    "para_que_serve": [
+      "Ver como um artigo de lei mudou ao longo do tempo",
+      "Dar ao agente a lei exata como fonte de uma análise"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Só consultar"
+    ],
+    "atencao": "Conferir se o Brasil está coberto antes de contar com ele.",
+    "atencao_forte": false,
+    "licenca": "CC0",
+    "licenca_alerta": false,
+    "estrelas": "2,1k",
+    "ultimo_push": "18/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "BAMA",
+    "repo": "daveebbelaar/bama",
+    "url": "https://github.com/daveebbelaar/bama",
+    "tipo": "skill",
+    "categoria": "apps",
+    "destaque": "baixa",
+    "o_que_faz": "Skills para o agente pesquisar, desenhar, construir e testar apps nativos de Mac em Swift e SwiftUI.",
+    "para_que_serve": [
+      "Criar um app de Mac pequeno para uma tarefa sua"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code"
+    ],
+    "atencao": null,
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "1,9k",
+    "ultimo_push": "05/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Exact",
+    "repo": "expo/exact",
+    "url": "https://github.com/expo/exact",
+    "tipo": "lib",
+    "categoria": "apps",
+    "destaque": "baixa",
+    "o_que_faz": "Da Expo: escreve o app uma vez e ele roda nativo na web, no Mac, no iPhone e no Linux, e o agente consegue construir, rodar, ver e testar em todos.",
+    "para_que_serve": [
+      "Protótipo de app que funciona no celular e no computador"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Programar"
+    ],
+    "atencao": "Projeto de nov/2026, da mesma equipe do Expo.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "4,6k",
+    "ultimo_push": "18/11/2026",
+    "situacao": "Novo",
+    "situacao_alerta": false
+  },
+  {
+    "nome": "Windrecorder",
+    "repo": "yuka-friends/Windrecorder",
+    "url": "https://github.com/yuka-friends/Windrecorder",
+    "tipo": "app",
+    "categoria": "prod",
+    "destaque": "baixa",
+    "o_que_faz": "Grava tudo o que passa na tela, em arquivo pequeno, e deixa buscar depois pelo texto que apareceu ou pela descrição da imagem.",
+    "para_que_serve": [
+      "Achar aquela tela que você viu na semana passada e não salvou"
+    ],
+    "alternativa_a": "Windows Recall e Rewind",
+    "precisa": [
+      "Instalar e usar",
+      "Só Windows"
+    ],
+    "atencao": "Só funciona no Windows. E guarda tudo o que aparece na tela, inclusive senha e dado sensível.",
+    "atencao_forte": true,
+    "licenca": "GPL-2.0",
+    "licenca_alerta": true,
+    "estrelas": "4k",
+    "ultimo_push": "25/09/2026",
+    "situacao": "Só Windows",
+    "situacao_alerta": true
+  },
+  {
+    "nome": "Web Artifacts Builder",
+    "repo": "anthropics/skills · web-artifacts-builder",
+    "url": "https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder",
+    "tipo": "skill",
+    "categoria": "apps",
+    "destaque": "baixa",
+    "o_que_faz": "Skill oficial da Anthropic para artifacts grandes do claude.ai: monta um projeto em React, TypeScript, Tailwind e shadcn/ui, e no fim empacota tudo num único arquivo HTML.",
+    "para_que_serve": [
+      "Ferramenta interativa com várias telas, estado e navegação, publicada como artifact",
+      "Painel ou app pequeno que precisa de componentes prontos (tabelas, formulários, diálogos)"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code",
+      "Terminal"
+    ],
+    "atencao": "Para página de leitura, como esta prateleira, HTML simples resolve e carrega mais rápido. A instalação baixa muita coisa (pnpm global, Vite, 40+ componentes): rodar numa pasta separada.",
+    "atencao_forte": false,
+    "licenca": "Apache-2.0",
+    "licenca_alerta": false,
+    "estrelas": "200k",
+    "ultimo_push": "20/04/2026",
+    "situacao": "Oficial",
+    "situacao_alerta": false
+  }
+]

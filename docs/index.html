@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prateleira de Repositórios · Product Weekly</title>
+<meta name="description" content="Repositórios de IA de código aberto, separados pelo que você quer fazer: o que cada um faz, o que precisa para rodar e o que substitui.">
+<meta property="og:title" content="Prateleira de Repositórios · Product Weekly">
+<meta property="og:description" content="69 repositórios de IA de código aberto, separados pelo que você quer fazer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+/* Visual do Product Weekly: papel + tinta + laranja; topo escuro, filtros em pílula, fichas por destaque, rodapé laranja */
+:root {
+  --papel:#EEEBE4; --tinta:#121212; --lar:#FF5B1F; --graf:#6F6B64; --bq:#F8F6F1; --creme:#F2ECE3; --grade:#DDD8CE; --linha:#3A3835;
+  --f-corpo:"Gabarito", ui-sans-serif, system-ui, sans-serif;
+  --f-serif:"Instrument Serif", Georgia, serif;
+  --f-mono:"JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--papel); color: var(--tinta); font-family: var(--f-corpo); font-size: 16px; line-height: 1.45; -webkit-font-smoothing: antialiased; }
+[hidden] { display: none !important; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { font-weight: 900; letter-spacing: -.025em; line-height: 1; margin: 0; text-wrap: balance; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.mono { font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+:focus-visible { outline: 3px solid var(--lar); outline-offset: 3px; }
+
+.barra { background: var(--tinta); color: var(--bq); }
+.barra .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; flex-wrap: wrap; }
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo .ico { width: 40px; height: 40px; border-radius: 10px; background: var(--creme); color: var(--tinta); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 19px; letter-spacing: -.04em; }
+.logo .ico i { color: var(--lar); font-style: normal; }
+.logo b { font-size: 22px; font-weight: 900; letter-spacing: -.025em; }
+.logo .pil { background: var(--lar); color: var(--bq); border-radius: 999px; padding: 4px 12px; font-weight: 900; font-size: 17px; line-height: 1; letter-spacing: -.02em; }
+.nav { display: flex; gap: 10px 20px; align-items: center; flex-wrap: wrap; font-weight: 600; }
+.nav a:hover { color: var(--lar); }
+.cta { background: var(--lar); color: var(--bq); border-radius: 999px; padding: 9px 16px; font-weight: 800; }
+.nav .cta:hover { color: var(--bq); filter: brightness(1.05); }
+
+.hero { background: var(--tinta); color: var(--bq); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: end; padding-block: 40px 64px; }
+.hero .mono { color: #B9B3A8; }
+.hero h1 { font-size: clamp(52px, 10vw, 120px); letter-spacing: -.05em; line-height: .88; margin-top: 14px; }
+.hero h1 span { color: var(--lar); }
+.hero p { margin: 22px 0 0; max-width: 58ch; font-size: 18px; color: #D9D4CA; }
+.hero p em { font-family: var(--f-serif); font-size: 21px; color: var(--bq); }
+.numeros { display: grid; grid-template-columns: repeat(3, auto); border: 1px solid var(--linha); border-radius: 12px; }
+.numeros div { padding: 14px 20px; display: grid; gap: 6px; min-width: 0; }
+.numeros div + div { border-left: 1px solid var(--linha); }
+.numeros b { font-size: 32px; font-weight: 900; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.numeros b.l { color: var(--lar); }
+.numeros .mono { font-size: 10.5px; }
+
+.faixa { background: var(--lar); color: var(--tinta); }
+.faixa .wrap { display: flex; gap: 10px 18px; align-items: baseline; flex-wrap: wrap; padding-block: 16px; }
+.faixa .mono { font-weight: 700; }
+.faixa p { margin: 0; font-size: 17px; font-weight: 500; min-width: 0; flex: 1 1 320px; }
+
+main .wrap { padding-block: 36px 72px; display: grid; gap: 56px; }
+.filtros { display: grid; gap: 14px; border-bottom: 2px solid var(--tinta); padding-bottom: 22px; }
+.linha-f { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; align-items: start; }
+.linha-f > .mono { color: var(--graf); padding-top: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--f-mono); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; font-weight: 500; padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--tinta); background: transparent; color: var(--tinta); cursor: pointer; display: inline-flex; gap: 7px; align-items: center; }
+.chip span { color: var(--graf); font-variant-numeric: tabular-nums; }
+.chip:hover { background: var(--bq); }
+.chip[aria-pressed="true"] { background: var(--tinta); color: var(--bq); }
+.chip[aria-pressed="true"] span { color: var(--lar); }
+.resumo { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--graf); }
+.resumo b { color: var(--tinta); }
+.limpar { font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; background: none; border: 0; padding: 0; color: var(--tinta); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+.secao { display: grid; gap: 28px; }
+.sh { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 2px solid var(--tinta); padding-top: 22px; }
+.sh h2 { font-size: clamp(34px, 5.5vw, 60px); letter-spacing: -.04em; }
+.sh .mono { color: var(--graf); }
+.sh .mono b { color: var(--tinta); }
+.grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+@media (max-width: 400px) { .grade { grid-template-columns: 1fr; } }
+
+.ficha { background: var(--bq); border: 1px solid var(--grade); border-radius: 14px; padding: 22px; display: grid; grid-template-rows: auto auto auto auto auto 1fr auto auto; gap: 10px; min-width: 0; }
+.topo { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+.tipo { font-family: var(--f-mono); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: var(--tinta); color: var(--bq); border-radius: 999px; padding: 4px 10px; }
+.ficha[data-tipo="skill"] .tipo { background: var(--lar); color: var(--tinta); }
+.cat { font-family: var(--f-mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--graf); }
+.ficha h3 { font-size: 25px; letter-spacing: -.03em; margin-top: 6px; }
+.ficha h3 a:hover { color: var(--lar); }
+.repo { font-family: var(--f-mono); font-size: 12px; color: var(--graf); overflow-wrap: anywhere; }
+.alt { margin: 2px 0 0; font-weight: 800; font-size: 15px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
+.alt span { font-family: var(--f-mono); font-size: 11px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--graf); }
+.oque { margin: 4px 0 0; }
+.usos { display: grid; gap: 6px; align-content: start; margin-top: 4px; }
+.rot { font-family: var(--f-mono); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--lar); }
+.usos ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.usos li::marker { color: var(--lar); }
+.nota { margin: 8px 0 0; font-size: 14px; background: var(--creme); border: 1px solid var(--grade); border-radius: 10px; padding: 9px 12px; }
+.nota.forte { background: transparent; border: 1.5px solid var(--lar); }
+.precisa { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 4px; }
+.precisa .rot { margin-right: 2px; }
+.precisa span:not(.rot) { font-size: 13px; font-weight: 600; border: 1px solid var(--grade); background: var(--papel); border-radius: 999px; padding: 3px 10px; }
+.meta { display: flex; flex-wrap: wrap; gap: 4px 14px; border-top: 1px solid var(--grade); padding-top: 12px; margin-top: 6px; font-family: var(--f-mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--graf); font-variant-numeric: tabular-nums; }
+.meta .aviso { color: var(--tinta); }
+.meta .aviso::before { content: "●"; color: var(--lar); margin-right: 5px; }
+.vazio { font-size: 18px; color: var(--graf); }
+
+.tipos { display: grid; gap: 22px; }
+.tipos .lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px 28px; }
+.tipos b { font-weight: 900; font-size: 19px; }
+.tipos p { margin: 4px 0 0; color: var(--graf); }
+
+.regras { background: var(--tinta); color: var(--bq); border-radius: 18px; padding: 32px; display: grid; gap: 16px; }
+.regras h2 { font-size: clamp(32px, 5vw, 48px); letter-spacing: -.04em; }
+.regras h2 span { color: var(--lar); }
+.regras ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; max-width: 80ch; color: #D9D4CA; }
+.regras li::marker { color: var(--lar); }
+
+.sugira { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; align-items: center; border: 2px solid var(--tinta); border-radius: 18px; padding: 28px 32px; }
+.sugira h2 { font-size: clamp(28px, 4vw, 40px); letter-spacing: -.035em; }
+.sugira p { margin: 8px 0 0; max-width: 60ch; color: var(--graf); }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; font-weight: 800; font-size: 17px; background: var(--tinta); color: var(--bq); white-space: nowrap; }
+.btn:hover { background: var(--lar); color: var(--tinta); }
+
+.rodape { background: var(--lar); color: var(--tinta); }
+.rodape .wrap { display: flex; justify-content: space-between; gap: 8px 24px; flex-wrap: wrap; padding-block: 22px; font-size: 14px; }
+.rodape b { font-weight: 800; }
+.rodape a { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 760px) {
+  .hero .wrap { grid-template-columns: 1fr; padding-block: 32px 44px; }
+  .hero p { font-size: 17px; }
+  .numeros { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .numeros div { padding: 12px; }
+  .numeros b { font-size: 24px; }
+  .numeros .mono { font-size: 9.5px; overflow-wrap: anywhere; }
+  .linha-f { grid-template-columns: 1fr; gap: 8px; }
+  .linha-f > .mono { padding-top: 0; }
+  .regras, .sugira { padding: 24px 20px; }
+  .sugira { grid-template-columns: 1fr; }
+  .logo b { display: none; }
+  .nav a:not(.cta) { display: none; }
+}
+</style>
+</head>
+<body>
+<header class="barra">
+  <div class="wrap">
+    <a class="logo" href="https://productweekly.com.br" aria-label="Product Weekly"><span class="ico" aria-hidden="true">PW<i>.</i></span><b>Product</b><span class="pil">Weekly</span></a>
+    <nav class="nav" aria-label="Links">
+      <a href="https://github.com/dlotuz/prateleira-de-repos">GitHub</a>
+      <a href="https://github.com/dlotuz/prateleira-de-repos/issues/new?template=sugerir-ferramenta.yml">Sugira uma ferramenta</a>
+      <a class="cta" href="https://www.instagram.com/product.weekly/">Siga no Instagram</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="mono">Lista aberta · Product Weekly</span>
+      <h1>Prateleira <span>de repos.</span></h1>
+      <p>Repositórios de IA de código aberto, separados pelo que você quer fazer. <em>Cada um diz o que precisa para rodar,</em> quanto custa e qual produto conhecido ele substitui.</p>
+    </div>
+    <div class="numeros">
+      <div><b class="l">69</b><span class="mono">Repositórios</span></div>
+      <div><b>9</b><span class="mono">Tipos</span></div>
+      <div><b>25/11</b><span class="mono">Atualizada</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="faixa">
+  <div class="wrap">
+    <span class="mono">Não programa?</span>
+    <p>Filtre por "Instalar e usar" ou "Navegador" em Precisa de: são as que você baixa ou abre e já usa.</p>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <div class="filtros">
+      <div class="linha-f"><span class="mono">Para quê</span><div class="chips" role="group" aria-label="Filtrar por finalidade"><button class="chip" data-g="c" data-v="all" aria-pressed="true">Todas<span>69</span></button><button class="chip" data-g="c" data-v="doc" aria-pressed="false">Ler, pesquisar e escrever<span>5</span></button><button class="chip" data-g="c" data-v="audio" aria-pressed="false">Transcrever e trabalhar com voz<span>5</span></button><button class="chip" data-g="c" data-v="video" aria-pressed="false">Criar e editar vídeo<span>19</span></button><button class="chip" data-g="c" data-v="visual" aria-pressed="false">Design, apresentações e imagens<span>9</span></button><button class="chip" data-g="c" data-v="skill" aria-pressed="false">Deixar o design feito com IA mais bonito<span>8</span></button><button class="chip" data-g="c" data-v="prod" aria-pressed="false">Organizar o dia a dia<span>8</span></button><button class="chip" data-g="c" data-v="vida" aria-pressed="false">Finanças, viagem e currículo<span>4</span></button><button class="chip" data-g="c" data-v="agent" aria-pressed="false">Agentes e automação<span>6</span></button><button class="chip" data-g="c" data-v="apps" aria-pressed="false">Construir apps<span>3</span></button><button class="chip" data-g="c" data-v="ui" aria-pressed="false">Componentes de interface<span>2</span></button></div></div>
+      <div class="linha-f"><span class="mono">Tipo</span><div class="chips" role="group" aria-label="Filtrar por tipo"><button class="chip" data-g="tipo" data-v="all" aria-pressed="true">Todos<span>69</span></button><button class="chip" data-g="tipo" data-v="app" aria-pressed="false">App<span>27</span></button><button class="chip" data-g="tipo" data-v="skill" aria-pressed="false">Skill<span>23</span></button><button class="chip" data-g="tipo" data-v="terminal" aria-pressed="false">Terminal<span>6</span></button><button class="chip" data-g="tipo" data-v="lib" aria-pressed="false">Biblioteca<span>6</span></button><button class="chip" data-g="tipo" data-v="modelo" aria-pressed="false">Modelo<span>2</span></button><button class="chip" data-g="tipo" data-v="mcp" aria-pressed="false">MCP<span>1</span></button><button class="chip" data-g="tipo" data-v="comp" aria-pressed="false">Componentes<span>2</span></button><button class="chip" data-g="tipo" data-v="plugin" aria-pressed="false">Plugin<span>1</span></button><button class="chip" data-g="tipo" data-v="dados" aria-pressed="false">Dados<span>1</span></button></div></div>
+      <div class="linha-f"><span class="mono">Precisa de</span><div class="chips" role="group" aria-label="Filtrar pelo que é preciso para usar"><button class="chip" data-g="p" data-v="all" aria-pressed="true">Tanto faz<span>69</span></button><button class="chip" data-g="p" data-v="Instalar e usar" aria-pressed="false" title="Baixa e abre, sem terminal">Instalar e usar<span>10</span></button><button class="chip" data-g="p" data-v="Navegador" aria-pressed="false" title="Funciona no navegador">Navegador<span>3</span></button><button class="chip" data-g="p" data-v="Claude Code" aria-pressed="false" title="Precisa do Claude Code instalado">Claude Code<span>24</span></button><button class="chip" data-g="p" data-v="Codex" aria-pressed="false" title="Feita para o Codex, da OpenAI">Codex<span>1</span></button><button class="chip" data-g="p" data-v="Terminal" aria-pressed="false" title="Precisa rodar comandos">Terminal<span>11</span></button><button class="chip" data-g="p" data-v="Docker ou servidor" aria-pressed="false" title="Você hospeda (Docker ou servidor)">Docker ou servidor<span>13</span></button><button class="chip" data-g="p" data-v="Programar" aria-pressed="false" title="É para quem programa">Programar<span>8</span></button><button class="chip" data-g="p" data-v="GPU" aria-pressed="false" title="Precisa de placa de vídeo forte">GPU<span>5</span></button><button class="chip" data-g="p" data-v="Chave de API paga" aria-pressed="false" title="Usa API paga por uso">Chave de API paga<span>7</span></button><button class="chip" data-g="p" data-v="DaVinci Resolve" aria-pressed="false" title="Precisa do DaVinci Resolve">DaVinci Resolve<span>1</span></button><button class="chip" data-g="p" data-v="Só consultar" aria-pressed="false" title="É só consultar">Só consultar<span>1</span></button><button class="chip" data-g="p" data-v="Só Windows" aria-pressed="false" title="Só roda no Windows">Só Windows<span>1</span></button></div></div>
+      <div class="resumo mono"><span>Mostrando <b id="mostrando">69</b> de 69</span><button class="limpar" id="limpar" type="button">Limpar filtros</button></div>
+    </div>
+
+    <section class="secao" data-d="alta">
+      <div class="sh"><h2>Comece por estas.</h2><span class="mono">As mais úteis para a maioria das pessoas · <b class="cont">11</b></span></div>
+      <div class="grade">
+        <article class="ficha" data-tipo="app" data-c="prod" data-p="Instalar e usar">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Organizar o dia a dia</span></div>
+          <h3><a href="https://github.com/fastrepl/anarlog" target="_blank" rel="noopener">anarlog</a></h3>
+          <span class="repo">fastrepl/anarlog</span><p class="alt"><span>Alternativa a</span>Granola e Otter</p>
+          <p class="oque">Anotador de reuniões no estilo do Granola, que roda no computador: escuta o áudio do Mac, transcreve localmente e monta as notas, sem bot entrando na chamada.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Notas e resumo de reunião sem mandar a conversa para a nuvem</li><li>Ata pronta logo depois da chamada</li></ul><p class="nota">A equipe agora toca um produto pago (char.com); o anarlog segue aberto e mantido, mas vale acompanhar.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Instalar e usar</span></div>
+          <div class="meta"><span>MIT</span><span>9,9k estrelas</span><span>push 18/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="video" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/bradautomates/claude-video" target="_blank" rel="noopener">claude-video (/watch)</a></h3>
+          <span class="repo">bradautomates/claude-video</span>
+          <p class="oque">Dá ao Claude a capacidade de assistir um vídeo: baixa, extrai quadros com horário e transcreve, e entrega tudo para ele analisar.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Mandar o link de um vídeo do YouTube e o Claude resumir, citar trechos e mostrar o que aparece na tela</li><li>Analisar vídeos de referência antes de criar os seus</li><li>Revisar o seu próprio vídeo antes de publicar</li></ul><p class="nota">Funciona sem chave de API no modo local (ffmpeg e yt-dlp); a transcrição local usa WhisperX.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>21k estrelas</span><span>push 25/09/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="terminal" data-c="doc" data-p="Docker ou servidor">
+          <div class="topo"><span class="tipo">Terminal</span><span class="cat">Ler, pesquisar e escrever</span></div>
+          <h3><a href="https://github.com/firecrawl/firecrawl" target="_blank" rel="noopener">Firecrawl</a></h3>
+          <span class="repo">firecrawl/firecrawl</span>
+          <p class="oque">Lê sites inteiros e devolve o conteúdo limpo, em Markdown ou JSON, pronto para um agente usar.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Pesquisa de mercado: preços e recursos de concorrentes</li><li>Documentação pública de API puxada para análise</li><li>Acompanhar mudanças em sites que você monitora</li></ul><p class="nota">Licença AGPL: uso próprio tudo bem, mas não pode ir dentro de um produto que seja vendido.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Docker ou servidor</span></div>
+          <div class="meta"><span class="aviso">AGPL-3.0</span><span>198k estrelas</span><span>push 03/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="doc" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Ler, pesquisar e escrever</span></div>
+          <h3><a href="https://github.com/blader/humanizer" target="_blank" rel="noopener">Humanizer</a></h3>
+          <span class="repo">blader/humanizer</span>
+          <p class="oque">Skill que reescreve texto gerado por IA para soar como uma pessoa escreveu, sem mudar o que ele diz. Usa o guia da Wikipedia de sinais de escrita por IA (26 padrões).</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Post do LinkedIn sem cara de texto de chatbot</li><li>Revisar e-mail, apresentação e documento antes de mandar</li><li>Corrigir vícios como &quot;não é só X, é Y&quot; e frases de efeito no fim</li></ul><p class="nota">O objetivo é ler melhor, não enganar detector de IA: os próprios autores dizem que os detectores ainda marcam a maior parte.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>66k estrelas</span><span>push 28/10/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="terminal" data-c="video" data-p="Terminal">
+          <div class="topo"><span class="tipo">Terminal</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/heygen-com/hyperframes" target="_blank" rel="noopener">Hyperframes</a></h3>
+          <span class="repo">heygen-com/hyperframes</span>
+          <p class="oque">Transforma HTML em vídeo. O agente escreve as animações em código e ele renderiza o arquivo final.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Motor de várias skills de vídeo para o Claude Code</li><li>Vídeo de tutorial com animação no ritmo da fala</li><li>Abertura e vinheta para apresentação e posts</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Terminal</span></div>
+          <div class="meta"><span>Apache-2.0</span><span>79k estrelas</span><span>push 05/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="terminal" data-c="doc" data-p="Terminal">
+          <div class="topo"><span class="tipo">Terminal</span><span class="cat">Ler, pesquisar e escrever</span></div>
+          <h3><a href="https://github.com/microsoft/markitdown" target="_blank" rel="noopener">MarkItDown</a></h3>
+          <span class="repo">microsoft/markitdown</span>
+          <p class="oque">Converte PDF, Word, Excel, PowerPoint e HTML em Markdown, que é o formato que o agente lê melhor.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Manual ou especificação de API em PDF vira texto para o agente analisar</li><li>Planilha lida e resumida sem abrir o Excel</li><li>Apresentações antigas viram texto pesquisável</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Terminal</span></div>
+          <div class="meta"><span>MIT</span><span>194k estrelas</span><span>push 28/10/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="prod" data-p="Docker ou servidor">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Organizar o dia a dia</span></div>
+          <h3><a href="https://github.com/gitroomhq/postiz-app" target="_blank" rel="noopener">Postiz</a></h3>
+          <span class="repo">gitroomhq/postiz-app</span><p class="alt"><span>Alternativa a</span>Buffer, Hootsuite e mLabs</p>
+          <p class="oque">Agenda e publica posts em várias redes (Instagram, LinkedIn, TikTok, YouTube e outras), com um agente de IA que ajuda a criar e programar.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Programar a semana inteira de posts de uma vez</li><li>Pedir ao Claude para agendar as peças prontas nos dias certos</li><li>Ver num calendário só o que sai em cada rede</li></ul><p class="nota">AGPL. Tem versão de nuvem paga; a versão que você mesmo hospeda é grátis.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Docker ou servidor</span></div>
+          <div class="meta"><span class="aviso">AGPL-3.0</span><span>42k estrelas</span><span>push 18/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="video" data-p="Claude Code|Chave de API paga">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/browser-use/video-use" target="_blank" rel="noopener">video-use</a></h3>
+          <span class="repo">browser-use/video-use</span>
+          <p class="oque">Skill do Claude Code que edita vídeo conversando: você coloca as gravações numa pasta, pede o vídeo e recebe o arquivo final.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Gravação de tutorial sem &quot;éé&quot;, pausas e falsos começos</li><li>Legenda no seu estilo e correção de cor automáticas</li><li>Animações por cima feitas com o Hyperframes</li></ul><p class="nota">Transcreve pela ElevenLabs, que é paga e manda o áudio para fora do computador. Evite em gravação com dado sensível.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span><span>Chave de API paga</span></div>
+          <div class="meta"><span>MIT</span><span>30k estrelas</span><span>push 08/10/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="modelo" data-c="audio" data-p="Terminal">
+          <div class="topo"><span class="tipo">Modelo</span><span class="cat">Transcrever e trabalhar com voz</span></div>
+          <h3><a href="https://github.com/openai/whisper" target="_blank" rel="noopener">Whisper</a></h3>
+          <span class="repo">openai/whisper</span>
+          <p class="oque">Transcreve áudio e vídeo localmente, em português e outras línguas, sem serviço externo.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Gravação de reunião vira transcrição e depois ata</li><li>Aulas e treinamentos viram material de consulta</li><li>Entrevistas transcritas sem o áudio sair do Mac</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Terminal</span></div>
+          <div class="meta"><span>MIT</span><span>112k estrelas</span><span>push 31/08/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="terminal" data-c="audio" data-p="Terminal">
+          <div class="topo"><span class="tipo">Terminal</span><span class="cat">Transcrever e trabalhar com voz</span></div>
+          <h3><a href="https://github.com/ggml-org/whisper.cpp" target="_blank" rel="noopener">whisper.cpp</a></h3>
+          <span class="repo">ggml-org/whisper.cpp</span>
+          <p class="oque">O Whisper reescrito para rodar rápido no Mac. Transcreve e gera legenda SRT com o tempo de cada palavra.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Transcrever uma gravação e sincronizar cada animação com a fala</li><li>Legenda automática para vídeo de tutorial</li><li>Transcrever reunião mais rápido que o Whisper original no Mac</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Terminal</span></div>
+          <div class="meta"><span>MIT</span><span>55k estrelas</span><span>push 05/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="prod" data-p="Instalar e usar">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Organizar o dia a dia</span></div>
+          <h3><a href="https://github.com/FrigadeHQ/yogurt" target="_blank" rel="noopener">Yogurt</a></h3>
+          <span class="repo">FrigadeHQ/yogurt</span><p class="alt"><span>Alternativa a</span>Granola, Otter e Fireflies</p>
+          <p class="oque">Anotações de reunião que ficam no computador: grava o microfone e o áudio da chamada, transcreve, resume e responde perguntas sobre as reuniões, sem bot entrando na chamada.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Ata e resumo de reunião do Zoom, Teams ou Meet sem nuvem</li><li>Perguntar &quot;o que ficou combinado sobre X?&quot; e receber a resposta com o trecho da reunião</li><li>Exportar notas e transcrição em Markdown</li></ul><p class="nota">Tem instalador para Mac e é mais simples de começar que o anarlog, que faz o mesmo. Projeto de nov/2026. Avisar quem está na chamada que ela está sendo gravada.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Instalar e usar</span></div>
+          <div class="meta"><span>MIT</span><span>3,4k estrelas</span><span>push 25/11/2026</span><span>Novo</span></div>
+        </article>
+      </div>
+    </section>
+    <section class="secao" data-d="media">
+      <div class="sh"><h2>Boas quando a necessidade aparecer.</h2><span class="mono">Resolvem bem um problema específico · <b class="cont">36</b></span></div>
+      <div class="grade">
+        <article class="ficha" data-tipo="app" data-c="prod" data-p="Instalar e usar">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Organizar o dia a dia</span></div>
+          <h3><a href="https://github.com/hyperfield/ai-file-sorter" target="_blank" rel="noopener">AI File Sorter</a></h3>
+          <span class="repo">hyperfield/ai-file-sorter</span><p class="alt"><span>Alternativa a</span>Hazel (Mac)</p>
+          <p class="oque">Organiza pastas bagunçadas com IA: sugere uma categoria e um nome melhor para cada arquivo (fotos, documentos, áudio e vídeo) e só mexe depois que você aprova.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Arrumar a pasta de Downloads e o HD externo de uma vez</li><li>Renomear fotos como IMG_2048.jpg para nomes que dizem o que tem nelas</li></ul><p class="nota">Roda com modelo local, sem mandar nada para fora. Se você ligar o nome do lugar nas fotos, as coordenadas vão para o OpenStreetMap.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Instalar e usar</span></div>
+          <div class="meta"><span class="aviso">AGPL-3.0</span><span>1,9k estrelas</span><span>push 21/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="terminal" data-c="video" data-p="Terminal">
+          <div class="topo"><span class="tipo">Terminal</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/WyattBlue/auto-editor" target="_blank" rel="noopener">auto-editor</a></h3>
+          <span class="repo">WyattBlue/auto-editor</span>
+          <p class="oque">Corta sozinho os silêncios e as pausas de um vídeo gravado.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Limpar a gravação de um tutorial antes de montar o vídeo</li><li>Enxugar gravação de reunião ou demo antes de compartilhar</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Terminal</span></div>
+          <div class="meta"><span>Domínio público</span><span>5,8k estrelas</span><span>push 05/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="video" data-p="Instalar e usar">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/CapSoftware/Cap" target="_blank" rel="noopener">Cap</a></h3>
+          <span class="repo">CapSoftware/Cap</span><p class="alt"><span>Alternativa a</span>Loom</p>
+          <p class="oque">Gravador de tela aberto, alternativa ao Loom: grava, edita e gera um link para compartilhar.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Gravar demo de produto ou tutorial com a sua câmera no canto</li><li>Mandar explicação gravada em vez de marcar reunião</li></ul><p class="nota">Licença mista: parte é MIT, o resto tem termos próprios. Conferir antes de uso comercial.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Instalar e usar</span></div>
+          <div class="meta"><span class="aviso">Mista</span><span>25k estrelas</span><span>push 18/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="plugin" data-c="prod" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Plugin</span><span class="cat">Organizar o dia a dia</span></div>
+          <h3><a href="https://github.com/jarrodwatts/claude-hud" target="_blank" rel="noopener">claude-hud</a></h3>
+          <span class="repo">jarrodwatts/claude-hud</span>
+          <p class="oque">Plugin do Claude Code que mostra o que está acontecendo: uso de contexto, ferramentas ativas, agentes rodando e progresso das tarefas.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Ver quanto do contexto já foi usado antes de a conversa ficar longa</li><li>Acompanhar subagentes e tarefas em andamento</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>29k estrelas</span><span>push 10/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="visual" data-p="Instalar e usar|GPU">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Design, apresentações e imagens</span></div>
+          <h3><a href="https://github.com/Comfy-Org/ComfyUI" target="_blank" rel="noopener">ComfyUI</a></h3>
+          <span class="repo">Comfy-Org/ComfyUI</span><p class="alt"><span>Alternativa a</span>Midjourney</p>
+          <p class="oque">Gera imagens com IA no próprio computador, montando o processo em blocos ligados.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Imagens para posts no LinkedIn e capas de apresentação</li><li>Ilustrações para tutoriais e páginas</li></ul><p class="nota">Pede GPU. No Mac roda, mas devagar. Licença GPL.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Instalar e usar</span><span>GPU</span></div>
+          <div class="meta"><span class="aviso">GPL-3.0</span><span>145k estrelas</span><span>push 03/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="mcp" data-c="video" data-p="Claude Code|DaVinci Resolve">
+          <div class="topo"><span class="tipo">MCP</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/samuelgursky/davinci-resolve-mcp" target="_blank" rel="noopener">DaVinci Resolve MCP</a></h3>
+          <span class="repo">samuelgursky/davinci-resolve-mcp</span>
+          <p class="oque">Deixa o Claude controlar o DaVinci Resolve, um editor profissional: linha do tempo, cortes, cor e exportação.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Edição de nível profissional comandada por conversa, para vídeo de lançamento</li><li>Ajuste fino depois que o video-use fizer o primeiro corte</li></ul><p class="nota">A descrição cita o Resolve Studio, que é a versão paga. Confirmar se funciona na versão grátis antes de instalar.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span><span>DaVinci Resolve</span></div>
+          <div class="meta"><span>MIT</span><span>4k estrelas</span><span>push 05/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="visual" data-p="Docker ou servidor">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Design, apresentações e imagens</span></div>
+          <h3><a href="https://github.com/kgoedecke/doop" target="_blank" rel="noopener">Doop</a></h3>
+          <span class="repo">kgoedecke/doop</span><p class="alt"><span>Alternativa a</span>Paper.design e Claude Design</p>
+          <p class="oque">Canvas de design em que pessoas e agentes de IA desenham juntos, ao vivo. O Claude Code entra pelo MCP e as telas são HTML de verdade.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Protótipo de tela feito com o agente, com outras pessoas comentando no mesmo canvas</li><li>Fluxo clicável para validar uma ideia antes de desenvolver</li><li>Guardar as regras de estilo de um design system para todo agente seguir</li></ul><p class="nota">Projeto novo (ago/2026) e AGPL. Faz quase o mesmo que o Design do Claude: vale se você precisa de um canvas hospedado por você ou de um agente que não seja o Claude.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Docker ou servidor</span></div>
+          <div class="meta"><span class="aviso">AGPL-3.0</span><span>1,7k estrelas</span><span>push 04/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="visual" data-p="Instalar e usar">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Design, apresentações e imagens</span></div>
+          <h3><a href="https://github.com/storytold/figcraft" target="_blank" rel="noopener">FigCraft</a></h3>
+          <span class="repo">storytold/figcraft</span><p class="alt"><span>Alternativa a</span>Figma</p>
+          <p class="oque">Editor de design no estilo do Figma, aberto e nativo: componentes, auto layout, variáveis, protótipo e modo dev. Abre arquivos .fig, e o agente controla tudo por MCP, com mais de 400 comandos.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Abrir um arquivo do Figma no computador, sem nuvem, e pedir para o agente mexer</li><li>Montar um design system com componentes e variáveis pelo Claude</li><li>Exportar tela em PNG, SVG, PDF ou código React</li></ul><p class="nota">Em alpha: o próprio projeto diz que está a cerca de 49% de substituir o Figma. Abre .fig &quot;no melhor esforço&quot; e a colaboração ao vivo ainda é prévia.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Instalar e usar</span></div>
+          <div class="meta"><span>Apache-2.0</span><span>4,7k estrelas</span><span>push 07/11/2026</span><span>Alpha</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="video" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/LeiteZ/fluxo-de-edicao" target="_blank" rel="noopener">Fluxo de edição</a></h3>
+          <span class="repo">LeiteZ/fluxo-de-edicao</span>
+          <p class="oque">Skill do Claude Code, em português, que não edita o vídeo: ela entrevista você, analisa vídeos de referência que você gosta e escreve as suas próprias skills de edição, uma por etapa.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Montar um fluxo de edição no seu estilo: cortes, animação, movimento de câmera e efeito sonoro</li><li>Ganhar uma skill &quot;/editar&quot; que guia cada vídeo novo etapa por etapa</li><li>Aproveitar os cuidados com Hyperframes e com a entrega para o Premiere que vêm nos guias</li></ul><p class="nota">Projeto de 4 dias, feito por uma pessoa. É só texto, então dá para ler o SKILL.md antes de instalar e conferir o que ele vai pedir para instalar.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>53 estrelas</span><span>push 04/11/2026</span><span>Novo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="visual" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Design, apresentações e imagens</span></div>
+          <h3><a href="https://github.com/zarazhangrui/frontend-slides" target="_blank" rel="noopener">frontend-slides</a></h3>
+          <span class="repo">zarazhangrui/frontend-slides</span>
+          <p class="oque">Skill que faz apresentações bonitas na web, usando o que o agente sabe de front-end.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Apresentação em HTML com animação, sem PowerPoint</li><li>Deck rápido a partir de um texto ou de um roteiro</li></ul><p class="nota">Comparar com os Slides do Claude antes de adotar.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>32k estrelas</span><span>push 23/06/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="audio" data-p="Terminal|GPU">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Transcrever e trabalhar com voz</span></div>
+          <h3><a href="https://github.com/RVC-Boss/GPT-SoVITS" target="_blank" rel="noopener">GPT-SoVITS</a></h3>
+          <span class="repo">RVC-Boss/GPT-SoVITS</span><p class="alt"><span>Alternativa a</span>ElevenLabs (clonagem de voz)</p>
+          <p class="oque">Transforma texto em fala e clona uma voz a partir de cerca de 1 minuto de áudio.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Narração de vídeos sem precisar gravar</li><li>Áudio de tutorial atualizado sem regravar a cada versão</li></ul><p class="nota">Só clonar a voz de alguém com o consentimento da pessoa.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Terminal</span><span>GPU</span></div>
+          <div class="meta"><span>MIT</span><span>65k estrelas</span><span>push 31/10/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="agent" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Agentes e automação</span></div>
+          <h3><a href="https://github.com/garrytan/gstack" target="_blank" rel="noopener">gstack</a></h3>
+          <span class="repo">garrytan/gstack</span>
+          <p class="oque">O setup do Claude Code do Garry Tan: 23 ferramentas que fazem papel de CEO, designer, gerente de engenharia, release, documentação e QA.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Estudar como ele organiza papéis e revisões com o agente</li><li>Pegar uma ou outra skill (revisão, QA) para o seu fluxo</li></ul><p class="nota">A instalação manda mexer no CLAUDE.md e proibir as ferramentas do Chrome. Leia antes e não instale inteiro se você já tem um setup próprio.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>142k estrelas</span><span>push 18/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="skill" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Deixar o design feito com IA mais bonito</span></div>
+          <h3><a href="https://github.com/Nutlope/hallmark" target="_blank" rel="noopener">Hallmark</a></h3>
+          <span class="repo">Nutlope/hallmark</span>
+          <p class="oque">Skill contra o &quot;design com cara de IA&quot; para o Claude Code, com regras de layout, tipografia e cor.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Dar acabamento de designer a páginas e telas feitas pelo agente</li></ul><p class="nota">Mesmo espaço da Taste Skill, do Unslop e do Impeccable. Escolher um só depois de testar na mesma página.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>57k estrelas</span><span>push 11/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="video" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/alchaincyf/huashu-motion" target="_blank" rel="noopener">huashu-motion</a></h3>
+          <span class="repo">alchaincyf/huashu-motion</span>
+          <p class="oque">Faz filmes de lançamento de produto com o agente, inclusive a trilha: compõe a música no computador, com instrumentos reais, e coloca efeito sonoro em cada movimento.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Vídeo de lançamento de 30 segundos a partir do site do produto</li><li>Trilha original sem pagar banco de música</li><li>Apontar para o quadro do vídeo e pedir a mudança ali</li></ul><p class="nota">Documentação principalmente em chinês.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>2,9k estrelas</span><span>push 16/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="modelo" data-c="audio" data-p="Terminal">
+          <div class="topo"><span class="tipo">Modelo</span><span class="cat">Transcrever e trabalhar com voz</span></div>
+          <h3><a href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener">Kokoro</a></h3>
+          <span class="repo">hexgrad/kokoro</span>
+          <p class="oque">Modelo leve de voz (82 milhões de parâmetros) que transforma texto em fala com boa qualidade e roda no computador.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Narração rápida para vídeo curto</li><li>Locução de teste antes de gravar a sua voz</li></ul><p class="nota">Sem atualização no repositório desde ago/2025, mas o modelo é estável e outras ferramentas, como o huashu-motion, usam.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Terminal</span></div>
+          <div class="meta"><span>Apache-2.0</span><span>10,2k estrelas</span><span>push 06/08/2025</span><span>Estável</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="video" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/lemomo-ai/lemo-opuscar" target="_blank" rel="noopener">Lemo-Opuscar</a></h3>
+          <span class="repo">lemomo-ai/lemo-opuscar</span>
+          <p class="oque">Caixa de estilos de filme feitos em código: 99 estilos prontos, cada um com um prompt de estilo e um filme de exemplo feito só com código, sem modelo de vídeo.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Escolher um estilo pronto em vez de começar do zero</li><li>Criar e guardar um estilo seu para usar em todos os vídeos</li></ul><p class="nota">Código MIT; os textos dos estilos são CC BY-NC, mas liberados para fazer os próprios filmes, inclusive pagos. Não pode revender os estilos.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span class="aviso">MIT + CC BY-NC</span><span>18k estrelas</span><span>push 17/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="agent" data-p="Docker ou servidor|Chave de API paga">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Agentes e automação</span></div>
+          <h3><a href="https://github.com/lobehub/lobehub" target="_blank" rel="noopener">LobeHub</a></h3>
+          <span class="repo">lobehub/lobehub</span><p class="alt"><span>Alternativa a</span>ChatGPT e Claude no navegador</p>
+          <p class="oque">Plataforma de chat e agentes com vários modelos de IA, que você mesmo hospeda.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Um chat de agentes prontos e compartilhados para um time</li><li>Base de conhecimento consultável por quem não usa Claude Code</li></ul><p class="nota">Licença própria: confirmar as condições antes de qualquer uso comercial.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Docker ou servidor</span><span>Chave de API paga</span></div>
+          <div class="meta"><span class="aviso">Licença própria</span><span>84k estrelas</span><span>push 03/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="skill" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Deixar o design feito com IA mais bonito</span></div>
+          <h3><a href="https://github.com/kaankiziltug/logo-design-skill" target="_blank" rel="noopener">Logo Design Skill</a></h3>
+          <span class="repo">kaankiziltug/logo-design-skill</span>
+          <p class="oque">Skill completa de design de logo: princípios, processo, desenho em SVG, ferramentas de teste e uma biblioteca de mais de 1.400 logos de referência.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Criar logo em vetor (SVG) para um projeto novo</li><li>Testar o logo em tamanho pequeno, em preto e branco e em fundo escuro</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>7,2k estrelas</span><span>push 13/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="doc" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Ler, pesquisar e escrever</span></div>
+          <h3><a href="https://github.com/coreyhaines31/marketingskills" target="_blank" rel="noopener">Marketing Skills</a></h3>
+          <span class="repo">coreyhaines31/marketingskills</span>
+          <p class="oque">Pacote de skills de marketing para o Claude Code: conversão, copy, SEO, analytics e growth.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Melhorar bio, chamadas e texto de lançamento de um perfil ou produto</li><li>Revisar uma landing page com olhar de conversão</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>61k estrelas</span><span>push 18/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="lib" data-c="video" data-p="Programar">
+          <div class="topo"><span class="tipo">Biblioteca</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/Zulko/moviepy" target="_blank" rel="noopener">MoviePy</a></h3>
+          <span class="repo">Zulko/moviepy</span>
+          <p class="oque">Biblioteca Python para editar vídeo por script: cortar, juntar, pôr trilha e texto. O Claude escreve o script.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Mesmo modelo de vídeo aplicado a vários temas, sem editar um por um</li><li>Juntar abertura, gravação e encerramento padrão automaticamente</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Programar</span></div>
+          <div class="meta"><span>MIT</span><span>15k estrelas</span><span>push 26/08/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="visual" data-p="Navegador|Docker ou servidor">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Design, apresentações e imagens</span></div>
+          <h3><a href="https://github.com/penpot/penpot" target="_blank" rel="noopener">Penpot</a></h3>
+          <span class="repo">penpot/penpot</span><p class="alt"><span>Alternativa a</span>Figma</p>
+          <p class="oque">Plataforma de design aberta e madura, alternativa ao Figma: roda no navegador ou no seu servidor, trabalha com SVG, CSS e HTML e tem servidor MCP para o agente.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Design de telas com colaboração, hospedado por você</li><li>Ligar design e código pelo MCP, com tokens de design</li><li>Alternativa mais madura ao FigCraft quando você precisa de um Figma aberto</li></ul><p class="nota">Projeto de 10 anos, bem mais estável que o FigCraft. Ainda assim é design vetorial, não HTML como o Doop.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Navegador</span><span>Docker ou servidor</span></div>
+          <div class="meta"><span>MPL-2.0</span><span>63k estrelas</span><span>push 18/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="skill" data-p="Codex|Chave de API paga">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Deixar o design feito com IA mais bonito</span></div>
+          <h3><a href="https://github.com/HaichaoLihc/create-photo-flipbook-ui" target="_blank" rel="noopener">Photo Flipbook</a></h3>
+          <span class="repo">HaichaoLihc/create-photo-flipbook-ui</span>
+          <p class="oque">Skill que transforma uma pasta de fotos num livro de fotos 3D interativo, com páginas que viram, entregue como site.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Álbum de viagem, casamento ou aniversário como site para presentear</li><li>Base para um serviço de fotolivro digital</li><li>Templates extras de galeria: anel de fotos, estante e atlas por ano</li></ul><p class="nota">Feita para o Codex: gera a arte das páginas com o gerador de imagens da OpenAI. No Claude Code essa parte precisa de outro caminho; o livro 3D funciona igual.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Codex</span><span>Chave de API paga</span></div>
+          <div class="meta"><span>MIT</span><span>657 estrelas</span><span>push 20/10/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="visual" data-p="Docker ou servidor">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Design, apresentações e imagens</span></div>
+          <h3><a href="https://github.com/presenton/presenton" target="_blank" rel="noopener">Presenton</a></h3>
+          <span class="repo">presenton/presenton</span><p class="alt"><span>Alternativa a</span>Gamma, Canva e Beautiful.ai</p>
+          <p class="oque">Gera apresentações com IA a partir de um tema ou documento, com API. Alternativa aberta ao Gamma.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Primeiro rascunho de apresentação em minutos</li><li>Deck gerado por API a partir de dados, como um relatório semanal</li><li>Comparar antes com os Slides que o Claude já faz</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Docker ou servidor</span></div>
+          <div class="meta"><span>Apache-2.0</span><span>12k estrelas</span><span>push 02/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="video" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/JuneYaooo/rea-video" target="_blank" rel="noopener">rea-video</a></h3>
+          <span class="repo">JuneYaooo/rea-video</span>
+          <p class="oque">Desmonta qualquer vídeo plano a plano: diz se cada trecho foi filmado, gerado por IA ou feito em código, e como refazer.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Entender como foi feito um vídeo de referência</li><li>Transformar a análise num roteiro para recriar no seu estilo</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>Apache-2.0</span><span>10,5k estrelas</span><span>push 18/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="vida" data-p="Navegador">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Finanças, viagem e currículo</span></div>
+          <h3><a href="https://github.com/reactive-resume/reactive-resume" target="_blank" rel="noopener">Reactive Resume</a></h3>
+          <span class="repo">reactive-resume/reactive-resume</span><p class="alt"><span>Alternativa a</span>Canva e Zety (currículo)</p>
+          <p class="oque">Criador de currículo aberto e gratuito: você escreve e vê a página pronta ao lado, baixa em PDF, Word ou Markdown, ou compartilha por link.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Manter o currículo atualizado num modelo bonito, sem pagar assinatura</li><li>Gerar versões do currículo para vagas diferentes</li></ul><p class="nota">Grátis no site deles ou hospedado por você. A IA é opcional e usa um provedor que você conecta.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Navegador</span></div>
+          <div class="meta"><span>MIT</span><span>46k estrelas</span><span>push 20/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="video" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/NiazMorshed2007/reanimate" target="_blank" rel="noopener">reanimate</a></h3>
+          <span class="repo">NiazMorshed2007/reanimate</span>
+          <p class="oque">Skill que desmonta uma animação quadro a quadro, recria em código e prova que a cópia se mexe igual.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Reproduzir uma animação de interface que você viu num site ou app</li><li>Aprender o tempo e a curva de um movimento bem feito</li></ul><p class="nota">Usar como estudo, não para copiar o trabalho de alguém sem crédito.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>1,8k estrelas</span><span>push 31/10/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="skill" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Deixar o design feito com IA mais bonito</span></div>
+          <h3><a href="https://github.com/nateherkai/scroll-craft" target="_blank" rel="noopener">scroll-craft</a></h3>
+          <span class="repo">nateherkai/scroll-craft</span>
+          <p class="oque">Skill para sites imersivos que contam a história pela rolagem, com padrão de design e checagem de contraste e de celular.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Landing page de lançamento ou portfólio que prende quem rola</li><li>Estudar os dez sites aprovados que vêm como exemplo</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>4,7k estrelas</span><span>push 30/09/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="video" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/howznguyen/shorts-kit" target="_blank" rel="noopener">shorts-kit</a></h3>
+          <span class="repo">howznguyen/shorts-kit</span>
+          <p class="oque">Kit para fazer vídeos verticais narrados (TikTok, Shorts, Reels) com o agente: mais de 20 roteiros prontos, conferência de fatos e efeitos sonoros livres.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Explicar um conceito em 60 segundos com narração e animação</li><li>Série de vídeos curtos com o mesmo formato</li></ul><p class="nota">Usa o Remotion, que é grátis para pessoa física. Projeto de nov/2026.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>190 estrelas</span><span>push 09/11/2026</span><span>Novo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="vida" data-p="Docker ou servidor">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Finanças, viagem e currículo</span></div>
+          <h3><a href="https://github.com/we-promise/sure" target="_blank" rel="noopener">Sure</a></h3>
+          <span class="repo">we-promise/sure</span><p class="alt"><span>Alternativa a</span>Mobills, Organizze e YNAB</p>
+          <p class="oque">App de finanças pessoais que você mesmo hospeda: contas, gastos, orçamento e patrimônio num lugar só. É a continuação, feita pela comunidade, do Maybe Finance.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Controlar gastos e patrimônio sem entregar os dados a um app de terceiro</li><li>Consultar as suas finanças por um agente de IA, que tem acesso próprio ao app</li></ul><p class="nota">AGPL. A conexão automática com banco foi pensada para fora do Brasil: confira como importar extrato de banco brasileiro antes de adotar.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Docker ou servidor</span></div>
+          <div class="meta"><span class="aviso">AGPL-3.0</span><span>17,9k estrelas</span><span>push 25/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="skill" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Deixar o design feito com IA mais bonito</span></div>
+          <h3><a href="https://github.com/Leonxlnx/taste-skill" target="_blank" rel="noopener">Taste Skill</a></h3>
+          <span class="repo">Leonxlnx/taste-skill</span>
+          <p class="oque">Faz o papel de diretor de arte do agente: define uma direção visual, busca fotos reais em acervos abertos e confere o resultado em screenshot no navegador.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Landing page, post do LinkedIn e página com cara menos &quot;feita por IA&quot;</li><li>Revisão visual por screenshot antes de entregar um artefato</li></ul><p class="nota">Ocupa o mesmo espaço do Hallmark, do Unslop e do Impeccable. Teste na mesma página antes de escolher um.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>110k estrelas</span><span>push 04/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="vida" data-p="Docker ou servidor|Chave de API paga">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Finanças, viagem e currículo</span></div>
+          <h3><a href="https://github.com/vas3k/TaxHacker" target="_blank" rel="noopener">TaxHacker</a></h3>
+          <span class="repo">vas3k/TaxHacker</span><p class="alt"><span>Alternativa a</span>Expensify</p>
+          <p class="oque">Contabilidade com IA que você mesmo hospeda: tira foto do recibo ou sobe a nota em PDF, e ele extrai valor, data, loja, itens e impostos e lança como despesa ou receita.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Controlar as despesas de um projeto pessoal ou de PJ sem digitar nota por nota</li><li>Separar os gastos por projeto e categoria e exportar para o contador</li></ul><p class="nota">Ainda em desenvolvimento inicial, nas palavras do autor. Usa OpenAI, Gemini ou Mistral, que são pagos, ou um modelo local.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Docker ou servidor</span><span>Chave de API paga</span></div>
+          <div class="meta"><span>MIT</span><span>6,9k estrelas</span><span>push 20/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="vida" data-p="Docker ou servidor">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Finanças, viagem e currículo</span></div>
+          <h3><a href="https://github.com/liketrek/TREK" target="_blank" rel="noopener">TREK</a></h3>
+          <span class="repo">liketrek/TREK</span><p class="alt"><span>Alternativa a</span>Wanderlog e TripIt</p>
+          <p class="oque">Planejador de viagem completo, hospedado por você: roteiro no mapa editado em tempo real por quem vai junto, reservas, custos divididos, lista de mala e diário da viagem.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Montar uma viagem em família ou com amigos, todo mundo editando junto</li><li>Dividir os gastos e guardar as reservas num lugar só</li></ul><p class="nota">AGPL. Tem servidor MCP, então o Claude pode montar o roteiro dentro do app.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Docker ou servidor</span></div>
+          <div class="meta"><span class="aviso">AGPL-3.0</span><span>15,9k estrelas</span><span>push 25/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="skill" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Deixar o design feito com IA mais bonito</span></div>
+          <h3><a href="https://github.com/ibelick/ui-skills" target="_blank" rel="noopener">UI Skills</a></h3>
+          <span class="repo">ibelick/ui-skills</span>
+          <p class="oque">Catálogo de skills para quem faz interface (motion, tipografia, layout), com buscador pelo terminal e por MCP.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Achar uma skill pronta para um problema de interface específico</li><li>Ler o playbook, que resume as lições das melhores skills de design</li></ul><p class="nota">O MCP aponta para o site deles (ui-skills.com), que é um serviço de terceiro.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>10,8k estrelas</span><span>push 07/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="skill" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Deixar o design feito com IA mais bonito</span></div>
+          <h3><a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill" target="_blank" rel="noopener">UI UX Pro Max</a></h3>
+          <span class="repo">nextlevelbuilder/ui-ux-pro-max-skill</span>
+          <p class="oque">Catálogo de design com buscador, que o agente consulta enquanto desenha: estilos, paletas, fontes, regras de UX e um checklist de entrega.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Checklist de UX e acessibilidade antes de entregar uma tela ou protótipo</li><li>Regras de texto que quebra e rótulo curto, problema comum em formulário</li><li>Cobre 22 stacks, de React e Angular a SwiftUI e Flutter</li></ul><p class="nota">Quando o projeto já tem um padrão visual, usar só as regras de UX dele, não a paleta e as fontes.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>145k estrelas</span><span>push 04/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="skill" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Deixar o design feito com IA mais bonito</span></div>
+          <h3><a href="https://github.com/heydamir/unslop" target="_blank" rel="noopener">Unslop</a></h3>
+          <span class="repo">heydamir/unslop</span>
+          <p class="oque">Skill que transforma uma interface com cara de feita por IA numa interface desenhada.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Revisar uma tela pronta e tirar os vícios visuais de IA</li></ul><p class="nota">Licença CC BY 4.0: pode usar, mas precisa dar crédito. Mesmo espaço do Hallmark e da Taste Skill.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span class="aviso">CC-BY-4.0</span><span>18k estrelas</span><span>push 15/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="audio" data-p="Instalar e usar">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Transcrever e trabalhar com voz</span></div>
+          <h3><a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">VoiceStudio</a></h3>
+          <span class="repo">debpalash/VoiceStudio</span><p class="alt"><span>Alternativa a</span>ElevenLabs</p>
+          <p class="oque">Estúdio de voz que roda no computador, alternativa local à ElevenLabs: clona e cria vozes, dubla vídeo, dita, transcreve e narra em 646 línguas.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Dublar um vídeo para inglês ou espanhol mantendo o tempo da fala</li><li>Narração com uma voz criada a partir de uma descrição</li><li>Ditado e transcrição sem o áudio sair do Mac</li></ul><p class="nota">AGPL, e trabalho pago para cliente pede a licença Pro. Faz mais que o GPT-SoVITS e tem interface: preferir este. Clonar voz só com consentimento.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Instalar e usar</span></div>
+          <div class="meta"><span class="aviso">AGPL-3.0</span><span>104k estrelas</span><span>push 08/11/2026</span><span>Ativo</span></div>
+        </article>
+      </div>
+    </section>
+    <section class="secao" data-d="baixa">
+      <div class="sh"><h2>Para casos específicos.</h2><span class="mono">Nichadas, novas demais, paradas ou com alguma limitação · <b class="cont">22</b></span></div>
+      <div class="grade">
+        <article class="ficha" data-tipo="app" data-c="prod" data-p="Instalar e usar">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Organizar o dia a dia</span></div>
+          <h3><a href="https://github.com/sqlpxc/airhand" target="_blank" rel="noopener">airhand</a></h3>
+          <span class="repo">sqlpxc/airhand</span><p class="alt"><span>Alternativa a</span>TeamViewer, AnyDesk e Parsec</p>
+          <p class="oque">Acesso remoto ao computador com baixa latência, até 120 quadros por segundo, em Windows, Mac, Linux, Android e navegador.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Usar o Mac de outro lugar com fluidez</li></ul><p class="nota">Projeto de out/2026. Acesso remoto exige cuidado com segurança.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Instalar e usar</span></div>
+          <div class="meta"><span>MIT</span><span>1,4k estrelas</span><span>push 18/11/2026</span><span>Novo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="apps" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Construir apps</span></div>
+          <h3><a href="https://github.com/daveebbelaar/bama" target="_blank" rel="noopener">BAMA</a></h3>
+          <span class="repo">daveebbelaar/bama</span>
+          <p class="oque">Skills para o agente pesquisar, desenhar, construir e testar apps nativos de Mac em Swift e SwiftUI.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Criar um app de Mac pequeno para uma tarefa sua</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span>MIT</span><span>1,9k estrelas</span><span>push 05/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="comp" data-c="ui" data-p="Programar">
+          <div class="topo"><span class="tipo">Componentes</span><span class="cat">Componentes de interface</span></div>
+          <h3><a href="https://github.com/BoardUI/boardui" target="_blank" rel="noopener">BoardUI</a></h3>
+          <span class="repo">BoardUI/boardui</span>
+          <p class="oque">Biblioteca de componentes React para produtos com IA: chat, indicador de &quot;pensando&quot;, log de agente, tabelas e formulários, com tema claro e escuro.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Base visual para um app próprio com chat de IA</li></ul><p class="nota">Só vale se você for construir um produto em React. Esta é a parte grátis; o resto é pago.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Programar</span></div>
+          <div class="meta"><span>MIT</span><span>1,1k estrelas</span><span>push 02/10/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="lib" data-c="apps" data-p="Programar">
+          <div class="topo"><span class="tipo">Biblioteca</span><span class="cat">Construir apps</span></div>
+          <h3><a href="https://github.com/expo/exact" target="_blank" rel="noopener">Exact</a></h3>
+          <span class="repo">expo/exact</span>
+          <p class="oque">Da Expo: escreve o app uma vez e ele roda nativo na web, no Mac, no iPhone e no Linux, e o agente consegue construir, rodar, ver e testar em todos.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Protótipo de app que funciona no celular e no computador</li></ul><p class="nota">Projeto de nov/2026, da mesma equipe do Expo.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Programar</span></div>
+          <div class="meta"><span>MIT</span><span>4,6k estrelas</span><span>push 18/11/2026</span><span>Novo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="agent" data-p="Docker ou servidor">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Agentes e automação</span></div>
+          <h3><a href="https://github.com/FlowiseAI/Flowise" target="_blank" rel="noopener">Flowise</a></h3>
+          <span class="repo">FlowiseAI/Flowise</span><p class="alt"><span>Alternativa a</span>n8n e Make (fluxos com IA)</p>
+          <p class="oque">Monta agentes e fluxos de IA arrastando blocos, sem programar.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Protótipo de ideia para mostrar: triagem automática de chamados, chatbot de suporte</li></ul><p class="nota forte">Repositório arquivado: sem manutenção. Só para protótipo, nunca em produção.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Docker ou servidor</span></div>
+          <div class="meta"><span class="aviso">Licença própria</span><span>56k estrelas</span><span>push 13/08/2026</span><span class="aviso">Arquivado</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="visual" data-p="Terminal|GPU">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Design, apresentações e imagens</span></div>
+          <h3><a href="https://github.com/lllyasviel/Fooocus" target="_blank" rel="noopener">Fooocus</a></h3>
+          <span class="repo">lllyasviel/Fooocus</span><p class="alt"><span>Alternativa a</span>Midjourney</p>
+          <p class="oque">Gera imagens com IA de um jeito simples: escreve o pedido e pronto.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Mesmo uso do ComfyUI, para quem quer só digitar e gerar</li></ul><p class="nota forte">Sem atualização desde dez/2025. Preferir o ComfyUI.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Terminal</span><span>GPU</span></div>
+          <div class="meta"><span class="aviso">GPL-3.0</span><span>54k estrelas</span><span>push 01/12/2025</span><span class="aviso">Parado</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="video" data-p="GPU|Docker ou servidor">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/neuregex/freefield" target="_blank" rel="noopener">freefield</a></h3>
+          <span class="repo">neuregex/freefield</span><p class="alt"><span>Alternativa a</span>Higgsfield e Runway</p>
+          <p class="oque">Versão aberta do Higgsfield em cima do ComfyUI: 120 apps de imagem, vídeo, efeitos e áudio, todos com modelos abertos.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Gerar vídeo a partir de foto, como no Higgsfield, sem assinatura</li></ul><p class="nota">Precisa de GPU: alugada por hora (Modal, RunPod) ou própria. Não roda bem no Mac.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>GPU</span><span>Docker ou servidor</span></div>
+          <div class="meta"><span>MIT</span><span>1,6k estrelas</span><span>push 18/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="dados" data-c="doc" data-p="Só consultar">
+          <div class="topo"><span class="tipo">Dados</span><span class="cat">Ler, pesquisar e escrever</span></div>
+          <h3><a href="https://github.com/lexifina/global-law" target="_blank" rel="noopener">global-law</a></h3>
+          <span class="repo">lexifina/global-law</span>
+          <p class="oque">As leis do mundo num repositório git: qualquer artigo, de qualquer país, em qualquer data, com a lei que escreveu cada palavra.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Ver como um artigo de lei mudou ao longo do tempo</li><li>Dar ao agente a lei exata como fonte de uma análise</li></ul><p class="nota">Conferir se o Brasil está coberto antes de contar com ele.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Só consultar</span></div>
+          <div class="meta"><span>CC0</span><span>2,1k estrelas</span><span>push 18/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="lib" data-c="agent" data-p="Programar">
+          <div class="topo"><span class="tipo">Biblioteca</span><span class="cat">Agentes e automação</span></div>
+          <h3><a href="https://github.com/NandhaKishorM/laya" target="_blank" rel="noopener">Laya</a></h3>
+          <span class="repo">NandhaKishorM/laya</span>
+          <p class="oque">Motor de decisão rápido para desenvolvedor: classifica um texto, dá nota ou responde sim ou não em mais de 100 línguas, em milissegundos, sem chamar um modelo grande.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Triagem automática de mensagens ou chamados (urgente, reclamação, cancelamento) a custo quase zero</li><li>Filtro barato antes de mandar algo para um agente mais caro</li></ul><p class="nota">Ferramenta de programador, em Python. Projeto de set/2026.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Programar</span></div>
+          <div class="meta"><span>Apache-2.0</span><span>35k estrelas</span><span>push 08/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="video" data-p="Instalar e usar">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/mifi/lossless-cut" target="_blank" rel="noopener">LosslessCut</a></h3>
+          <span class="repo">mifi/lossless-cut</span><p class="alt"><span>Alternativa a</span>Cortes rápidos no Premiere ou no CapCut</p>
+          <p class="oque">Corta trechos de vídeo e áudio sem recodificar, então não perde qualidade e é instantâneo. Edição manual.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Tirar o começo e o fim de uma gravação de reunião ou demo antes de compartilhar</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Instalar e usar</span></div>
+          <div class="meta"><span class="aviso">GPL-2.0</span><span>46k estrelas</span><span>push 03/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="lib" data-c="agent" data-p="Programar|Chave de API paga">
+          <div class="topo"><span class="tipo">Biblioteca</span><span class="cat">Agentes e automação</span></div>
+          <h3><a href="https://github.com/FoundationAgents/MetaGPT" target="_blank" rel="noopener">MetaGPT</a></h3>
+          <span class="repo">FoundationAgents/MetaGPT</span>
+          <p class="oque">Monta uma &quot;empresa de software&quot; feita de agentes: a partir de um requisito de uma linha, papéis de PM, arquiteto e engenheiro geram histórias, análise competitiva, PRD, APIs e código.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Referência de como dividir papéis e passos entre agentes</li><li>Rascunho de PRD a partir de uma ideia</li></ul><p class="nota forte">Sem atualização desde jan/2026, pede Python abaixo do 3.12 e chave de API paga. Ler as ideias, não instalar.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Programar</span><span>Chave de API paga</span></div>
+          <div class="meta"><span>MIT</span><span>71k estrelas</span><span>push 21/01/2026</span><span class="aviso">Parado</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="video" data-p="Navegador">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/OpenCut-app/OpenCut" target="_blank" rel="noopener">OpenCut</a></h3>
+          <span class="repo">OpenCut-app/OpenCut</span><p class="alt"><span>Alternativa a</span>CapCut</p>
+          <p class="oque">Editor de vídeo aberto e gratuito, no estilo do CapCut. A edição é manual, sem o Claude.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Ajuste manual rápido num vídeo que o Claude já montou</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Navegador</span></div>
+          <div class="meta"><span>MIT</span><span>97k estrelas</span><span>push 24/09/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="agent" data-p="Docker ou servidor|Chave de API paga">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Agentes e automação</span></div>
+          <h3><a href="https://github.com/OpenHands/OpenHands" target="_blank" rel="noopener">OpenHands</a></h3>
+          <span class="repo">OpenHands/OpenHands</span><p class="alt"><span>Alternativa a</span>Devin</p>
+          <p class="oque">Agente que escreve e roda código sozinho, num ambiente isolado.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Protótipo de tela ou script feito do zero, num ambiente separado</li><li>Vale se você quer um agente hospedado por você ou com outro modelo; quem já usa o Claude Code tem quase tudo isso</li></ul></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Docker ou servidor</span><span>Chave de API paga</span></div>
+          <div class="meta"><span>MIT</span><span>93k estrelas</span><span>push 03/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="prod" data-p="Docker ou servidor">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Organizar o dia a dia</span></div>
+          <h3><a href="https://github.com/makeplane/plane" target="_blank" rel="noopener">Plane</a></h3>
+          <span class="repo">makeplane/plane</span><p class="alt"><span>Alternativa a</span>Jira, Linear, Monday e ClickUp</p>
+          <p class="oque">Gestão de projetos aberta, alternativa ao Jira, Linear e ClickUp: tarefas, sprints, documentos e triagem.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Organizar um projeto pessoal com quadro, ciclos e documentos</li><li>Hospedar para um time pequeno sem pagar por usuário</li></ul><p class="nota">AGPL. Para projeto pessoal, um quadro simples pode bastar.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Docker ou servidor</span></div>
+          <div class="meta"><span class="aviso">AGPL-3.0</span><span>63k estrelas</span><span>push 17/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="terminal" data-c="video" data-p="Terminal|GPU">
+          <div class="topo"><span class="tipo">Terminal</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/shinyobjectz/raea" target="_blank" rel="noopener">raea</a></h3>
+          <span class="repo">shinyobjectz/raea</span>
+          <p class="oque">Motor que renderiza vídeo, motion, 3D e jogos escritos em React e TypeScript, na GPU do computador.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Cenas 3D e animações pesadas que o Hyperframes não dá conta</li></ul><p class="nota">Licença FSL 1.1: uso comum liberado, mas não pode virar produto concorrente; vira Apache depois de 2 anos.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Terminal</span><span>GPU</span></div>
+          <div class="meta"><span class="aviso">FSL-1.1</span><span>2,8k estrelas</span><span>push 18/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="lib" data-c="video" data-p="Programar">
+          <div class="topo"><span class="tipo">Biblioteca</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/remotion-dev/remotion" target="_blank" rel="noopener">Remotion</a></h3>
+          <span class="repo">remotion-dev/remotion</span>
+          <p class="oque">Faz vídeo com código React. Cumpre o mesmo papel do Hyperframes.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Alternativa ao Hyperframes, caso algum dia ele deixe de atender</li></ul><p class="nota">Licença própria: grátis para pessoa física e empresa pequena. Empresa maior precisa de licença paga.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Programar</span></div>
+          <div class="meta"><span class="aviso">Licença própria</span><span>71k estrelas</span><span>push 05/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="video" data-p="Claude Code">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Criar e editar vídeo</span></div>
+          <h3><a href="https://github.com/remotion-dev/skills" target="_blank" rel="noopener">Remotion Skills</a></h3>
+          <span class="repo">remotion-dev/skills</span>
+          <p class="oque">Skills oficiais do Remotion para o agente criar vídeo em React.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Criar vídeo em React com o agente, se você usa o Remotion</li></ul><p class="nota">Sem licença declarada no repositório. O Remotion é grátis para pessoa física; empresa maior paga.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span></div>
+          <div class="meta"><span class="aviso">Sem licença</span><span>7,5k estrelas</span><span>push 18/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="lib" data-c="visual" data-p="Programar">
+          <div class="topo"><span class="tipo">Biblioteca</span><span class="cat">Design, apresentações e imagens</span></div>
+          <h3><a href="https://github.com/Sandflow-ai/sand3d" target="_blank" rel="noopener">sand3d</a></h3>
+          <span class="repo">Sandflow-ai/sand3d</span>
+          <p class="oque">Modelagem 3D em Python feita para o agente usar.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Peça 3D simples (ícone, objeto) gerada por descrição</li></ul><p class="nota">Projeto de nov/2026.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Programar</span></div>
+          <div class="meta"><span>Apache-2.0</span><span>2,1k estrelas</span><span>push 18/11/2026</span><span>Novo</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="visual" data-p="Terminal|Chave de API paga">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Design, apresentações e imagens</span></div>
+          <h3><a href="https://github.com/abi/screenshot-to-code" target="_blank" rel="noopener">Screenshot to Code</a></h3>
+          <span class="repo">abi/screenshot-to-code</span><p class="alt"><span>Alternativa a</span>v0 e Lovable (a partir de um print)</p>
+          <p class="oque">Transforma um print, ou uma gravação de tela, em código pronto: HTML com Tailwind, React, Vue ou Bootstrap.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Print de uma tela vira protótipo editável para propor melhoria</li><li>Gravação do fluxo de outro app vira protótipo clicável para comparar</li></ul><p class="nota">Precisa de chave de API paga (Anthropic, OpenAI ou Gemini), não usa a assinatura do Claude. O Claude Code já transforma print em HTML, inclusive direto no Doop. A versão de nuvem não deve receber tela com dado sensível.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Terminal</span><span>Chave de API paga</span></div>
+          <div class="meta"><span>MIT</span><span>81k estrelas</span><span>push 05/11/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="comp" data-c="ui" data-p="Programar">
+          <div class="topo"><span class="tipo">Componentes</span><span class="cat">Componentes de interface</span></div>
+          <h3><a href="https://github.com/MengTo/threeui" target="_blank" rel="noopener">ThreeUI</a></h3>
+          <span class="repo">MengTo/threeui</span>
+          <p class="oque">Catálogo de componentes 3D e interativos para sites, com o código pronto para copiar.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Efeito 3D pontual numa landing page</li></ul><p class="nota">Edição aberta de um produto pago: os componentes Pro ficam de fora.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Programar</span></div>
+          <div class="meta"><span>MIT</span><span>7,2k estrelas</span><span>push 03/09/2026</span><span>Ativo</span></div>
+        </article>
+        <article class="ficha" data-tipo="skill" data-c="apps" data-p="Claude Code|Terminal">
+          <div class="topo"><span class="tipo">Skill</span><span class="cat">Construir apps</span></div>
+          <h3><a href="https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder" target="_blank" rel="noopener">Web Artifacts Builder</a></h3>
+          <span class="repo">anthropics/skills · web-artifacts-builder</span>
+          <p class="oque">Skill oficial da Anthropic para artifacts grandes do claude.ai: monta um projeto em React, TypeScript, Tailwind e shadcn/ui, e no fim empacota tudo num único arquivo HTML.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Ferramenta interativa com várias telas, estado e navegação, publicada como artifact</li><li>Painel ou app pequeno que precisa de componentes prontos (tabelas, formulários, diálogos)</li></ul><p class="nota">Para página de leitura, como esta prateleira, HTML simples resolve e carrega mais rápido. A instalação baixa muita coisa (pnpm global, Vite, 40+ componentes): rodar numa pasta separada.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Claude Code</span><span>Terminal</span></div>
+          <div class="meta"><span>Apache-2.0</span><span>200k estrelas</span><span>push 20/04/2026</span><span>Oficial</span></div>
+        </article>
+        <article class="ficha" data-tipo="app" data-c="prod" data-p="Instalar e usar|Só Windows">
+          <div class="topo"><span class="tipo">App</span><span class="cat">Organizar o dia a dia</span></div>
+          <h3><a href="https://github.com/yuka-friends/Windrecorder" target="_blank" rel="noopener">Windrecorder</a></h3>
+          <span class="repo">yuka-friends/Windrecorder</span><p class="alt"><span>Alternativa a</span>Windows Recall e Rewind</p>
+          <p class="oque">Grava tudo o que passa na tela, em arquivo pequeno, e deixa buscar depois pelo texto que apareceu ou pela descrição da imagem.</p>
+          <div class="usos"><span class="rot">Para que serve</span><ul><li>Achar aquela tela que você viu na semana passada e não salvou</li></ul><p class="nota forte">Só funciona no Windows. E guarda tudo o que aparece na tela, inclusive senha e dado sensível.</p></div>
+          <div class="precisa"><span class="rot">Precisa de</span><span>Instalar e usar</span><span>Só Windows</span></div>
+          <div class="meta"><span class="aviso">GPL-2.0</span><span>4k estrelas</span><span>push 25/09/2026</span><span class="aviso">Só Windows</span></div>
+        </article>
+      </div>
+    </section>
+    <p class="vazio" id="vazio" hidden>Nenhuma ferramenta com esses filtros juntos. Troque um deles.</p>
+
+    <section class="tipos" aria-labelledby="tipos-h">
+      <div class="sh"><h2 id="tipos-h">Os tipos.</h2><span class="mono">O que cada etiqueta quer dizer</span></div>
+      <div class="lista"><div><b>App</b><p>Programa com tela própria. Roda no computador, no navegador ou num servidor seu.</p></div><div><b>Skill</b><p>Instruções que ensinam o Claude Code (ou outro agente) a fazer um trabalho. Instala com um comando e vira um /comando.</p></div><div><b>Terminal</b><p>Ferramenta sem tela, usada por comando. Dá para pedir ao Claude Code rodar por você.</p></div><div><b>Biblioteca</b><p>Código para usar dentro de um projeto de programação.</p></div><div><b>Modelo</b><p>Modelo de IA que roda no seu computador, sem serviço externo.</p></div><div><b>MCP</b><p>Ponte que deixa o Claude controlar outro programa.</p></div><div><b>Componentes</b><p>Peças de interface prontas para copiar num site ou app.</p></div><div><b>Plugin</b><p>Extensão que muda o próprio Claude Code.</p></div><div><b>Dados</b><p>Base de informação para consultar.</p></div></div>
+    </section>
+
+    <section class="regras" aria-labelledby="regras-h">
+      <h2 id="regras-h">Antes de instalar<span>.</span></h2>
+      <ul><li>Dado sensível, seu ou de cliente, não vai para versão de nuvem de terceiro. Várias destas ferramentas têm versão cloud; use a que roda na sua máquina.</li><li>GPL e AGPL podem ser usadas por conta própria. Colocar dentro de um produto vendido exige cuidado com a licença.</li><li>Projeto de terceiro que você ainda está avaliando roda melhor em Docker, isolado do resto da máquina.</li><li>Skill é texto: leia o arquivo antes de instalar e veja o que ela manda o agente fazer.</li><li>Confira de novo a licença e a atividade do repositório no dia da instalação.</li></ul>
+    </section>
+
+    <section class="sugira" aria-labelledby="sugira-h">
+      <div>
+        <h2 id="sugira-h">Conhece uma que falta aqui?</h2>
+        <p>Mande a sugestão pelo GitHub. Toda ferramenta passa por revisão antes de entrar na prateleira.</p>
+      </div>
+      <a class="btn" href="https://github.com/dlotuz/prateleira-de-repos/issues/new?template=sugerir-ferramenta.yml">Sugerir ferramenta</a>
+    </section>
+  </div>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <span><b>Product Weekly</b> · O que importa em produto, toda semana. <a href="https://productweekly.com.br">productweekly.com.br</a></span>
+    <span>Lista sob CC BY 4.0 · Dados do GitHub de 25/11/2026 · <a href="https://github.com/dlotuz/prateleira-de-repos">Código no GitHub</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var estado = { tipo: 'all', c: 'all', p: 'all' };
+  var chips = document.querySelectorAll('.chip');
+  var fichas = document.querySelectorAll('.ficha');
+  var secoes = document.querySelectorAll('.secao');
+  function passa(f) {
+    return (estado.tipo === 'all' || f.dataset.tipo === estado.tipo)
+      && (estado.c === 'all' || f.dataset.c === estado.c)
+      && (estado.p === 'all' || f.dataset.p.split('|').indexOf(estado.p) !== -1);
+  }
+  function aplicar() {
+    chips.forEach(function (b) { b.setAttribute('aria-pressed', String(estado[b.dataset.g] === b.dataset.v)); });
+    var total = 0;
+    fichas.forEach(function (f) { var ok = passa(f); f.hidden = !ok; if (ok) total++; });
+    secoes.forEach(function (s) {
+      var n = s.querySelectorAll('.ficha:not([hidden])').length;
+      s.querySelector('.cont').textContent = n; s.hidden = n === 0;
+    });
+    document.getElementById('mostrando').textContent = total;
+    document.getElementById('vazio').hidden = total !== 0;
+    try { localStorage.setItem('prateleira-de-repos', JSON.stringify(estado)); } catch (e) {}
+  }
+  chips.forEach(function (b) { b.addEventListener('click', function () { estado[b.dataset.g] = b.dataset.v; aplicar(); }); });
+  document.getElementById('limpar').addEventListener('click', function () { estado = { tipo: 'all', c: 'all', p: 'all' }; aplicar(); });
+  try { var s = JSON.parse(localStorage.getItem('prateleira-de-repos') || 'null'); if (s && s.tipo && s.c && s.p) estado = s; } catch (e) {}
+  aplicar();
+})();
+</script>
+</body>
+</html>
