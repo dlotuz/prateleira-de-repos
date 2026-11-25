@@ -103,10 +103,16 @@ def nivel_de(i):
     return nivel
 
 
+PEDIDO = ("Antes de instalar, verifique este repositório: {link}. Leia o README e os arquivos de instalação e me diga: "
+          "1) o que ele instala no meu computador e onde; 2) se baixa ou roda algo da internet durante a instalação; "
+          "3) se pede chave de API, senha ou acesso a alguma conta; 4) se muda configurações do meu agente de IA ou do sistema; "
+          "5) a licença e se o projeto está ativo. Não instale nada até eu aprovar.")
+
 REGRAS = [
     "Dado sensível, seu ou de cliente, não vai para versão de nuvem de terceiro. Várias destas ferramentas têm versão cloud; use a que roda na sua máquina.",
     "GPL e AGPL podem ser usadas por conta própria. Colocar dentro de um produto vendido exige cuidado com a licença.",
     "Projeto de terceiro que você ainda está avaliando roda melhor em Docker, isolado do resto da máquina.",
+    "Nem tudo aqui foi testado por nós. Antes de instalar, peça para a sua IA verificar o repositório (o pedido pronto está acima da lista e em cada ficha).",
     "Skill é texto: leia o arquivo antes de instalar e veja o que ela manda o agente fazer.",
     "Confira de novo a licença e a atividade do repositório no dia da instalação.",
 ]
@@ -137,6 +143,15 @@ def readme():
         "- **Precisa de:** o que você precisa ter para usar.",
         "- **Alternativa a:** o produto pago ou fechado que ela substitui, quando existe.",
         "- **Atenção:** licença, custo escondido, projeto parado ou qualquer coisa que você deve saber antes.",
+        "- **Testado pelo PW:** a gente instalou e usou de verdade. Os outros a gente ainda não testou.",
+        "",
+        "## Antes de instalar, peça para a sua IA verificar",
+        "",
+        "Nem tudo aqui foi testado por nós. Antes de instalar qualquer item, cole na sua IA (Claude Code, Codex…) o pedido abaixo, trocando o link:",
+        "",
+        "```text",
+        PEDIDO.format(link="<link do repositório>"),
+        "```",
         "",
         "## Comece por aqui",
         "",
@@ -182,7 +197,8 @@ def readme():
 def item_md(i):
     tipo = TIPO_NOME[i["tipo"]]
     destaque = " · comece por esta" if i["destaque"] == "alta" else ""
-    out = [f"### {i['nome']}", "", f"`{tipo}`{destaque} · [{i['repo']}]({i['url']})", "", i["o_que_faz"], ""]
+    testado = " · **testado pelo PW**" if i.get("testado") else ""
+    out = [f"### {i['nome']}", "", f"`{tipo}`{destaque}{testado} · [{i['repo']}]({i['url']})", "", i["o_que_faz"], ""]
     if i["alternativa_a"]:
         out += [f"**Alternativa a:** {i['alternativa_a']}", ""]
     out.append("**Para que serve:**")
@@ -236,7 +252,8 @@ def ficha(i):
     fid = slug(i["nome"])
     busca = normalizar(" ".join([i["nome"], i["repo"], i["o_que_faz"], " ".join(i["para_que_serve"]),
                                   i["alternativa_a"] or "", TIPO_NOME[t],
-                                  " ".join(i["precisa"]), i["atencao"] or ""]))
+                                  " ".join(i["precisa"]), i["atencao"] or "",
+                                  "testado testado pelo pw" if i.get("testado") else ""]))
     alt = f'<p class="alt"><span>Alternativa a</span>{e(i["alternativa_a"])}</p>' if i["alternativa_a"] else ""
     nota = ""
     if i["atencao"]:
@@ -248,14 +265,14 @@ def ficha(i):
     capa_img = (f'<img src="{e(i["imagem"])}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="1200" height="600">'
                 if i.get("imagem") else "")
     return f"""
-        <article class="ficha" id="{fid}" data-tipo="{t}" data-c="{i['categoria']}" data-n="{nivel_de(i)}" data-api="{1 if 'Chave de API paga' in i['precisa'] else 0}" data-e="{estrelas_num(i)}" data-busca="{e(busca)}">
+        <article class="ficha" id="{fid}" data-tipo="{t}" data-c="{i['categoria']}" data-n="{nivel_de(i)}" data-api="{1 if 'Chave de API paga' in i['precisa'] else 0}" data-e="{estrelas_num(i)}" data-t="{1 if i.get('testado') else 0}" data-busca="{e(busca)}">
           <a class="capa" href="{e(i['url'])}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><span class="capa-nome">{e(i['nome'])}<i>.</i></span>{capa_img}</a>
-          <div class="topo"><span class="tipo">{TIPO_NOME[t]}</span><span class="cat">{CAT_NOME[i['categoria']]}</span></div>
+          <div class="topo"><span class="marcas"><span class="tipo">{TIPO_NOME[t]}</span>{'<span class="selo-testado" title="A gente instalou e usou">Testado</span>' if i.get('testado') else ''}</span><span class="cat">{CAT_NOME[i['categoria']]}</span></div>
           <h3><a href="{e(i['url'])}" target="_blank" rel="noopener">{e(i['nome'])}</a></h3>
           <span class="repo">{e(i['repo'])}</span>{alt}
           <p class="oque">{e(i['o_que_faz'])}</p>
           <div class="usos"><span class="rot">Para que serve</span><ul>{usos}</ul>{nota}</div>
-          <div class="comecar"><span class="rot">Como começar</span><p>{com_codigo(i['primeiro_passo'])}</p></div>
+          <div class="comecar"><span class="rot">Como começar</span><p>{com_codigo(i['primeiro_passo'])}</p><button class="verif" type="button" data-pedido="{e(PEDIDO.format(link=i['url']))}">Copiar pedido de verificação para a sua IA</button></div>
           <div class="precisa"><span class="rot">Precisa de</span><span class="nv nv-{nivel_de(i)}">Nível {NIVEL_NOME[nivel_de(i)].lower()}</span>{precisa}</div>
           <div class="meta">{lic}<span>{e(i['estrelas'])} estrelas</span><span>push {e(i['ultimo_push'])}</span>{sit}<button class="link" type="button" data-id="{fid}">Copiar link</button></div>
         </article>"""
@@ -304,9 +321,10 @@ def site():
     </section>"""
     legenda = "".join(f"<div><b>{nome}</b><p>{e(desc)}</p></div>" for _, nome, desc in TIPOS)
     regras = "".join(f"<li>{e(r)}</li>" for r in REGRAS)
-    return PAGINA.format(n=n, hoje=HOJE, hoje_curto=HOJE[:5], tarefas=tarefas, seg=seg, seg_e=seg_e, opcoes=opcoes,
+    return PAGINA.format(n=n, hoje=HOJE, pedido=e(PEDIDO.format(link="[cole aqui o link do repositório]")), hoje_curto=HOJE[:5], tarefas=tarefas, seg=seg, seg_e=seg_e, opcoes=opcoes,
                          sugestoes=sugestoes, rotulos=rotulos, secoes=secoes, legenda=legenda, regras=regras,
-                         repo=REPO_URL, n_semapi=conta(lambda x: "Chave de API paga" not in x["precisa"]))
+                         repo=REPO_URL, n_semapi=conta(lambda x: "Chave de API paga" not in x["precisa"]),
+                         n_testados=conta(lambda x: x.get("testado")))
 
 
 PAGINA = """<!doctype html>
@@ -337,6 +355,7 @@ PAGINA = """<!doctype html>
   </div>
 </header>
 
+<main id="conteudo">
 <!--prat--><div class="prat">
 <section class="hero">
   <div class="wrap">
@@ -361,7 +380,7 @@ PAGINA = """<!doctype html>
   </div>
 </div>
 
-<main>
+<div class="corpo">
   <div class="wrap">
     <div class="filtros">
       <div class="busca"><label class="mono" for="busca">Buscar</label><input id="busca" type="search" placeholder="Digite o que você quer fazer: vídeo, reunião, Figma, currículo…" autocomplete="off" spellcheck="false"><kbd class="mono" aria-hidden="true">/</kbd></div>
@@ -371,10 +390,13 @@ PAGINA = """<!doctype html>
         <div class="nivel"><span class="mono tit">Nível</span><div class="seg" role="group" aria-label="Filtrar por nível">{seg}</div></div>
         <div class="nivel"><span class="mono tit">Estrelas no GitHub</span><div class="seg" role="group" aria-label="Filtrar por estrelas no GitHub">{seg_e}</div></div>
         <label class="toggle" for="semapi"><input type="checkbox" id="semapi"><span class="caixa" aria-hidden="true"></span><span>Sem API paga <i class="n" id="n-semapi">{n_semapi}</i></span></label>
+        <label class="toggle" for="sotestados"><input type="checkbox" id="sotestados"><span class="caixa" aria-hidden="true"></span><span>Só os testados <i class="n" id="n-testados">{n_testados}</i></span></label>
         <div class="tiposel"><span class="mono tit" id="tipo-rot">Tipo</span><div class="drop"><button type="button" class="drop-btn" id="tipo-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="tipo-menu" aria-labelledby="tipo-rot tipo-atual"><span id="tipo-atual">Todos os tipos</span><span class="n" id="tipo-n">{n}</span></button><ul class="drop-menu" id="tipo-menu" role="listbox" tabindex="-1" aria-labelledby="tipo-rot" hidden>{opcoes}</ul></div></div>
+        <span class="mono resumo-n">Mostrando <b id="mostrando">{n}</b> de {n}</span>
       </div>
-      <div class="ativos"><div class="tokens" id="tokens"></div><span class="mono">Mostrando <b id="mostrando">{n}</b> de {n}</span></div>
+      <div class="ativos" id="ativos" hidden><div class="tokens" id="tokens"></div></div>
     </div>
+    <div class="tarja" role="note"><p><b>Nem tudo aqui foi testado por nós:</b> só os que têm o selo <span class="selo-testado em-linha">Testado</span>. Antes de instalar os outros, peça para a sua IA verificar o repositório.</p><button class="btn-copiar" type="button" data-pedido="{pedido}">Copiar pedido de verificação</button></div>
 {secoes}
     <div class="vazio" id="vazio" hidden><p>Nada encontrado com essa busca e esses filtros juntos.</p><p class="mono">Tente: <button class="sug" type="button">vídeo</button><button class="sug" type="button">reunião</button><button class="sug" type="button">design</button> ou <button class="limpar" type="button" data-limpar>limpe os filtros</button></p></div>
 
@@ -396,8 +418,9 @@ PAGINA = """<!doctype html>
       <a class="btn" href="{repo}/issues/new?template=sugerir-ferramenta.yml">Sugerir ferramenta</a>
     </section>
   </div>
-</main>
+</div>
 </div><!--/prat-->
+</main>
 
 <footer class="rodape">
   <div class="wrap">
@@ -409,11 +432,12 @@ PAGINA = """<!doctype html>
 <script>
 (function () {{
   var ROT = {rotulos};
-  var VAZIO = {{ c: 'all', n: 'all', e: 'all', tipo: 'all', api: false }};
+  var VAZIO = {{ c: 'all', n: 'all', e: 'all', tipo: 'all', api: false, t: false }};
   var estado = Object.assign({{}}, VAZIO);
   var termos = [];
   var campo = document.getElementById('busca');
   var semapi = document.getElementById('semapi');
+  var sotestados = document.getElementById('sotestados');
   var dbtn = document.getElementById('tipo-btn');
   var dmenu = document.getElementById('tipo-menu');
   var dops = Array.prototype.slice.call(dmenu.querySelectorAll('li'));
@@ -427,6 +451,7 @@ PAGINA = """<!doctype html>
       && (ignora === 'tipo' || st.tipo === 'all' || f.dataset.tipo === st.tipo)
       && (ignora === 'e' || st.e === 'all' || Number(f.dataset.e) >= Number(st.e))
       && (ignora === 'api' || !st.api || f.dataset.api === '0')
+      && (ignora === 't' || !st.t || f.dataset.t === '1')
       && termos.every(function (t) {{ return f.dataset.busca.indexOf(t) !== -1; }});
   }}
   function conta(g, v) {{
@@ -449,7 +474,9 @@ PAGINA = """<!doctype html>
     if (estado.n !== 'all') add(ROT.n[estado.n], function () {{ estado.n = 'all'; }});
     if (estado.e !== 'all') add(ROT.e[estado.e], function () {{ estado.e = 'all'; }});
     if (estado.api) add('Sem API paga', function () {{ estado.api = false; }});
+    if (estado.t) add('Só os testados', function () {{ estado.t = false; }});
     if (estado.tipo !== 'all') add(ROT.tipo[estado.tipo], function () {{ estado.tipo = 'all'; }});
+    document.getElementById('ativos').hidden = box.children.length === 0;
     if (box.children.length > 1) {{
       var l = document.createElement('button'); l.type = 'button'; l.className = 'limpar'; l.textContent = 'Limpar tudo';
       l.addEventListener('click', limparTudo); box.appendChild(l);
@@ -467,6 +494,8 @@ PAGINA = """<!doctype html>
       if (ativo) {{ document.getElementById('tipo-atual').textContent = v === 'all' ? 'Todos os tipos' : ROT.tipo_n[v]; document.getElementById('tipo-n').textContent = n; }}
     }});
     semapi.checked = estado.api;
+    sotestados.checked = estado.t;
+    document.getElementById('n-testados').textContent = conta('t', true);
     var nApi = conta('api', true); document.getElementById('n-semapi').textContent = nApi;
     var total = 0;
     fichas.forEach(function (f) {{ var ok = passa(f, estado); f.hidden = !ok; if (ok) total++; }});
@@ -488,6 +517,7 @@ PAGINA = """<!doctype html>
     }});
   }});
   semapi.addEventListener('change', function () {{ estado.api = semapi.checked; aplicar(); }});
+  sotestados.addEventListener('change', function () {{ estado.t = sotestados.checked; aplicar(); }});
   var foco = -1;
   function realcar(i) {{
     dops.forEach(function (o) {{ o.classList.remove('ativo'); }});
@@ -528,6 +558,13 @@ PAGINA = """<!doctype html>
     function sem() {{ img.parentNode.classList.add('sem-img'); img.remove(); }}
     if (img.complete && img.naturalWidth === 0) sem(); else img.addEventListener('error', sem);
   }});
+  function copiar(txt, b, rotulo) {{
+    function ok(m) {{ b.textContent = m; b.classList.add('ok'); setTimeout(function () {{ b.textContent = rotulo; b.classList.remove('ok'); }}, 2200); }}
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(function () {{ ok('Pedido copiado'); }}, function () {{ ok('Não deu para copiar: selecione o texto'); }});
+    else ok('Não deu para copiar: selecione o texto');
+  }}
+  document.querySelectorAll('.verif').forEach(function (b) {{ var r = b.textContent; b.addEventListener('click', function () {{ copiar(b.dataset.pedido, b, r); }}); }});
+  document.querySelectorAll('.btn-copiar').forEach(function (b) {{ var r = b.textContent; b.addEventListener('click', function () {{ copiar(b.dataset.pedido, b, r); }}); }});
   document.querySelectorAll('.link').forEach(function (b) {{
     b.addEventListener('click', function () {{
       var url = location.origin + location.pathname + '#' + b.dataset.id;

@@ -26,6 +26,7 @@ Use o formulário [Sugerir ferramenta](https://github.com/dlotuz/prateleira-de-r
 | `precisa` | Lista com o que é preciso para usar (veja os valores no README) |
 | `atencao` | Licença, custo escondido, projeto parado ou outro alerta, ou `null` |
 | `primeiro_passo` | Uma linha de como começar. Comando entre crases. Sem instrução oficial: "Sem instrução específica. Passe o link para a sua IA…" |
+| `testado` | `true` só quando o PW instalou e usou (quem revisa marca; em sugestão, deixe `false`) |
 | `imagem` | Endereço da imagem do repositório (campo `openGraphImageUrl` da API do GitHub) ou `null` |
 | `licenca`, `estrelas`, `ultimo_push`, `situacao` | Como aparecem no GitHub |
 

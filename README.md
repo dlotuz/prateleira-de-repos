@@ -1,6 +1,6 @@
 # Prateleira de Repositórios
 
-Repositórios de IA de código aberto, separados pelo que você quer fazer. São 72 até agora. Cada um diz o que faz, o que precisa para rodar, quanto custa e qual produto conhecido ele substitui.
+Repositórios de IA de código aberto, separados pelo que você quer fazer. São 75 até agora. Cada um diz o que faz, o que precisa para rodar, quanto custa e qual produto conhecido ele substitui.
 
 **Versão com filtros:** https://www.productweekly.com.br/prateleira
 
@@ -13,6 +13,15 @@ Um projeto do [Product Weekly](https://productweekly.com.br), o que importa em p
 - **Precisa de:** o que você precisa ter para usar.
 - **Alternativa a:** o produto pago ou fechado que ela substitui, quando existe.
 - **Atenção:** licença, custo escondido, projeto parado ou qualquer coisa que você deve saber antes.
+- **Testado pelo PW:** a gente instalou e usou de verdade. Os outros a gente ainda não testou.
+
+## Antes de instalar, peça para a sua IA verificar
+
+Nem tudo aqui foi testado por nós. Antes de instalar qualquer item, cole na sua IA (Claude Code, Codex…) o pedido abaixo, trocando o link:
+
+```text
+Antes de instalar, verifique este repositório: <link do repositório>. Leia o README e os arquivos de instalação e me diga: 1) o que ele instala no meu computador e onde; 2) se baixa ou roda algo da internet durante a instalação; 3) se pede chave de API, senha ou acesso a alguma conta; 4) se muda configurações do meu agente de IA ou do sistema; 5) a licença e se o projeto está ativo. Não instale nada até eu aprovar.
+```
 
 ## Comece por aqui
 
@@ -20,11 +29,14 @@ Um projeto do [Product Weekly](https://productweekly.com.br), o que importa em p
 - [claude-video (/watch)](#claude-video-watch): Dá ao Claude a capacidade de assistir um vídeo.
 - [Emil Kowalski Skills](#emil-kowalski-skills): 19 skills de design engineering do Emil Kowalski (ex-Vercel e Linear) para animação e acabamento de interface: escolhem a curva e a duração certas, revisam animações, coordenam o que se mexe junto e testam a tela com dados extremos.
 - [Firecrawl](#firecrawl): Lê sites inteiros e devolve o conteúdo limpo, em Markdown ou JSON, pronto para um agente usar.
+- [Frontend Design](#frontend-design): Skill oficial da Anthropic que faz o agente agir como diretor de design.
+- [Handy](#handy): Ditado por voz que roda inteiro no computador.
 - [Humanizer](#humanizer): Skill que reescreve texto gerado por IA para soar como uma pessoa escreveu, sem mudar o que ele diz.
 - [Hyperframes](#hyperframes): Transforma HTML em vídeo.
 - [Impeccable](#impeccable): Vocabulário de design para o agente.
 - [MarkItDown](#markitdown): Converte PDF, Word, Excel, PowerPoint e HTML em Markdown, que é o formato que o agente lê melhor.
 - [Postiz](#postiz): Agenda e publica posts em várias redes (Instagram, LinkedIn, TikTok, YouTube e outras), com um agente de IA que ajuda a criar e programar.
+- [Superpowers](#superpowers): Método completo de desenvolvimento para o agente.
 - [video-use](#video-use): Skill do Claude Code que edita vídeo conversando.
 - [Whisper](#whisper): Transcreve áudio e vídeo localmente, em português e outras línguas, sem serviço externo.
 - [whisper.cpp](#whispercpp): O Whisper reescrito para rodar rápido no Mac.
@@ -33,15 +45,15 @@ Um projeto do [Product Weekly](https://productweekly.com.br), o que importa em p
 ## O que você quer fazer?
 
 - [Ler, pesquisar e escrever](#ler-pesquisar-e-escrever) (5)
-- [Transcrever e trabalhar com voz](#transcrever-e-trabalhar-com-voz) (5)
+- [Transcrever e trabalhar com voz](#transcrever-e-trabalhar-com-voz) (6)
 - [Criar e editar vídeo](#criar-e-editar-video) (19)
 - [Design, apresentações e imagens](#design-apresentacoes-e-imagens) (9)
-- [Deixar o design feito com IA mais bonito](#deixar-o-design-feito-com-ia-mais-bonito) (10)
+- [Deixar o design feito com IA mais bonito](#deixar-o-design-feito-com-ia-mais-bonito) (11)
 - [Organizar o dia a dia](#organizar-o-dia-a-dia) (8)
 - [Finanças, viagem e currículo](#financas-viagem-e-curriculo) (4)
 - [Agentes e automação](#agentes-e-automacao) (6)
 - [Cursos, área de membros e comunidade](#cursos-area-de-membros-e-comunidade) (1)
-- [Construir apps e interfaces](#construir-apps-e-interfaces) (5)
+- [Construir apps e interfaces](#construir-apps-e-interfaces) (6)
 
 ## Ler, pesquisar e escrever
 
@@ -126,6 +138,25 @@ As leis do mundo num repositório git: qualquer artigo, de qualquer país, em qu
 
 
 ## Transcrever e trabalhar com voz
+
+### Handy
+
+`App` · comece por esta · [cjpais/Handy](https://github.com/cjpais/Handy)
+
+Ditado por voz que roda inteiro no computador: aperta um atalho, fala, solta, e o texto aparece em qualquer campo onde o cursor estiver. O áudio não sai da máquina.
+
+**Alternativa a:** Wispr Flow e o Ditado do Mac
+
+**Para que serve:**
+- Escrever e-mail, mensagem e descrição de tarefa falando em vez de digitar
+- Ditar texto com dado sensível sem mandar o áudio para a nuvem
+- Rascunhar um texto longo e depois pedir para a IA arrumar
+
+**Como começar:** Baixe em handy.computer (no Mac, também `brew install --cask handy`), dê as permissões e escolha o atalho de gravar.
+
+**Nível:** Fácil · **Precisa de:** Instalar e usar · **Licença:** MIT · **Estrelas:** 40k · **Último push:** 25/11/2026 · **Situação:** Ativo
+
+> **Atenção:** Na primeira vez, pede permissão de microfone e de acessibilidade (para colar o texto nos outros apps). Escolha o modelo: o Parakeet é leve; o Whisper Turbo erra menos.
 
 ### Whisper
 
@@ -215,7 +246,7 @@ Estúdio de voz que roda no computador, alternativa local à ElevenLabs: clona e
 
 ### claude-video (/watch)
 
-`Skill` · comece por esta · [bradautomates/claude-video](https://github.com/bradautomates/claude-video)
+`Skill` · comece por esta · **testado pelo PW** · [bradautomates/claude-video](https://github.com/bradautomates/claude-video)
 
 Dá ao Claude a capacidade de assistir um vídeo: baixa, extrai quadros com horário e transcreve, e entrega tudo para ele analisar.
 
@@ -232,7 +263,7 @@ Dá ao Claude a capacidade de assistir um vídeo: baixa, extrai quadros com hor�
 
 ### Hyperframes
 
-`Terminal` · comece por esta · [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes)
+`Terminal` · comece por esta · **testado pelo PW** · [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes)
 
 Transforma HTML em vídeo. O agente escreve as animações em código e ele renderiza o arquivo final.
 
@@ -535,7 +566,7 @@ Gera imagens com IA no próprio computador, montando o processo em blocos ligado
 
 ### Doop
 
-`App` · [kgoedecke/doop](https://github.com/kgoedecke/doop)
+`App` · **testado pelo PW** · [kgoedecke/doop](https://github.com/kgoedecke/doop)
 
 Canvas de design em que pessoas e agentes de IA desenham juntos, ao vivo. O Claude Code entra pelo MCP e as telas são HTML de verdade.
 
@@ -692,6 +723,23 @@ Transforma um print, ou uma gravação de tela, em código pronto: HTML com Tail
 **Nível:** Médio · **Precisa de:** Claude Code, Terminal · **Licença:** MIT · **Estrelas:** 60k · **Último push:** 15/11/2026 · **Situação:** Ativo
 
 > **Atenção:** O foco é animação e detalhe de interface. Para revisar o visual geral, combina com o Impeccable ou a Taste Skill.
+
+### Frontend Design
+
+`Skill` · comece por esta · **testado pelo PW** · [anthropics/skills · frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design)
+
+Skill oficial da Anthropic que faz o agente agir como diretor de design: parte do assunto do produto, escolhe tipografia e paleta com intenção e evita as escolhas que denunciam página feita por IA.
+
+**Para que serve:**
+- Pedir uma landing page ou uma tela nova com identidade própria, não de template
+- Refazer uma interface que ficou genérica
+- Servir de base para as outras skills de design da lista
+
+**Como começar:** No Claude Code: `/plugin install frontend-design@claude-plugins-official`. Depois, peça a tela ou a página dizendo o assunto e o público.
+
+**Nível:** Médio · **Precisa de:** Claude Code · **Licença:** Apache-2.0 · **Estrelas:** 200k · **Último push:** 03/09/2026 · **Situação:** Oficial
+
+> **Atenção:** É a base de várias skills da lista (o Impeccable nasceu dela). Para revisar com regras automáticas, combine com o Impeccable.
 
 ### Impeccable
 
@@ -1179,6 +1227,23 @@ Plataforma de código aberto para montar a sua área de membros e vender cursos 
 
 ## Construir apps e interfaces
 
+### Superpowers
+
+`Skill` · comece por esta · **testado pelo PW** · [obra/superpowers](https://github.com/obra/superpowers)
+
+Método completo de desenvolvimento para o agente: antes de escrever código, ele pergunta o que você quer, escreve a especificação, monta um plano em etapas, faz os testes primeiro e põe subagentes para executar e revisar cada tarefa.
+
+**Para que serve:**
+- Construir um app ou uma funcionalidade com o agente sem ele sair codando no escuro
+- Ter um plano de implementação para revisar antes de começar
+- Investigar um erro com método, em vez de chutar correções
+
+**Como começar:** No Claude Code: `/plugin install superpowers@claude-plugins-official`. Depois, é só pedir para construir algo: ele começa perguntando.
+
+**Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 327k · **Último push:** 24/11/2026 · **Situação:** Ativo
+
+> **Atenção:** As skills disparam sozinhas. Em tarefa pequena, o processo (perguntas, plano, testes) pode parecer demais. O README tem uma seção sobre a telemetria do "visual companion".
+
 ### BAMA
 
 `Skill` · [daveebbelaar/bama](https://github.com/daveebbelaar/bama)
@@ -1271,6 +1336,7 @@ Skill oficial da Anthropic para artifacts grandes do claude.ai: monta um projeto
 - Dado sensível, seu ou de cliente, não vai para versão de nuvem de terceiro. Várias destas ferramentas têm versão cloud; use a que roda na sua máquina.
 - GPL e AGPL podem ser usadas por conta própria. Colocar dentro de um produto vendido exige cuidado com a licença.
 - Projeto de terceiro que você ainda está avaliando roda melhor em Docker, isolado do resto da máquina.
+- Nem tudo aqui foi testado por nós. Antes de instalar, peça para a sua IA verificar o repositório (o pedido pronto está acima da lista e em cada ficha).
 - Skill é texto: leia o arquivo antes de instalar e veja o que ela manda o agente fazer.
 - Confira de novo a licença e a atividade do repositório no dia da instalação.
 
