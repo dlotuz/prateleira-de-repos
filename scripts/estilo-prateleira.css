@@ -173,3 +173,4 @@ main .wrap { padding-block: 36px 72px; display: grid; gap: 56px; }
 .acoes .bt-zip { color: var(--bq); border: 1.5px solid #6F6B64; }
 .acoes a:hover { filter: brightness(1.08); }
 .acoes .bt-zip:hover { border-color: var(--bq); }
+[hidden] { display: none !important; }
