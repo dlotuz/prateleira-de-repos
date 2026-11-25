@@ -1936,5 +1936,34 @@
     "situacao_alerta": false,
     "primeiro_passo": "Teste a demonstração pública, com acesso de aluno e de administrador: `https://tiberiolemes.github.io/icarus-area-de-membros/`. Para instalar: `npm ci`, `npm run local:start` e `npm run dev`.",
     "imagem": "https://opengraph.githubassets.com/74b785ac84786fe6e4639c099bf746d4f282fb190ad5c0b68808aae967ca2fbb/tiberiolemes/icarus-area-de-membros"
+  },
+  {
+    "nome": "Emil Kowalski Skills",
+    "repo": "emilkowalski/skills",
+    "url": "https://github.com/emilkowalski/skills",
+    "tipo": "skill",
+    "categoria": "skill",
+    "destaque": "alta",
+    "o_que_faz": "19 skills de design engineering do Emil Kowalski (ex-Vercel e Linear) para animação e acabamento de interface: escolhem a curva e a duração certas, revisam animações, coordenam o que se mexe junto e testam a tela com dados extremos.",
+    "para_que_serve": [
+      "Dar animações com acabamento profissional a um site genérico",
+      "Revisar e cortar animação demais, que deixa a página com cara de IA",
+      "Testar a tela com nomes longos, listas vazias e números enormes antes de publicar"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code",
+      "Terminal"
+    ],
+    "atencao": "O foco é animação e detalhe de interface. Para revisar o visual geral, combina com o Impeccable ou a Taste Skill.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "60k",
+    "ultimo_push": "15/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false,
+    "primeiro_passo": "No terminal: `npx skills@latest add emilkowalski/skills`. Não sabe qual usar? Peça a skill `ask-emil`, que indica a certa para o seu caso.",
+    "imagem": "https://opengraph.githubassets.com/35ffee1b092d6da0cc4666454ef2e3d4c67259353b2a5fd10b98c9d9924953e1/emilkowalski/skills"
   }
 ]

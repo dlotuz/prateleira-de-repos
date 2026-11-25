@@ -1,6 +1,6 @@
 # Prateleira de Repositórios
 
-Repositórios de IA de código aberto, separados pelo que você quer fazer. São 71 até agora. Cada um diz o que faz, o que precisa para rodar, quanto custa e qual produto conhecido ele substitui.
+Repositórios de IA de código aberto, separados pelo que você quer fazer. São 72 até agora. Cada um diz o que faz, o que precisa para rodar, quanto custa e qual produto conhecido ele substitui.
 
 **Versão com filtros:** https://www.productweekly.com.br/prateleira
 
@@ -18,6 +18,7 @@ Um projeto do [Product Weekly](https://productweekly.com.br), o que importa em p
 
 - [anarlog](#anarlog): Anotador de reuniões no estilo do Granola, que roda no computador.
 - [claude-video (/watch)](#claude-video-watch): Dá ao Claude a capacidade de assistir um vídeo.
+- [Emil Kowalski Skills](#emil-kowalski-skills): 19 skills de design engineering do Emil Kowalski (ex-Vercel e Linear) para animação e acabamento de interface: escolhem a curva e a duração certas, revisam animações, coordenam o que se mexe junto e testam a tela com dados extremos.
 - [Firecrawl](#firecrawl): Lê sites inteiros e devolve o conteúdo limpo, em Markdown ou JSON, pronto para um agente usar.
 - [Humanizer](#humanizer): Skill que reescreve texto gerado por IA para soar como uma pessoa escreveu, sem mudar o que ele diz.
 - [Hyperframes](#hyperframes): Transforma HTML em vídeo.
@@ -35,7 +36,7 @@ Um projeto do [Product Weekly](https://productweekly.com.br), o que importa em p
 - [Transcrever e trabalhar com voz](#transcrever-e-trabalhar-com-voz) (5)
 - [Criar e editar vídeo](#criar-e-editar-video) (19)
 - [Design, apresentações e imagens](#design-apresentacoes-e-imagens) (9)
-- [Deixar o design feito com IA mais bonito](#deixar-o-design-feito-com-ia-mais-bonito) (9)
+- [Deixar o design feito com IA mais bonito](#deixar-o-design-feito-com-ia-mais-bonito) (10)
 - [Organizar o dia a dia](#organizar-o-dia-a-dia) (8)
 - [Finanças, viagem e currículo](#financas-viagem-e-curriculo) (4)
 - [Agentes e automação](#agentes-e-automacao) (6)
@@ -674,6 +675,23 @@ Transforma um print, ou uma gravação de tela, em código pronto: HTML com Tail
 
 
 ## Deixar o design feito com IA mais bonito
+
+### Emil Kowalski Skills
+
+`Skill` · comece por esta · [emilkowalski/skills](https://github.com/emilkowalski/skills)
+
+19 skills de design engineering do Emil Kowalski (ex-Vercel e Linear) para animação e acabamento de interface: escolhem a curva e a duração certas, revisam animações, coordenam o que se mexe junto e testam a tela com dados extremos.
+
+**Para que serve:**
+- Dar animações com acabamento profissional a um site genérico
+- Revisar e cortar animação demais, que deixa a página com cara de IA
+- Testar a tela com nomes longos, listas vazias e números enormes antes de publicar
+
+**Como começar:** No terminal: `npx skills@latest add emilkowalski/skills`. Não sabe qual usar? Peça a skill `ask-emil`, que indica a certa para o seu caso.
+
+**Nível:** Médio · **Precisa de:** Claude Code, Terminal · **Licença:** MIT · **Estrelas:** 60k · **Último push:** 15/11/2026 · **Situação:** Ativo
+
+> **Atenção:** O foco é animação e detalhe de interface. Para revisar o visual geral, combina com o Impeccable ou a Taste Skill.
 
 ### Impeccable
 
