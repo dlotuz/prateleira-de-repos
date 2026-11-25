@@ -179,6 +179,7 @@ def item_md(i):
     out.append("**Para que serve:**")
     out += [f"- {u}" for u in i["para_que_serve"]]
     out.append("")
+    out += [f"**Como começar:** {i['primeiro_passo']}", ""]
     out.append(f"**Nível:** {NIVEL_NOME[nivel_de(i)]} · **Precisa de:** {', '.join(i['precisa'])} · **Licença:** {i['licenca']} · "
                f"**Estrelas:** {i['estrelas']} · **Último push:** {i['ultimo_push']} · **Situação:** {i['situacao']}")
     out.append("")
@@ -215,8 +216,15 @@ def normalizar(t):
     return " ".join("".join(c for c in t if not unicodedata.combining(c)).split())
 
 
+def com_codigo(t):
+    """Escapa o texto e transforma `trecho` em <code>trecho</code>."""
+    partes = e(t).split("`")
+    return "".join(f"<code>{p}</code>" if n % 2 else p for n, p in enumerate(partes))
+
+
 def ficha(i):
     t = i["tipo"]
+    fid = slug(i["nome"])
     busca = normalizar(" ".join([i["nome"], i["repo"], i["o_que_faz"], " ".join(i["para_que_serve"]),
                                   i["alternativa_a"] or "", TIPO_NOME[t],
                                   " ".join(i["precisa"]), i["atencao"] or ""]))
@@ -228,15 +236,19 @@ def ficha(i):
     lic = f'<span class="aviso">{e(i["licenca"])}</span>' if i["licenca_alerta"] else f"<span>{e(i['licenca'])}</span>"
     sit = f'<span class="aviso">{e(i["situacao"])}</span>' if i["situacao_alerta"] else f"<span>{e(i['situacao'])}</span>"
     usos = "".join(f"<li>{e(u)}</li>" for u in i["para_que_serve"])
+    capa_img = (f'<img src="{e(i["imagem"])}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="1200" height="600">'
+                if i.get("imagem") else "")
     return f"""
-        <article class="ficha" data-tipo="{t}" data-c="{i['categoria']}" data-n="{nivel_de(i)}" data-api="{1 if 'Chave de API paga' in i['precisa'] else 0}" data-busca="{e(busca)}">
+        <article class="ficha" id="{fid}" data-tipo="{t}" data-c="{i['categoria']}" data-n="{nivel_de(i)}" data-api="{1 if 'Chave de API paga' in i['precisa'] else 0}" data-busca="{e(busca)}">
+          <a class="capa" href="{e(i['url'])}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><span class="capa-nome">{e(i['nome'])}<i>.</i></span>{capa_img}</a>
           <div class="topo"><span class="tipo">{TIPO_NOME[t]}</span><span class="cat">{CAT_NOME[i['categoria']]}</span></div>
           <h3><a href="{e(i['url'])}" target="_blank" rel="noopener">{e(i['nome'])}</a></h3>
           <span class="repo">{e(i['repo'])}</span>{alt}
           <p class="oque">{e(i['o_que_faz'])}</p>
           <div class="usos"><span class="rot">Para que serve</span><ul>{usos}</ul>{nota}</div>
+          <div class="comecar"><span class="rot">Como começar</span><p>{com_codigo(i['primeiro_passo'])}</p></div>
           <div class="precisa"><span class="rot">Precisa de</span><span class="nv nv-{nivel_de(i)}">Nível {NIVEL_NOME[nivel_de(i)].lower()}</span>{precisa}</div>
-          <div class="meta">{lic}<span>{e(i['estrelas'])} estrelas</span><span>push {e(i['ultimo_push'])}</span>{sit}</div>
+          <div class="meta">{lic}<span>{e(i['estrelas'])} estrelas</span><span>push {e(i['ultimo_push'])}</span>{sit}<button class="link" type="button" data-id="{fid}">Copiar link</button></div>
         </article>"""
 
 
@@ -495,8 +507,29 @@ PAGINA = """<!doctype html>
     if (ev.key === '/' && document.activeElement !== campo && !/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) {{ ev.preventDefault(); campo.focus(); }}
     if (ev.key === 'Escape' && document.activeElement === campo) {{ campo.value = ''; termos = []; aplicar(); }}
   }});
+  document.querySelectorAll('.capa img').forEach(function (img) {{
+    function sem() {{ img.parentNode.classList.add('sem-img'); img.remove(); }}
+    if (img.complete && img.naturalWidth === 0) sem(); else img.addEventListener('error', sem);
+  }});
+  document.querySelectorAll('.link').forEach(function (b) {{
+    b.addEventListener('click', function () {{
+      var url = location.origin + location.pathname + '#' + b.dataset.id;
+      function ok(txt) {{ b.textContent = txt; b.classList.add('ok'); setTimeout(function () {{ b.textContent = 'Copiar link'; b.classList.remove('ok'); }}, 2200); }}
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(url).then(function () {{ ok('Link copiado'); }}, function () {{ history.replaceState(null, '', '#' + b.dataset.id); ok('Link na barra de endereço'); }});
+      else {{ history.replaceState(null, '', '#' + b.dataset.id); ok('Link na barra de endereço'); }}
+    }});
+  }});
+  function irPara() {{
+    var id = decodeURIComponent(location.hash.slice(1)); if (!id) return;
+    var f = document.getElementById(id); if (!f || !f.classList.contains('ficha')) return;
+    estado = Object.assign({{}}, VAZIO); campo.value = ''; termos = []; aplicar();
+    f.scrollIntoView({{ block: 'center' }});
+    f.classList.add('destaque'); setTimeout(function () {{ f.classList.remove('destaque'); }}, 2600);
+  }}
+  window.addEventListener('hashchange', irPara);
   try {{ var s = JSON.parse(localStorage.getItem('prateleira-de-repos') || 'null'); if (s && 'c' in s && 'n' in s && 'tipo' in s) estado = Object.assign({{}}, VAZIO, s); }} catch (e) {{}}
   aplicar();
+  irPara();
 }})();
 </script>
 </body>

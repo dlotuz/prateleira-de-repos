@@ -25,6 +25,8 @@ Use o formulário [Sugerir ferramenta](https://github.com/dlotuz/prateleira-de-r
 | `alternativa_a` | O produto conhecido que ela substitui, ou `null` |
 | `precisa` | Lista com o que é preciso para usar (veja os valores no README) |
 | `atencao` | Licença, custo escondido, projeto parado ou outro alerta, ou `null` |
+| `primeiro_passo` | Uma linha de como começar. Comando entre crases. Sem instrução oficial: "Sem instrução específica. Passe o link para a sua IA…" |
+| `imagem` | Endereço da imagem do repositório (campo `openGraphImageUrl` da API do GitHub) ou `null` |
 | `licenca`, `estrelas`, `ultimo_push`, `situacao` | Como aparecem no GitHub |
 
 ## O que entra

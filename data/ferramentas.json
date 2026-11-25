@@ -23,7 +23,9 @@
     "estrelas": "194k",
     "ultimo_push": "28/10/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/432eb24e2e7ea277a978864add15b243e1174e8ee49ea27f3f5951c5091c10ff/microsoft/markitdown",
+    "primeiro_passo": "No terminal: `pip install \"markitdown[all]\"` e depois `markitdown arquivo.pdf > arquivo.md`."
   },
   {
     "nome": "Whisper",
@@ -49,7 +51,9 @@
     "estrelas": "112k",
     "ultimo_push": "31/08/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/3e3b59b7e2889c53cfea064d846116c09de88ef39daf6534c4cffe232314ef45/openai/whisper",
+    "primeiro_passo": "No terminal: `pip install -U openai-whisper` e depois `whisper gravacao.mp3 --language Portuguese`."
   },
   {
     "nome": "Firecrawl",
@@ -75,7 +79,9 @@
     "estrelas": "198k",
     "ultimo_push": "03/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/787076358/f9616c09-3701-41ef-b5a6-fdf912ffb15b",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/firecrawl/firecrawl` Prefira a versão que roda na sua máquina, com Docker."
   },
   {
     "nome": "Humanizer",
@@ -101,7 +107,9 @@
     "estrelas": "66k",
     "ultimo_push": "28/10/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1136666433/96e8e1ef-3e9d-4c03-be6f-15d6fd662f6d",
+    "primeiro_passo": "No Claude Code: `/plugin marketplace add blader/humanizer` e `/plugin install humanizer@humanizer`. Depois, `/humanizer` com o texto."
   },
   {
     "nome": "Hyperframes",
@@ -127,7 +135,9 @@
     "estrelas": "79k",
     "ultimo_push": "05/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1177402105/22efe22c-0a60-4b45-90ef-316575d95375",
+    "primeiro_passo": "Com o Node 22 instalado, rode `npx hyperframes` no terminal ou peça ao Claude Code para montar o vídeo com ele."
   },
   {
     "nome": "video-use",
@@ -154,7 +164,9 @@
     "estrelas": "30k",
     "ultimo_push": "08/10/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/65749c40b9ecc45f48bf686e55f4a5e8fbd11d734b9d7076d621158ae548c7df/browser-use/video-use",
+    "primeiro_passo": "No Claude Code, cole: \"Set up https://github.com/browser-use/video-use for me.\" Ele instala e pede a chave da ElevenLabs."
   },
   {
     "nome": "whisper.cpp",
@@ -180,7 +192,9 @@
     "estrelas": "55k",
     "ultimo_push": "05/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/541269386/2ca10f8c-2e85-4617-af0f-255330921384",
+    "primeiro_passo": "No Mac: `brew install whisper-cpp`. Depois, peça ao Claude Code para transcrever um arquivo com ele."
   },
   {
     "nome": "claude-video (/watch)",
@@ -206,7 +220,9 @@
     "estrelas": "21k",
     "ultimo_push": "25/09/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/dd45433009448aeff41872d210b1fca6183e16d60fa1e624407aaec992209b13/bradautomates/claude-video",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/bradautomates/claude-video`"
   },
   {
     "nome": "Postiz",
@@ -232,7 +248,9 @@
     "estrelas": "42k",
     "ultimo_push": "18/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/664013991/8b16b484-683a-4ed9-a132-6d070704cc12",
+    "primeiro_passo": "Teste na nuvem em postiz.com ou hospede com Docker seguindo o README."
   },
   {
     "nome": "anarlog",
@@ -257,7 +275,9 @@
     "estrelas": "9,9k",
     "ultimo_push": "18/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/900550981/6c3e722b-017b-4b2c-8472-ab8bc632d9b2",
+    "primeiro_passo": "Baixe o app em anarlog.so e dê permissão de microfone e áudio do sistema."
   },
   {
     "nome": "Yogurt",
@@ -283,7 +303,9 @@
     "estrelas": "3,4k",
     "ultimo_push": "25/11/2026",
     "situacao": "Novo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1453132706/97e29410-2cc5-4b5b-9223-bcec6ec9ca4a",
+    "primeiro_passo": "Baixe em yogurt.so ou, no Mac: `brew install --cask frigadehq/yogurt/yogurt`."
   },
   {
     "nome": "Presenton",
@@ -309,7 +331,9 @@
     "estrelas": "12k",
     "ultimo_push": "02/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/23b54893ee38045ec05a407b31cc5653ba646b08cd697859f707189e99947810/presenton/presenton",
+    "primeiro_passo": "Teste em presenton.ai ou hospede com Docker seguindo o README."
   },
   {
     "nome": "GPT-SoVITS",
@@ -335,7 +359,9 @@
     "estrelas": "65k",
     "ultimo_push": "31/10/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/e1228e7b5dbddb2c85df7829d19662ebe07d1f3591294faf43a67e75f749f321/RVC-Boss/GPT-SoVITS",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/RVC-Boss/GPT-SoVITS` Precisa de placa de vídeo Nvidia."
   },
   {
     "nome": "VoiceStudio",
@@ -361,7 +387,9 @@
     "estrelas": "104k",
     "ultimo_push": "08/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1206390571/fd6851a0-4e36-4541-a76c-2ad84935d0bc",
+    "primeiro_passo": "Baixe o app em voicestudio.sh e escolha no gerenciador só os modelos que vai usar."
   },
   {
     "nome": "LobeHub",
@@ -387,7 +415,9 @@
     "estrelas": "84k",
     "ultimo_push": "03/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/643445235/c12fed7e-80df-4ced-8b64-692437e53c78",
+    "primeiro_passo": "Teste em lobehub.com ou hospede com Docker seguindo o README. Você conecta a chave do modelo."
   },
   {
     "nome": "ComfyUI",
@@ -413,7 +443,9 @@
     "estrelas": "145k",
     "ultimo_push": "03/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/589831718/8894dcc0-5f53-4f3c-97f0-50d820b7779b",
+    "primeiro_passo": "Baixe o app para computador em comfy.org e comece por um dos modelos prontos de fluxo."
   },
   {
     "nome": "Doop",
@@ -439,7 +471,9 @@
     "estrelas": "1,7k",
     "ultimo_push": "04/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/a000176059947fbe8cd3800c175bc5e29d21a42e34ecfd731095eb0b95074ab9/doop-design/doop",
+    "primeiro_passo": "`git clone https://github.com/kgoedecke/doop`, depois `docker compose up -d` na pasta e abra http://localhost:4400."
   },
   {
     "nome": "FigCraft",
@@ -465,7 +499,9 @@
     "estrelas": "4,7k",
     "ultimo_push": "07/11/2026",
     "situacao": "Alpha",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/0ef7b7bf347ef0e0c36867cfee4e69c4564ad499c92ceef6fe44eb38af694923/storytold/figcraft",
+    "primeiro_passo": "Baixe o instalador para o seu sistema na página de Releases do repositório."
   },
   {
     "nome": "UI UX Pro Max",
@@ -491,7 +527,9 @@
     "estrelas": "145k",
     "ultimo_push": "04/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1106996539/d7c84c2d-e797-405f-a868-87fb194e8432",
+    "primeiro_passo": "No Claude Code: `/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill` e `/plugin install ui-ux-pro-max@ui-ux-pro-max-skill`."
   },
   {
     "nome": "Taste Skill",
@@ -516,7 +554,9 @@
     "estrelas": "110k",
     "ultimo_push": "04/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1162099055/0a968964-fdca-4781-853b-84afc2bc2d31",
+    "primeiro_passo": "No Claude Code: `/plugin marketplace add Leonxlnx/taste-skill` e `/plugin install taste-skill@taste-skill`."
   },
   {
     "nome": "UI Skills",
@@ -541,7 +581,9 @@
     "estrelas": "10,8k",
     "ultimo_push": "07/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/0fc99932d0e120ab88f31abe27b18be21b3449b6c658334060ca53b6c952d650/ibelick/ui-skills",
+    "primeiro_passo": "No terminal: `npx ui-skills start` para navegar pelas skills e pegar a que precisa."
   },
   {
     "nome": "Photo Flipbook",
@@ -568,7 +610,9 @@
     "estrelas": "657",
     "ultimo_push": "20/10/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/2742301d6592a1230af90faa68f0acb2c621d0e1b3388bff456680f2da9b4066/HaichaoLihc/create-photo-flipbook-ui",
+    "primeiro_passo": "No Codex, instale pelo instalador de skills com o comando do README e peça para transformar uma pasta de fotos em livro."
   },
   {
     "nome": "scroll-craft",
@@ -593,7 +637,9 @@
     "estrelas": "4,7k",
     "ultimo_push": "30/09/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/e79d25060bfe65d47f7680ca6b8366cbb40e78d07c58951302a4644fe3773073/nateherkai/scroll-craft",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/nateherkai/scroll-craft`"
   },
   {
     "nome": "auto-editor",
@@ -618,7 +664,9 @@
     "estrelas": "5,8k",
     "ultimo_push": "05/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/260117248/8e873ebb-fe50-48f2-8e62-e9ad9f85b3aa",
+    "primeiro_passo": "No terminal: `pip install auto-editor` e depois `auto-editor gravacao.mp4`."
   },
   {
     "nome": "MoviePy",
@@ -643,7 +691,9 @@
     "estrelas": "15k",
     "ultimo_push": "26/08/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/aac8df91bda71c1703d0d902a7c1c7a32f60eee5a02f03ddcf5813007d5d2683/Zulko/moviepy",
+    "primeiro_passo": "No terminal: `pip install moviepy` e peça ao Claude Code um script para cortar e juntar os seus vídeos."
   },
   {
     "nome": "DaVinci Resolve MCP",
@@ -669,7 +719,9 @@
     "estrelas": "4k",
     "ultimo_push": "05/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/8391b11f8e5b67836e7af0e10633f8d24447f61d5687ae42a6632c7766865a9c/samuelgursky/davinci-resolve-mcp",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/samuelgursky/davinci-resolve-mcp` Precisa do DaVinci Resolve instalado."
   },
   {
     "nome": "Fluxo de edição",
@@ -695,7 +747,9 @@
     "estrelas": "53",
     "ultimo_push": "04/11/2026",
     "situacao": "Novo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/ba9e68c654b461945826f6458d76c48debb90b6ca14f6b4d9b2d57035b4ef61b/LeiteZ/fluxo-de-edicao",
+    "primeiro_passo": "No Claude Code, peça: \"Instala esta skill para mim: https://github.com/LeiteZ/fluxo-de-edicao\". Depois, `/fluxo-de-edicao`."
   },
   {
     "nome": "huashu-motion",
@@ -721,7 +775,9 @@
     "estrelas": "2,9k",
     "ultimo_push": "16/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1424340323/42c72146-fa8c-48c7-b5b8-92f1470bd2bf",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/alchaincyf/huashu-motion`"
   },
   {
     "nome": "rea-video",
@@ -746,7 +802,9 @@
     "estrelas": "10,5k",
     "ultimo_push": "18/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1438661890/d788df99-c663-416e-8859-67af82fb3eff",
+    "primeiro_passo": "No Claude Code, peça: \"Install https://github.com/JuneYaooo/rea-video, then break down this video:\" e o caminho do vídeo."
   },
   {
     "nome": "reanimate",
@@ -771,7 +829,9 @@
     "estrelas": "1,8k",
     "ultimo_push": "31/10/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/faf67fbf84445c35e119ee0bdaeed4cfc74e043fb4ad1bb8071a030d2c48e72e/NiazMorshed2007/reanimate",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/NiazMorshed2007/reanimate`"
   },
   {
     "nome": "shorts-kit",
@@ -796,7 +856,9 @@
     "estrelas": "190",
     "ultimo_push": "09/11/2026",
     "situacao": "Novo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1446119977/c2c296f4-5f03-4b1c-a085-e01722a58bbb",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/howznguyen/shorts-kit`"
   },
   {
     "nome": "Lemo-Opuscar",
@@ -821,7 +883,9 @@
     "estrelas": "18k",
     "ultimo_push": "17/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1389011744/04eb4278-1a5c-42b0-8a7e-be7c03f48516",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/lemomo-ai/lemo-opuscar`"
   },
   {
     "nome": "Cap",
@@ -846,7 +910,9 @@
     "estrelas": "25k",
     "ultimo_push": "18/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/39d3252c3ad788007623670c24c72e374e7aafd3d5afc2935ddccfe0e4b5a586/CapSoftware/Cap",
+    "primeiro_passo": "Baixe o app em cap.so e grave a primeira tela."
   },
   {
     "nome": "Kokoro",
@@ -871,7 +937,9 @@
     "estrelas": "10,2k",
     "ultimo_push": "06/08/2025",
     "situacao": "Estável",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/575b99ac4f04893c3f3f73b0c4765c8e82989fb651b513ca9570bde3a5c3c2bf/hexgrad/kokoro",
+    "primeiro_passo": "No terminal: `pip install kokoro` e peça ao Claude Code um script que leia um texto em voz alta."
   },
   {
     "nome": "Penpot",
@@ -898,7 +966,9 @@
     "estrelas": "63k",
     "ultimo_push": "18/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/48769241/1e3fb75a-13e6-4d77-a658-e70e17fb1c6f",
+    "primeiro_passo": "Crie uma conta grátis em penpot.app. Para hospedar, siga o guia de self-host com Docker."
   },
   {
     "nome": "frontend-slides",
@@ -923,7 +993,9 @@
     "estrelas": "32k",
     "ultimo_push": "23/06/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/7858deaba3eef3e908697940541ca086326fc8ffbdccc357a7b5027a4f6668a9/zarazhangrui/frontend-slides",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/zarazhangrui/frontend-slides`"
   },
   {
     "nome": "Logo Design Skill",
@@ -948,7 +1020,9 @@
     "estrelas": "7,2k",
     "ultimo_push": "13/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1388867993/cb41b962-88da-4adb-be7e-17ee8a1073aa",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/kaankiziltug/logo-design-skill`"
   },
   {
     "nome": "Hallmark",
@@ -972,7 +1046,9 @@
     "estrelas": "57k",
     "ultimo_push": "11/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/52c70936924a7eac9075785833be65036c4ac64db46584b79513cde4d08502dd/Nutlope/hallmark",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/Nutlope/hallmark`"
   },
   {
     "nome": "Unslop",
@@ -996,7 +1072,9 @@
     "estrelas": "18k",
     "ultimo_push": "15/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/8e1905fcdfbd5f187121d9ce365aaf69b299fc19f38c8f335fa6523e8b369953/heydamir/unslop",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/heydamir/unslop`"
   },
   {
     "nome": "gstack",
@@ -1021,7 +1099,9 @@
     "estrelas": "142k",
     "ultimo_push": "18/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/42c7aae0416bc3d2762f00980b552198c2d82661709b3574eacdbc8b71e7e13a/garrytan/gstack",
+    "primeiro_passo": "Leia o README antes. A instalação (`git clone` em ~/.claude/skills e `./setup`) mexe no seu CLAUDE.md."
   },
   {
     "nome": "claude-hud",
@@ -1046,7 +1126,9 @@
     "estrelas": "29k",
     "ultimo_push": "10/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/12d7705ab4bbb52971ca3eba31bcaaf3c2fc7b4e75e40221009eb23ddb26e82b/jarrodwatts/claude-hud",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/jarrodwatts/claude-hud`"
   },
   {
     "nome": "Marketing Skills",
@@ -1071,7 +1153,9 @@
     "estrelas": "61k",
     "ultimo_push": "18/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/7898046375ab16be7e999035080ac1b1b2cdd8746c975d6e763d518e7e375b7b/coreyhaines31/marketingskills",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/coreyhaines31/marketingskills`"
   },
   {
     "nome": "AI File Sorter",
@@ -1096,7 +1180,9 @@
     "estrelas": "1,9k",
     "ultimo_push": "21/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/adb38369e9420e454560c0af428b5c72c6ef4ccf4ac6fb094f470b2d104a950a/hyperfield/ai-file-sorter",
+    "primeiro_passo": "Baixe o app em filesorter.app, aponte para a pasta de Downloads e revise as sugestões antes de aplicar."
   },
   {
     "nome": "TaxHacker",
@@ -1122,7 +1208,9 @@
     "estrelas": "6,9k",
     "ultimo_push": "20/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/b9ab3ec5891929d993df49e7376d01ad30fd86f62904c725dfd51174db195e56/vas3k/TaxHacker",
+    "primeiro_passo": "Teste em taxhacker.app ou hospede com Docker seguindo o README."
   },
   {
     "nome": "TREK",
@@ -1147,7 +1235,9 @@
     "estrelas": "15,9k",
     "ultimo_push": "25/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1186219527/e99097ec-2cd3-412c-b0a5-fcee6aa76859",
+    "primeiro_passo": "Teste a demonstração em demo.liketrek.com e, se gostar, hospede com Docker seguindo o README."
   },
   {
     "nome": "Sure",
@@ -1172,7 +1262,9 @@
     "estrelas": "17,9k",
     "ultimo_push": "25/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/3ba7a1d2633ce17c61664fd2e6ce6e0fd16ad385dacbf668009b65322b5eacdc/we-promise/sure",
+    "primeiro_passo": "Hospede com Docker seguindo o guia de hosting do repositório (docs/hosting/docker.md)."
   },
   {
     "nome": "Reactive Resume",
@@ -1197,7 +1289,9 @@
     "estrelas": "46k",
     "ultimo_push": "20/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/249995750/7d64eb6a-d1d4-4bb2-8f54-59b5505fc6dc",
+    "primeiro_passo": "Crie uma conta grátis em rxresu.me e importe o currículo que você já tem."
   },
   {
     "nome": "Screenshot to Code",
@@ -1223,7 +1317,9 @@
     "estrelas": "81k",
     "ultimo_push": "05/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/68b090c550e6cf0f1099e0c02c3f80f41b11dcb7146ad45eaeef21c05255f181/abi/screenshot-to-code",
+    "primeiro_passo": "Teste em screenshottocode.com com um print sem dado sensível. Para rodar local, precisa de chave de API."
   },
   {
     "nome": "OpenHands",
@@ -1249,7 +1345,9 @@
     "estrelas": "93k",
     "ultimo_push": "03/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/3f3eae437c1a76d67477ace35db93d083b92186d4de0da815ea96fd249ae82a9/OpenHands/OpenHands",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/OpenHands/OpenHands` Roda em Docker e pede a chave do modelo que você usa."
   },
   {
     "nome": "Fooocus",
@@ -1274,7 +1372,9 @@
     "estrelas": "54k",
     "ultimo_push": "01/12/2025",
     "situacao": "Parado",
-    "situacao_alerta": true
+    "situacao_alerta": true,
+    "imagem": "https://opengraph.githubassets.com/a8e29cc03f6b8737475085bd166c53570a4798316f80525a353f954403f92f3b/lllyasviel/Fooocus",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/lllyasviel/Fooocus` Precisa de placa de vídeo forte."
   },
   {
     "nome": "Flowise",
@@ -1298,7 +1398,9 @@
     "estrelas": "56k",
     "ultimo_push": "13/08/2026",
     "situacao": "Arquivado",
-    "situacao_alerta": true
+    "situacao_alerta": true,
+    "imagem": "https://repository-images.githubusercontent.com/621803253/228074f3-2420-4c7e-a1a8-3fc357e4c6c1",
+    "primeiro_passo": "Com o Node instalado: `npx flowise start` e abra http://localhost:3000."
   },
   {
     "nome": "MetaGPT",
@@ -1324,7 +1426,9 @@
     "estrelas": "71k",
     "ultimo_push": "21/01/2026",
     "situacao": "Parado",
-    "situacao_alerta": true
+    "situacao_alerta": true,
+    "imagem": "https://opengraph.githubassets.com/cfc2ddf05db82ebae19f1d72313db30343da8115d135c3008e43a98404343b3e/FoundationAgents/MetaGPT",
+    "primeiro_passo": "Para estudar: leia o README e os exemplos. Para rodar: `pip install --upgrade metagpt` (Python abaixo do 3.12)."
   },
   {
     "nome": "Remotion",
@@ -1348,7 +1452,9 @@
     "estrelas": "71k",
     "ultimo_push": "05/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/274495425/970f34be-47bd-4010-9def-bc1bf7fb0669",
+    "primeiro_passo": "No terminal: `npx create-video@latest` cria um projeto de vídeo em React."
   },
   {
     "nome": "OpenCut",
@@ -1372,7 +1478,9 @@
     "estrelas": "97k",
     "ultimo_push": "24/09/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/6460ee0a1c43b6fa5c3faff0f123c3a2692e4980ec013f969f1cc346b04aa38b/OpenCut-app/OpenCut",
+    "primeiro_passo": "Abra opencut.app no navegador e arraste um vídeo para começar."
   },
   {
     "nome": "LosslessCut",
@@ -1396,7 +1504,9 @@
     "estrelas": "46k",
     "ultimo_push": "03/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/06bd83bd262ec8aae3f905fc39136167a46488a00cc6535ebb67489cb84d8340/mifi/lossless-cut",
+    "primeiro_passo": "Baixe em losslesscut.app, abra o vídeo e marque o trecho que quer manter."
   },
   {
     "nome": "Laya",
@@ -1421,7 +1531,9 @@
     "estrelas": "35k",
     "ultimo_push": "08/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/879601929caed09571d6b68c5e9e867e8f00461301b2a003a108d2b3deac19bd/NandhaKishorM/laya",
+    "primeiro_passo": "No terminal: `pip install laya` e siga o Quickstart do README."
   },
   {
     "nome": "BoardUI",
@@ -1445,7 +1557,9 @@
     "estrelas": "1,1k",
     "ultimo_push": "02/10/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1354117265/05eaa383-ab09-4b67-9619-185b35c47434",
+    "primeiro_passo": "Num projeto React: `npx boardui add` e o nome do componente que quer copiar."
   },
   {
     "nome": "ThreeUI",
@@ -1469,7 +1583,9 @@
     "estrelas": "7,2k",
     "ultimo_push": "03/09/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/ddc9d6fa090ba587f99599c9616617871b2b92cc040a1641bb68b56833c1c867/MengTo/threeui",
+    "primeiro_passo": "Abra threeui.com, escolha o componente e copie o código para o seu site."
   },
   {
     "nome": "Remotion Skills",
@@ -1493,7 +1609,9 @@
     "estrelas": "7,5k",
     "ultimo_push": "18/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/71c999c7db47b147c550beba1a048ef231fce7066b3af6e5e33f04a31355ee32/remotion-dev/skills",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/remotion-dev/skills`"
   },
   {
     "nome": "freefield",
@@ -1518,7 +1636,9 @@
     "estrelas": "1,6k",
     "ultimo_push": "18/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/fc7f4a00ea2ba90cbb0f5124ecec41830706e01376347e4bb6096e94caf01c8c/neuregex/freefield",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/neuregex/freefield` Precisa de GPU própria ou alugada."
   },
   {
     "nome": "raea",
@@ -1543,7 +1663,9 @@
     "estrelas": "2,8k",
     "ultimo_push": "18/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1424671157/9e9abd4d-fcdd-4c35-993e-6e4eef1881d2",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/shinyobjectz/raea` Precisa de placa de vídeo."
   },
   {
     "nome": "sand3d",
@@ -1567,7 +1689,9 @@
     "estrelas": "2,1k",
     "ultimo_push": "18/11/2026",
     "situacao": "Novo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1444005452/7a64aba4-338b-4e47-9698-ad0112cbc8e4",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/Sandflow-ai/sand3d`"
   },
   {
     "nome": "Plane",
@@ -1592,7 +1716,9 @@
     "estrelas": "63k",
     "ultimo_push": "17/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/568098118/a2d75f51-b51a-4a79-9364-b04f3778102e",
+    "primeiro_passo": "Teste na nuvem em plane.so ou hospede com Docker seguindo o README."
   },
   {
     "nome": "airhand",
@@ -1616,7 +1742,9 @@
     "estrelas": "1,4k",
     "ultimo_push": "18/11/2026",
     "situacao": "Novo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/f97df6ad6c9ef6cb86e241360cf61b69a603388c204e3c96dcd9a1fb26513a4b/sqlpxc/airhand",
+    "primeiro_passo": "Baixe o app para os dois computadores na página de Releases do repositório."
   },
   {
     "nome": "global-law",
@@ -1641,7 +1769,9 @@
     "estrelas": "2,1k",
     "ultimo_push": "18/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/9e8f2354fa774e0fb7a15accdd9595716b9dd2f59e7af7594359bfca53184382/lexifina/global-law",
+    "primeiro_passo": "Abra o repositório e navegue até a pasta do país e do artigo que quer consultar."
   },
   {
     "nome": "BAMA",
@@ -1665,7 +1795,9 @@
     "estrelas": "1,9k",
     "ultimo_push": "05/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/3344a48b1a14cf64e35fcf2652c631f23a3d39f79f450030b1fb032808625a6f/daveebbelaar/bama",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/daveebbelaar/bama`"
   },
   {
     "nome": "Exact",
@@ -1689,7 +1821,9 @@
     "estrelas": "4,6k",
     "ultimo_push": "18/11/2026",
     "situacao": "Novo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://repository-images.githubusercontent.com/1442385098/8a1784d6-2b8c-4f0a-9eb3-3a096d15764b",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/expo/exact`"
   },
   {
     "nome": "Windrecorder",
@@ -1714,7 +1848,9 @@
     "estrelas": "4k",
     "ultimo_push": "25/09/2026",
     "situacao": "Só Windows",
-    "situacao_alerta": true
+    "situacao_alerta": true,
+    "imagem": "https://opengraph.githubassets.com/f3f822af30d832ffa9218502b4219e6480258731088070a6f1ff51d45c11a142/yuka-friends/Windrecorder",
+    "primeiro_passo": "Só no Windows: siga a instalação do README (precisa do ffmpeg)."
   },
   {
     "nome": "Web Artifacts Builder",
@@ -1740,7 +1876,9 @@
     "estrelas": "200k",
     "ultimo_push": "20/04/2026",
     "situacao": "Oficial",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/8a29db1d071830e7949b04d5ed5bbec6d18269ba089712fdf4b1c57464ca7a5c/anthropics/skills",
+    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA e peça para ela instalar a skill: `https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder`. Rode numa pasta separada."
   },
   {
     "nome": "Impeccable",
@@ -1767,6 +1905,8 @@
     "estrelas": "117k",
     "ultimo_push": "25/11/2026",
     "situacao": "Ativo",
-    "situacao_alerta": false
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/5fffe187a9b695e339977e801065ba973534dc9dc210f2f6db192c4e11e36b5f/pbakaus/impeccable",
+    "primeiro_passo": "Teste sem instalar: `npx impeccable detect .` na pasta do seu site. Para instalar: `npx impeccable install`."
   }
 ]

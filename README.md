@@ -55,6 +55,8 @@ Lê sites inteiros e devolve o conteúdo limpo, em Markdown ou JSON, pronto para
 - Documentação pública de API puxada para análise
 - Acompanhar mudanças em sites que você monitora
 
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/firecrawl/firecrawl` Prefira a versão que roda na sua máquina, com Docker.
+
 **Nível:** Avançado · **Precisa de:** Docker ou servidor · **Licença:** AGPL-3.0 · **Estrelas:** 198k · **Último push:** 03/11/2026 · **Situação:** Ativo
 
 > **Atenção:** Licença AGPL: uso próprio tudo bem, mas não pode ir dentro de um produto que seja vendido.
@@ -69,6 +71,8 @@ Skill que reescreve texto gerado por IA para soar como uma pessoa escreveu, sem 
 - Post do LinkedIn sem cara de texto de chatbot
 - Revisar e-mail, apresentação e documento antes de mandar
 - Corrigir vícios como "não é só X, é Y" e frases de efeito no fim
+
+**Como começar:** No Claude Code: `/plugin marketplace add blader/humanizer` e `/plugin install humanizer@humanizer`. Depois, `/humanizer` com o texto.
 
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 66k · **Último push:** 28/10/2026 · **Situação:** Ativo
 
@@ -85,6 +89,8 @@ Converte PDF, Word, Excel, PowerPoint e HTML em Markdown, que é o formato que o
 - Planilha lida e resumida sem abrir o Excel
 - Apresentações antigas viram texto pesquisável
 
+**Como começar:** No terminal: `pip install "markitdown[all]"` e depois `markitdown arquivo.pdf > arquivo.md`.
+
 **Nível:** Médio · **Precisa de:** Terminal · **Licença:** MIT · **Estrelas:** 194k · **Último push:** 28/10/2026 · **Situação:** Ativo
 
 ### Marketing Skills
@@ -97,6 +103,8 @@ Pacote de skills de marketing para o Claude Code: conversão, copy, SEO, analyti
 - Melhorar bio, chamadas e texto de lançamento de um perfil ou produto
 - Revisar uma landing page com olhar de conversão
 
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/coreyhaines31/marketingskills`
+
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 61k · **Último push:** 18/11/2026 · **Situação:** Ativo
 
 ### global-law
@@ -108,6 +116,8 @@ As leis do mundo num repositório git: qualquer artigo, de qualquer país, em qu
 **Para que serve:**
 - Ver como um artigo de lei mudou ao longo do tempo
 - Dar ao agente a lei exata como fonte de uma análise
+
+**Como começar:** Abra o repositório e navegue até a pasta do país e do artigo que quer consultar.
 
 **Nível:** Fácil · **Precisa de:** Só consultar · **Licença:** CC0 · **Estrelas:** 2,1k · **Último push:** 18/11/2026 · **Situação:** Ativo
 
@@ -127,6 +137,8 @@ Transcreve áudio e vídeo localmente, em português e outras línguas, sem serv
 - Aulas e treinamentos viram material de consulta
 - Entrevistas transcritas sem o áudio sair do Mac
 
+**Como começar:** No terminal: `pip install -U openai-whisper` e depois `whisper gravacao.mp3 --language Portuguese`.
+
 **Nível:** Médio · **Precisa de:** Terminal · **Licença:** MIT · **Estrelas:** 112k · **Último push:** 31/08/2026 · **Situação:** Ativo
 
 ### whisper.cpp
@@ -139,6 +151,8 @@ O Whisper reescrito para rodar rápido no Mac. Transcreve e gera legenda SRT com
 - Transcrever uma gravação e sincronizar cada animação com a fala
 - Legenda automática para vídeo de tutorial
 - Transcrever reunião mais rápido que o Whisper original no Mac
+
+**Como começar:** No Mac: `brew install whisper-cpp`. Depois, peça ao Claude Code para transcrever um arquivo com ele.
 
 **Nível:** Médio · **Precisa de:** Terminal · **Licença:** MIT · **Estrelas:** 55k · **Último push:** 05/11/2026 · **Situação:** Ativo
 
@@ -154,6 +168,8 @@ Transforma texto em fala e clona uma voz a partir de cerca de 1 minuto de áudio
 - Narração de vídeos sem precisar gravar
 - Áudio de tutorial atualizado sem regravar a cada versão
 
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/RVC-Boss/GPT-SoVITS` Precisa de placa de vídeo Nvidia.
+
 **Nível:** Avançado · **Precisa de:** Terminal, GPU · **Licença:** MIT · **Estrelas:** 65k · **Último push:** 31/10/2026 · **Situação:** Ativo
 
 > **Atenção:** Só clonar a voz de alguém com o consentimento da pessoa.
@@ -167,6 +183,8 @@ Modelo leve de voz (82 milhões de parâmetros) que transforma texto em fala com
 **Para que serve:**
 - Narração rápida para vídeo curto
 - Locução de teste antes de gravar a sua voz
+
+**Como começar:** No terminal: `pip install kokoro` e peça ao Claude Code um script que leia um texto em voz alta.
 
 **Nível:** Médio · **Precisa de:** Terminal · **Licença:** Apache-2.0 · **Estrelas:** 10,2k · **Último push:** 06/08/2025 · **Situação:** Estável
 
@@ -184,6 +202,8 @@ Estúdio de voz que roda no computador, alternativa local à ElevenLabs: clona e
 - Dublar um vídeo para inglês ou espanhol mantendo o tempo da fala
 - Narração com uma voz criada a partir de uma descrição
 - Ditado e transcrição sem o áudio sair do Mac
+
+**Como começar:** Baixe o app em voicestudio.sh e escolha no gerenciador só os modelos que vai usar.
 
 **Nível:** Fácil · **Precisa de:** Instalar e usar · **Licença:** AGPL-3.0 · **Estrelas:** 104k · **Último push:** 08/11/2026 · **Situação:** Ativo
 
@@ -203,6 +223,8 @@ Dá ao Claude a capacidade de assistir um vídeo: baixa, extrai quadros com hor�
 - Analisar vídeos de referência antes de criar os seus
 - Revisar o seu próprio vídeo antes de publicar
 
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/bradautomates/claude-video`
+
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 21k · **Último push:** 25/09/2026 · **Situação:** Ativo
 
 > **Atenção:** Funciona sem chave de API no modo local (ffmpeg e yt-dlp); a transcrição local usa WhisperX.
@@ -218,6 +240,8 @@ Transforma HTML em vídeo. O agente escreve as animações em código e ele rend
 - Vídeo de tutorial com animação no ritmo da fala
 - Abertura e vinheta para apresentação e posts
 
+**Como começar:** Com o Node 22 instalado, rode `npx hyperframes` no terminal ou peça ao Claude Code para montar o vídeo com ele.
+
 **Nível:** Médio · **Precisa de:** Terminal · **Licença:** Apache-2.0 · **Estrelas:** 79k · **Último push:** 05/11/2026 · **Situação:** Ativo
 
 ### video-use
@@ -230,6 +254,8 @@ Skill do Claude Code que edita vídeo conversando: você coloca as gravações n
 - Gravação de tutorial sem "éé", pausas e falsos começos
 - Legenda no seu estilo e correção de cor automáticas
 - Animações por cima feitas com o Hyperframes
+
+**Como começar:** No Claude Code, cole: "Set up https://github.com/browser-use/video-use for me." Ele instala e pede a chave da ElevenLabs.
 
 **Nível:** Médio · **Precisa de:** Claude Code, Chave de API paga · **Licença:** MIT · **Estrelas:** 30k · **Último push:** 08/10/2026 · **Situação:** Ativo
 
@@ -245,6 +271,8 @@ Corta sozinho os silêncios e as pausas de um vídeo gravado.
 - Limpar a gravação de um tutorial antes de montar o vídeo
 - Enxugar gravação de reunião ou demo antes de compartilhar
 
+**Como começar:** No terminal: `pip install auto-editor` e depois `auto-editor gravacao.mp4`.
+
 **Nível:** Médio · **Precisa de:** Terminal · **Licença:** Domínio público · **Estrelas:** 5,8k · **Último push:** 05/11/2026 · **Situação:** Ativo
 
 ### Cap
@@ -259,6 +287,8 @@ Gravador de tela aberto, alternativa ao Loom: grava, edita e gera um link para c
 - Gravar demo de produto ou tutorial com a sua câmera no canto
 - Mandar explicação gravada em vez de marcar reunião
 
+**Como começar:** Baixe o app em cap.so e grave a primeira tela.
+
 **Nível:** Fácil · **Precisa de:** Instalar e usar · **Licença:** Mista · **Estrelas:** 25k · **Último push:** 18/11/2026 · **Situação:** Ativo
 
 > **Atenção:** Licença mista: parte é MIT, o resto tem termos próprios. Conferir antes de uso comercial.
@@ -272,6 +302,8 @@ Deixa o Claude controlar o DaVinci Resolve, um editor profissional: linha do tem
 **Para que serve:**
 - Edição de nível profissional comandada por conversa, para vídeo de lançamento
 - Ajuste fino depois que o video-use fizer o primeiro corte
+
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/samuelgursky/davinci-resolve-mcp` Precisa do DaVinci Resolve instalado.
 
 **Nível:** Médio · **Precisa de:** Claude Code, DaVinci Resolve · **Licença:** MIT · **Estrelas:** 4k · **Último push:** 05/11/2026 · **Situação:** Ativo
 
@@ -288,6 +320,8 @@ Skill do Claude Code, em português, que não edita o vídeo: ela entrevista voc
 - Ganhar uma skill "/editar" que guia cada vídeo novo etapa por etapa
 - Aproveitar os cuidados com Hyperframes e com a entrega para o Premiere que vêm nos guias
 
+**Como começar:** No Claude Code, peça: "Instala esta skill para mim: https://github.com/LeiteZ/fluxo-de-edicao". Depois, `/fluxo-de-edicao`.
+
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 53 · **Último push:** 04/11/2026 · **Situação:** Novo
 
 > **Atenção:** Projeto de 4 dias, feito por uma pessoa. É só texto, então dá para ler o SKILL.md antes de instalar e conferir o que ele vai pedir para instalar.
@@ -303,6 +337,8 @@ Faz filmes de lançamento de produto com o agente, inclusive a trilha: compõe a
 - Trilha original sem pagar banco de música
 - Apontar para o quadro do vídeo e pedir a mudança ali
 
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/alchaincyf/huashu-motion`
+
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 2,9k · **Último push:** 16/11/2026 · **Situação:** Ativo
 
 > **Atenção:** Documentação principalmente em chinês.
@@ -316,6 +352,8 @@ Caixa de estilos de filme feitos em código: 99 estilos prontos, cada um com um 
 **Para que serve:**
 - Escolher um estilo pronto em vez de começar do zero
 - Criar e guardar um estilo seu para usar em todos os vídeos
+
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/lemomo-ai/lemo-opuscar`
 
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT + CC BY-NC · **Estrelas:** 18k · **Último push:** 17/11/2026 · **Situação:** Ativo
 
@@ -331,6 +369,8 @@ Biblioteca Python para editar vídeo por script: cortar, juntar, pôr trilha e t
 - Mesmo modelo de vídeo aplicado a vários temas, sem editar um por um
 - Juntar abertura, gravação e encerramento padrão automaticamente
 
+**Como começar:** No terminal: `pip install moviepy` e peça ao Claude Code um script para cortar e juntar os seus vídeos.
+
 **Nível:** Avançado · **Precisa de:** Programar · **Licença:** MIT · **Estrelas:** 15k · **Último push:** 26/08/2026 · **Situação:** Ativo
 
 ### rea-video
@@ -343,6 +383,8 @@ Desmonta qualquer vídeo plano a plano: diz se cada trecho foi filmado, gerado p
 - Entender como foi feito um vídeo de referência
 - Transformar a análise num roteiro para recriar no seu estilo
 
+**Como começar:** No Claude Code, peça: "Install https://github.com/JuneYaooo/rea-video, then break down this video:" e o caminho do vídeo.
+
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** Apache-2.0 · **Estrelas:** 10,5k · **Último push:** 18/11/2026 · **Situação:** Ativo
 
 ### reanimate
@@ -354,6 +396,8 @@ Skill que desmonta uma animação quadro a quadro, recria em código e prova que
 **Para que serve:**
 - Reproduzir uma animação de interface que você viu num site ou app
 - Aprender o tempo e a curva de um movimento bem feito
+
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/NiazMorshed2007/reanimate`
 
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 1,8k · **Último push:** 31/10/2026 · **Situação:** Ativo
 
@@ -368,6 +412,8 @@ Kit para fazer vídeos verticais narrados (TikTok, Shorts, Reels) com o agente: 
 **Para que serve:**
 - Explicar um conceito em 60 segundos com narração e animação
 - Série de vídeos curtos com o mesmo formato
+
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/howznguyen/shorts-kit`
 
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 190 · **Último push:** 09/11/2026 · **Situação:** Novo
 
@@ -384,6 +430,8 @@ Versão aberta do Higgsfield em cima do ComfyUI: 120 apps de imagem, vídeo, efe
 **Para que serve:**
 - Gerar vídeo a partir de foto, como no Higgsfield, sem assinatura
 
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/neuregex/freefield` Precisa de GPU própria ou alugada.
+
 **Nível:** Avançado · **Precisa de:** GPU, Docker ou servidor · **Licença:** MIT · **Estrelas:** 1,6k · **Último push:** 18/11/2026 · **Situação:** Ativo
 
 > **Atenção:** Precisa de GPU: alugada por hora (Modal, RunPod) ou própria. Não roda bem no Mac.
@@ -399,6 +447,8 @@ Corta trechos de vídeo e áudio sem recodificar, então não perde qualidade e 
 **Para que serve:**
 - Tirar o começo e o fim de uma gravação de reunião ou demo antes de compartilhar
 
+**Como começar:** Baixe em losslesscut.app, abra o vídeo e marque o trecho que quer manter.
+
 **Nível:** Fácil · **Precisa de:** Instalar e usar · **Licença:** GPL-2.0 · **Estrelas:** 46k · **Último push:** 03/11/2026 · **Situação:** Ativo
 
 ### OpenCut
@@ -412,6 +462,8 @@ Editor de vídeo aberto e gratuito, no estilo do CapCut. A edição é manual, s
 **Para que serve:**
 - Ajuste manual rápido num vídeo que o Claude já montou
 
+**Como começar:** Abra opencut.app no navegador e arraste um vídeo para começar.
+
 **Nível:** Fácil · **Precisa de:** Navegador · **Licença:** MIT · **Estrelas:** 97k · **Último push:** 24/09/2026 · **Situação:** Ativo
 
 ### raea
@@ -422,6 +474,8 @@ Motor que renderiza vídeo, motion, 3D e jogos escritos em React e TypeScript, n
 
 **Para que serve:**
 - Cenas 3D e animações pesadas que o Hyperframes não dá conta
+
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/shinyobjectz/raea` Precisa de placa de vídeo.
 
 **Nível:** Avançado · **Precisa de:** Terminal, GPU · **Licença:** FSL-1.1 · **Estrelas:** 2,8k · **Último push:** 18/11/2026 · **Situação:** Ativo
 
@@ -436,6 +490,8 @@ Faz vídeo com código React. Cumpre o mesmo papel do Hyperframes.
 **Para que serve:**
 - Alternativa ao Hyperframes, caso algum dia ele deixe de atender
 
+**Como começar:** No terminal: `npx create-video@latest` cria um projeto de vídeo em React.
+
 **Nível:** Avançado · **Precisa de:** Programar · **Licença:** Licença própria · **Estrelas:** 71k · **Último push:** 05/11/2026 · **Situação:** Ativo
 
 > **Atenção:** Licença própria: grátis para pessoa física e empresa pequena. Empresa maior precisa de licença paga.
@@ -448,6 +504,8 @@ Skills oficiais do Remotion para o agente criar vídeo em React.
 
 **Para que serve:**
 - Criar vídeo em React com o agente, se você usa o Remotion
+
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/remotion-dev/skills`
 
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** Sem licença · **Estrelas:** 7,5k · **Último push:** 18/11/2026 · **Situação:** Ativo
 
@@ -468,6 +526,8 @@ Gera imagens com IA no próprio computador, montando o processo em blocos ligado
 - Imagens para posts no LinkedIn e capas de apresentação
 - Ilustrações para tutoriais e páginas
 
+**Como começar:** Baixe o app para computador em comfy.org e comece por um dos modelos prontos de fluxo.
+
 **Nível:** Avançado · **Precisa de:** Instalar e usar, GPU · **Licença:** GPL-3.0 · **Estrelas:** 145k · **Último push:** 03/11/2026 · **Situação:** Ativo
 
 > **Atenção:** Pede GPU. No Mac roda, mas devagar. Licença GPL.
@@ -484,6 +544,8 @@ Canvas de design em que pessoas e agentes de IA desenham juntos, ao vivo. O Clau
 - Protótipo de tela feito com o agente, com outras pessoas comentando no mesmo canvas
 - Fluxo clicável para validar uma ideia antes de desenvolver
 - Guardar as regras de estilo de um design system para todo agente seguir
+
+**Como começar:** `git clone https://github.com/kgoedecke/doop`, depois `docker compose up -d` na pasta e abra http://localhost:4400.
 
 **Nível:** Avançado · **Precisa de:** Docker ou servidor · **Licença:** AGPL-3.0 · **Estrelas:** 1,7k · **Último push:** 04/11/2026 · **Situação:** Ativo
 
@@ -502,6 +564,8 @@ Editor de design no estilo do Figma, aberto e nativo: componentes, auto layout, 
 - Montar um design system com componentes e variáveis pelo Claude
 - Exportar tela em PNG, SVG, PDF ou código React
 
+**Como começar:** Baixe o instalador para o seu sistema na página de Releases do repositório.
+
 **Nível:** Fácil · **Precisa de:** Instalar e usar · **Licença:** Apache-2.0 · **Estrelas:** 4,7k · **Último push:** 07/11/2026 · **Situação:** Alpha
 
 > **Atenção:** Em alpha: o próprio projeto diz que está a cerca de 49% de substituir o Figma. Abre .fig "no melhor esforço" e a colaboração ao vivo ainda é prévia.
@@ -515,6 +579,8 @@ Skill que faz apresentações bonitas na web, usando o que o agente sabe de fron
 **Para que serve:**
 - Apresentação em HTML com animação, sem PowerPoint
 - Deck rápido a partir de um texto ou de um roteiro
+
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/zarazhangrui/frontend-slides`
 
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 32k · **Último push:** 23/06/2026 · **Situação:** Ativo
 
@@ -533,6 +599,8 @@ Plataforma de design aberta e madura, alternativa ao Figma: roda no navegador ou
 - Ligar design e código pelo MCP, com tokens de design
 - Alternativa mais madura ao FigCraft quando você precisa de um Figma aberto
 
+**Como começar:** Crie uma conta grátis em penpot.app. Para hospedar, siga o guia de self-host com Docker.
+
 **Nível:** Avançado · **Precisa de:** Navegador, Docker ou servidor · **Licença:** MPL-2.0 · **Estrelas:** 63k · **Último push:** 18/11/2026 · **Situação:** Ativo
 
 > **Atenção:** Projeto de 10 anos, bem mais estável que o FigCraft. Ainda assim é design vetorial, não HTML como o Doop.
@@ -550,6 +618,8 @@ Gera apresentações com IA a partir de um tema ou documento, com API. Alternati
 - Deck gerado por API a partir de dados, como um relatório semanal
 - Comparar antes com os Slides que o Claude já faz
 
+**Como começar:** Teste em presenton.ai ou hospede com Docker seguindo o README.
+
 **Nível:** Avançado · **Precisa de:** Docker ou servidor · **Licença:** Apache-2.0 · **Estrelas:** 12k · **Último push:** 02/11/2026 · **Situação:** Ativo
 
 ### Fooocus
@@ -563,6 +633,8 @@ Gera imagens com IA de um jeito simples: escreve o pedido e pronto.
 **Para que serve:**
 - Mesmo uso do ComfyUI, para quem quer só digitar e gerar
 
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/lllyasviel/Fooocus` Precisa de placa de vídeo forte.
+
 **Nível:** Avançado · **Precisa de:** Terminal, GPU · **Licença:** GPL-3.0 · **Estrelas:** 54k · **Último push:** 01/12/2025 · **Situação:** Parado
 
 > **Atenção:** Sem atualização desde dez/2025. Preferir o ComfyUI.
@@ -575,6 +647,8 @@ Modelagem 3D em Python feita para o agente usar.
 
 **Para que serve:**
 - Peça 3D simples (ícone, objeto) gerada por descrição
+
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/Sandflow-ai/sand3d`
 
 **Nível:** Avançado · **Precisa de:** Programar · **Licença:** Apache-2.0 · **Estrelas:** 2,1k · **Último push:** 18/11/2026 · **Situação:** Novo
 
@@ -591,6 +665,8 @@ Transforma um print, ou uma gravação de tela, em código pronto: HTML com Tail
 **Para que serve:**
 - Print de uma tela vira protótipo editável para propor melhoria
 - Gravação do fluxo de outro app vira protótipo clicável para comparar
+
+**Como começar:** Teste em screenshottocode.com com um print sem dado sensível. Para rodar local, precisa de chave de API.
 
 **Nível:** Médio · **Precisa de:** Terminal, Chave de API paga · **Licença:** MIT · **Estrelas:** 81k · **Último push:** 05/11/2026 · **Situação:** Ativo
 
@@ -610,6 +686,8 @@ Vocabulário de design para o agente: comandos para revisar (critique, audit), d
 - Pedir ao agente uma crítica de UX ou uma passada final de acabamento com um comando só
 - Rodar "npx impeccable detect" numa pasta ou num endereço, sem instalar nada
 
+**Como começar:** Teste sem instalar: `npx impeccable detect .` na pasta do seu site. Para instalar: `npx impeccable install`.
+
 **Nível:** Médio · **Precisa de:** Claude Code, Terminal · **Licença:** Apache-2.0 · **Estrelas:** 117k · **Último push:** 25/11/2026 · **Situação:** Ativo
 
 > **Atenção:** Ao instalar, cria um hook que verifica toda edição de interface e baixa um programa próprio. Tem telemetria anônima, que desliga com "npx impeccable telemetry off". Mesmo espaço da Taste Skill, da Hallmark e do Unslop.
@@ -622,6 +700,8 @@ Skill contra o "design com cara de IA" para o Claude Code, com regras de layout,
 
 **Para que serve:**
 - Dar acabamento de designer a páginas e telas feitas pelo agente
+
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/Nutlope/hallmark`
 
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 57k · **Último push:** 11/11/2026 · **Situação:** Ativo
 
@@ -637,6 +717,8 @@ Skill completa de design de logo: princípios, processo, desenho em SVG, ferrame
 - Criar logo em vetor (SVG) para um projeto novo
 - Testar o logo em tamanho pequeno, em preto e branco e em fundo escuro
 
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/kaankiziltug/logo-design-skill`
+
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 7,2k · **Último push:** 13/11/2026 · **Situação:** Ativo
 
 ### Photo Flipbook
@@ -649,6 +731,8 @@ Skill que transforma uma pasta de fotos num livro de fotos 3D interativo, com p�
 - Álbum de viagem, casamento ou aniversário como site para presentear
 - Base para um serviço de fotolivro digital
 - Templates extras de galeria: anel de fotos, estante e atlas por ano
+
+**Como começar:** No Codex, instale pelo instalador de skills com o comando do README e peça para transformar uma pasta de fotos em livro.
 
 **Nível:** Médio · **Precisa de:** Codex, Chave de API paga · **Licença:** MIT · **Estrelas:** 657 · **Último push:** 20/10/2026 · **Situação:** Ativo
 
@@ -664,6 +748,8 @@ Skill para sites imersivos que contam a história pela rolagem, com padrão de d
 - Landing page de lançamento ou portfólio que prende quem rola
 - Estudar os dez sites aprovados que vêm como exemplo
 
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/nateherkai/scroll-craft`
+
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 4,7k · **Último push:** 30/09/2026 · **Situação:** Ativo
 
 ### Taste Skill
@@ -675,6 +761,8 @@ Faz o papel de diretor de arte do agente: define uma direção visual, busca fot
 **Para que serve:**
 - Landing page, post do LinkedIn e página com cara menos "feita por IA"
 - Revisão visual por screenshot antes de entregar um artefato
+
+**Como começar:** No Claude Code: `/plugin marketplace add Leonxlnx/taste-skill` e `/plugin install taste-skill@taste-skill`.
 
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 110k · **Último push:** 04/11/2026 · **Situação:** Ativo
 
@@ -689,6 +777,8 @@ Catálogo de skills para quem faz interface (motion, tipografia, layout), com bu
 **Para que serve:**
 - Achar uma skill pronta para um problema de interface específico
 - Ler o playbook, que resume as lições das melhores skills de design
+
+**Como começar:** No terminal: `npx ui-skills start` para navegar pelas skills e pegar a que precisa.
 
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 10,8k · **Último push:** 07/11/2026 · **Situação:** Ativo
 
@@ -705,6 +795,8 @@ Catálogo de design com buscador, que o agente consulta enquanto desenha: estilo
 - Regras de texto que quebra e rótulo curto, problema comum em formulário
 - Cobre 22 stacks, de React e Angular a SwiftUI e Flutter
 
+**Como começar:** No Claude Code: `/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill` e `/plugin install ui-ux-pro-max@ui-ux-pro-max-skill`.
+
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 145k · **Último push:** 04/11/2026 · **Situação:** Ativo
 
 > **Atenção:** Quando o projeto já tem um padrão visual, usar só as regras de UX dele, não a paleta e as fontes.
@@ -717,6 +809,8 @@ Skill que transforma uma interface com cara de feita por IA numa interface desen
 
 **Para que serve:**
 - Revisar uma tela pronta e tirar os vícios visuais de IA
+
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/heydamir/unslop`
 
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** CC-BY-4.0 · **Estrelas:** 18k · **Último push:** 15/11/2026 · **Situação:** Ativo
 
@@ -737,6 +831,8 @@ Anotador de reuniões no estilo do Granola, que roda no computador: escuta o áu
 - Notas e resumo de reunião sem mandar a conversa para a nuvem
 - Ata pronta logo depois da chamada
 
+**Como começar:** Baixe o app em anarlog.so e dê permissão de microfone e áudio do sistema.
+
 **Nível:** Fácil · **Precisa de:** Instalar e usar · **Licença:** MIT · **Estrelas:** 9,9k · **Último push:** 18/11/2026 · **Situação:** Ativo
 
 > **Atenção:** A equipe agora toca um produto pago (char.com); o anarlog segue aberto e mantido, mas vale acompanhar.
@@ -753,6 +849,8 @@ Agenda e publica posts em várias redes (Instagram, LinkedIn, TikTok, YouTube e 
 - Programar a semana inteira de posts de uma vez
 - Pedir ao Claude para agendar as peças prontas nos dias certos
 - Ver num calendário só o que sai em cada rede
+
+**Como começar:** Teste na nuvem em postiz.com ou hospede com Docker seguindo o README.
 
 **Nível:** Avançado · **Precisa de:** Docker ou servidor · **Licença:** AGPL-3.0 · **Estrelas:** 42k · **Último push:** 18/11/2026 · **Situação:** Ativo
 
@@ -771,6 +869,8 @@ Anotações de reunião que ficam no computador: grava o microfone e o áudio da
 - Perguntar "o que ficou combinado sobre X?" e receber a resposta com o trecho da reunião
 - Exportar notas e transcrição em Markdown
 
+**Como começar:** Baixe em yogurt.so ou, no Mac: `brew install --cask frigadehq/yogurt/yogurt`.
+
 **Nível:** Fácil · **Precisa de:** Instalar e usar · **Licença:** MIT · **Estrelas:** 3,4k · **Último push:** 25/11/2026 · **Situação:** Novo
 
 > **Atenção:** Tem instalador para Mac e é mais simples de começar que o anarlog, que faz o mesmo. Projeto de nov/2026. Avisar quem está na chamada que ela está sendo gravada.
@@ -787,6 +887,8 @@ Organiza pastas bagunçadas com IA: sugere uma categoria e um nome melhor para c
 - Arrumar a pasta de Downloads e o HD externo de uma vez
 - Renomear fotos como IMG_2048.jpg para nomes que dizem o que tem nelas
 
+**Como começar:** Baixe o app em filesorter.app, aponte para a pasta de Downloads e revise as sugestões antes de aplicar.
+
 **Nível:** Fácil · **Precisa de:** Instalar e usar · **Licença:** AGPL-3.0 · **Estrelas:** 1,9k · **Último push:** 21/11/2026 · **Situação:** Ativo
 
 > **Atenção:** Roda com modelo local, sem mandar nada para fora. Se você ligar o nome do lugar nas fotos, as coordenadas vão para o OpenStreetMap.
@@ -801,6 +903,8 @@ Plugin do Claude Code que mostra o que está acontecendo: uso de contexto, ferra
 - Ver quanto do contexto já foi usado antes de a conversa ficar longa
 - Acompanhar subagentes e tarefas em andamento
 
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/jarrodwatts/claude-hud`
+
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 29k · **Último push:** 10/11/2026 · **Situação:** Ativo
 
 ### airhand
@@ -813,6 +917,8 @@ Acesso remoto ao computador com baixa latência, até 120 quadros por segundo, e
 
 **Para que serve:**
 - Usar o Mac de outro lugar com fluidez
+
+**Como começar:** Baixe o app para os dois computadores na página de Releases do repositório.
 
 **Nível:** Fácil · **Precisa de:** Instalar e usar · **Licença:** MIT · **Estrelas:** 1,4k · **Último push:** 18/11/2026 · **Situação:** Novo
 
@@ -830,6 +936,8 @@ Gestão de projetos aberta, alternativa ao Jira, Linear e ClickUp: tarefas, spri
 - Organizar um projeto pessoal com quadro, ciclos e documentos
 - Hospedar para um time pequeno sem pagar por usuário
 
+**Como começar:** Teste na nuvem em plane.so ou hospede com Docker seguindo o README.
+
 **Nível:** Avançado · **Precisa de:** Docker ou servidor · **Licença:** AGPL-3.0 · **Estrelas:** 63k · **Último push:** 17/11/2026 · **Situação:** Ativo
 
 > **Atenção:** AGPL. Para projeto pessoal, um quadro simples pode bastar.
@@ -844,6 +952,8 @@ Grava tudo o que passa na tela, em arquivo pequeno, e deixa buscar depois pelo t
 
 **Para que serve:**
 - Achar aquela tela que você viu na semana passada e não salvou
+
+**Como começar:** Só no Windows: siga a instalação do README (precisa do ffmpeg).
 
 **Nível:** Fácil · **Precisa de:** Instalar e usar, Só Windows · **Licença:** GPL-2.0 · **Estrelas:** 4k · **Último push:** 25/09/2026 · **Situação:** Só Windows
 
@@ -864,6 +974,8 @@ Criador de currículo aberto e gratuito: você escreve e vê a página pronta ao
 - Manter o currículo atualizado num modelo bonito, sem pagar assinatura
 - Gerar versões do currículo para vagas diferentes
 
+**Como começar:** Crie uma conta grátis em rxresu.me e importe o currículo que você já tem.
+
 **Nível:** Fácil · **Precisa de:** Navegador · **Licença:** MIT · **Estrelas:** 46k · **Último push:** 20/11/2026 · **Situação:** Ativo
 
 > **Atenção:** Grátis no site deles ou hospedado por você. A IA é opcional e usa um provedor que você conecta.
@@ -879,6 +991,8 @@ App de finanças pessoais que você mesmo hospeda: contas, gastos, orçamento e 
 **Para que serve:**
 - Controlar gastos e patrimônio sem entregar os dados a um app de terceiro
 - Consultar as suas finanças por um agente de IA, que tem acesso próprio ao app
+
+**Como começar:** Hospede com Docker seguindo o guia de hosting do repositório (docs/hosting/docker.md).
 
 **Nível:** Avançado · **Precisa de:** Docker ou servidor · **Licença:** AGPL-3.0 · **Estrelas:** 17,9k · **Último push:** 25/11/2026 · **Situação:** Ativo
 
@@ -896,6 +1010,8 @@ Contabilidade com IA que você mesmo hospeda: tira foto do recibo ou sobe a nota
 - Controlar as despesas de um projeto pessoal ou de PJ sem digitar nota por nota
 - Separar os gastos por projeto e categoria e exportar para o contador
 
+**Como começar:** Teste em taxhacker.app ou hospede com Docker seguindo o README.
+
 **Nível:** Avançado · **Precisa de:** Docker ou servidor, Chave de API paga · **Licença:** MIT · **Estrelas:** 6,9k · **Último push:** 20/11/2026 · **Situação:** Ativo
 
 > **Atenção:** Ainda em desenvolvimento inicial, nas palavras do autor. Usa OpenAI, Gemini ou Mistral, que são pagos, ou um modelo local.
@@ -911,6 +1027,8 @@ Planejador de viagem completo, hospedado por você: roteiro no mapa editado em t
 **Para que serve:**
 - Montar uma viagem em família ou com amigos, todo mundo editando junto
 - Dividir os gastos e guardar as reservas num lugar só
+
+**Como começar:** Teste a demonstração em demo.liketrek.com e, se gostar, hospede com Docker seguindo o README.
 
 **Nível:** Avançado · **Precisa de:** Docker ou servidor · **Licença:** AGPL-3.0 · **Estrelas:** 15,9k · **Último push:** 25/11/2026 · **Situação:** Ativo
 
@@ -929,6 +1047,8 @@ O setup do Claude Code do Garry Tan: 23 ferramentas que fazem papel de CEO, desi
 - Estudar como ele organiza papéis e revisões com o agente
 - Pegar uma ou outra skill (revisão, QA) para o seu fluxo
 
+**Como começar:** Leia o README antes. A instalação (`git clone` em ~/.claude/skills e `./setup`) mexe no seu CLAUDE.md.
+
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 142k · **Último push:** 18/11/2026 · **Situação:** Ativo
 
 > **Atenção:** A instalação manda mexer no CLAUDE.md e proibir as ferramentas do Chrome. Leia antes e não instale inteiro se você já tem um setup próprio.
@@ -945,6 +1065,8 @@ Plataforma de chat e agentes com vários modelos de IA, que você mesmo hospeda.
 - Um chat de agentes prontos e compartilhados para um time
 - Base de conhecimento consultável por quem não usa Claude Code
 
+**Como começar:** Teste em lobehub.com ou hospede com Docker seguindo o README. Você conecta a chave do modelo.
+
 **Nível:** Avançado · **Precisa de:** Docker ou servidor, Chave de API paga · **Licença:** Licença própria · **Estrelas:** 84k · **Último push:** 03/11/2026 · **Situação:** Ativo
 
 > **Atenção:** Licença própria: confirmar as condições antes de qualquer uso comercial.
@@ -960,6 +1082,8 @@ Monta agentes e fluxos de IA arrastando blocos, sem programar.
 **Para que serve:**
 - Protótipo de ideia para mostrar: triagem automática de chamados, chatbot de suporte
 
+**Como começar:** Com o Node instalado: `npx flowise start` e abra http://localhost:3000.
+
 **Nível:** Avançado · **Precisa de:** Docker ou servidor · **Licença:** Licença própria · **Estrelas:** 56k · **Último push:** 13/08/2026 · **Situação:** Arquivado
 
 > **Atenção:** Repositório arquivado: sem manutenção. Só para protótipo, nunca em produção.
@@ -974,6 +1098,8 @@ Motor de decisão rápido para desenvolvedor: classifica um texto, dá nota ou r
 - Triagem automática de mensagens ou chamados (urgente, reclamação, cancelamento) a custo quase zero
 - Filtro barato antes de mandar algo para um agente mais caro
 
+**Como começar:** No terminal: `pip install laya` e siga o Quickstart do README.
+
 **Nível:** Avançado · **Precisa de:** Programar · **Licença:** Apache-2.0 · **Estrelas:** 35k · **Último push:** 08/11/2026 · **Situação:** Ativo
 
 > **Atenção:** Ferramenta de programador, em Python. Projeto de set/2026.
@@ -987,6 +1113,8 @@ Monta uma "empresa de software" feita de agentes: a partir de um requisito de um
 **Para que serve:**
 - Referência de como dividir papéis e passos entre agentes
 - Rascunho de PRD a partir de uma ideia
+
+**Como começar:** Para estudar: leia o README e os exemplos. Para rodar: `pip install --upgrade metagpt` (Python abaixo do 3.12).
 
 **Nível:** Avançado · **Precisa de:** Programar, Chave de API paga · **Licença:** MIT · **Estrelas:** 71k · **Último push:** 21/01/2026 · **Situação:** Parado
 
@@ -1004,6 +1132,8 @@ Agente que escreve e roda código sozinho, num ambiente isolado.
 - Protótipo de tela ou script feito do zero, num ambiente separado
 - Vale se você quer um agente hospedado por você ou com outro modelo; quem já usa o Claude Code tem quase tudo isso
 
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/OpenHands/OpenHands` Roda em Docker e pede a chave do modelo que você usa.
+
 **Nível:** Avançado · **Precisa de:** Docker ou servidor, Chave de API paga · **Licença:** MIT · **Estrelas:** 93k · **Último push:** 03/11/2026 · **Situação:** Ativo
 
 
@@ -1018,6 +1148,8 @@ Skills para o agente pesquisar, desenhar, construir e testar apps nativos de Mac
 **Para que serve:**
 - Criar um app de Mac pequeno para uma tarefa sua
 
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/daveebbelaar/bama`
+
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 1,9k · **Último push:** 05/11/2026 · **Situação:** Ativo
 
 ### Exact
@@ -1028,6 +1160,8 @@ Da Expo: escreve o app uma vez e ele roda nativo na web, no Mac, no iPhone e no 
 
 **Para que serve:**
 - Protótipo de app que funciona no celular e no computador
+
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/expo/exact`
 
 **Nível:** Avançado · **Precisa de:** Programar · **Licença:** MIT · **Estrelas:** 4,6k · **Último push:** 18/11/2026 · **Situação:** Novo
 
@@ -1042,6 +1176,8 @@ Skill oficial da Anthropic para artifacts grandes do claude.ai: monta um projeto
 **Para que serve:**
 - Ferramenta interativa com várias telas, estado e navegação, publicada como artifact
 - Painel ou app pequeno que precisa de componentes prontos (tabelas, formulários, diálogos)
+
+**Como começar:** Sem instrução específica. Passe o link para a sua IA e peça para ela instalar a skill: `https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder`. Rode numa pasta separada.
 
 **Nível:** Médio · **Precisa de:** Claude Code, Terminal · **Licença:** Apache-2.0 · **Estrelas:** 200k · **Último push:** 20/04/2026 · **Situação:** Oficial
 
@@ -1059,6 +1195,8 @@ Biblioteca de componentes React para produtos com IA: chat, indicador de "pensan
 **Para que serve:**
 - Base visual para um app próprio com chat de IA
 
+**Como começar:** Num projeto React: `npx boardui add` e o nome do componente que quer copiar.
+
 **Nível:** Avançado · **Precisa de:** Programar · **Licença:** MIT · **Estrelas:** 1,1k · **Último push:** 02/10/2026 · **Situação:** Ativo
 
 > **Atenção:** Só vale se você for construir um produto em React. Esta é a parte grátis; o resto é pago.
@@ -1071,6 +1209,8 @@ Catálogo de componentes 3D e interativos para sites, com o código pronto para 
 
 **Para que serve:**
 - Efeito 3D pontual numa landing page
+
+**Como começar:** Abra threeui.com, escolha o componente e copie o código para o seu site.
 
 **Nível:** Avançado · **Precisa de:** Programar · **Licença:** MIT · **Estrelas:** 7,2k · **Último push:** 03/09/2026 · **Situação:** Ativo
 

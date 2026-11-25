@@ -107,7 +107,8 @@ main .wrap { padding-block: 36px 72px; display: grid; gap: 56px; }
 @media (max-width: 400px) {
   .grade { grid-template-columns: 1fr; }
 }
-.ficha { background: var(--bq); border: 1px solid var(--grade); border-radius: 14px; padding: 22px; display: grid; grid-template-rows: auto auto auto auto auto 1fr auto auto; gap: 10px; min-width: 0; }
+.ficha { background: var(--bq); border: 1px solid var(--grade); border-radius: 14px; padding: 14px 22px 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0; scroll-margin-top: 120px; transition: box-shadow .3s, border-color .3s; }
+.ficha.destaque { border-color: var(--lar); box-shadow: 0 0 0 4px rgba(255, 91, 31, .35); }
 .topo { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
 .tipo { font-family: var(--f-mono); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: var(--tinta); color: var(--bq); border-radius: 999px; padding: 4px 10px; }
 .ficha[data-tipo="skill"] .tipo { background: var(--lar); color: var(--tinta); }
@@ -174,3 +175,13 @@ main .wrap { padding-block: 36px 72px; display: grid; gap: 56px; }
 .acoes a:hover { filter: brightness(1.08); }
 .acoes .bt-zip:hover { border-color: var(--bq); }
 [hidden] { display: none !important; }
+.capa { position: relative; display: block; aspect-ratio: 2 / 1; margin: 0 -8px 6px; border-radius: 10px; overflow: hidden; background: var(--tinta); }
+.capa img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: var(--bq); }
+.capa-nome { position: absolute; left: 18px; right: 18px; bottom: 14px; color: var(--bq); font-weight: 900; font-size: clamp(26px, 3vw, 34px); letter-spacing: -.04em; line-height: .95; overflow-wrap: anywhere; }
+.capa-nome i { color: var(--lar); font-style: normal; }
+.capa.sem-img::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(var(--linha) 1px, transparent 1px); background-size: 14px 14px; opacity: .6; }
+.comecar { display: grid; gap: 6px; background: var(--papel); border-radius: 10px; padding: 10px 12px; margin-top: auto; }
+.comecar p { margin: 0; font-size: 14px; }
+.comecar code { font-family: var(--f-mono); font-size: 12px; background: var(--bq); border: 1px solid var(--grade); border-radius: 6px; padding: 1px 5px; overflow-wrap: anywhere; }
+.link { margin-left: auto; font: inherit; text-transform: uppercase; letter-spacing: .04em; color: var(--tinta); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-color: var(--lar); text-underline-offset: 3px; }
+.link.ok { color: var(--lar); text-decoration: none; }
