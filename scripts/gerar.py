@@ -178,8 +178,17 @@ def e(t):
     return html.escape(t, quote=True)
 
 
+def normalizar(t):
+    import unicodedata
+    t = unicodedata.normalize("NFD", t.lower())
+    return " ".join("".join(c for c in t if not unicodedata.combining(c)).split())
+
+
 def ficha(i):
     t = i["tipo"]
+    busca = normalizar(" ".join([i["nome"], i["repo"], i["o_que_faz"], " ".join(i["para_que_serve"]),
+                                  i["alternativa_a"] or "", TIPO_NOME[t],
+                                  " ".join(i["precisa"]), i["atencao"] or ""]))
     alt = f'<p class="alt"><span>Alternativa a</span>{e(i["alternativa_a"])}</p>' if i["alternativa_a"] else ""
     nota = ""
     if i["atencao"]:
@@ -189,7 +198,7 @@ def ficha(i):
     sit = f'<span class="aviso">{e(i["situacao"])}</span>' if i["situacao_alerta"] else f"<span>{e(i['situacao'])}</span>"
     usos = "".join(f"<li>{e(u)}</li>" for u in i["para_que_serve"])
     return f"""
-        <article class="ficha" data-tipo="{t}" data-c="{i['categoria']}" data-p="{e('|'.join(i['precisa']))}">
+        <article class="ficha" data-tipo="{t}" data-c="{i['categoria']}" data-p="{e('|'.join(i['precisa']))}" data-busca="{e(busca)}">
           <div class="topo"><span class="tipo">{TIPO_NOME[t]}</span><span class="cat">{CAT_NOME[i['categoria']]}</span></div>
           <h3><a href="{e(i['url'])}" target="_blank" rel="noopener">{e(i['nome'])}</a></h3>
           <span class="repo">{e(i['repo'])}</span>{alt}
@@ -298,6 +307,12 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
 .chip:hover {{ background: var(--bq); }}
 .chip[aria-pressed="true"] {{ background: var(--tinta); color: var(--bq); }}
 .chip[aria-pressed="true"] span {{ color: var(--lar); }}
+.busca {{ display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 12px; align-items: center; }}
+.busca label {{ color: var(--graf); }}
+.busca input {{ width: 100%; min-width: 0; font-family: var(--f-corpo); font-size: 19px; font-weight: 600; color: var(--tinta); background: var(--bq); border: 2px solid var(--tinta); border-radius: 999px; padding: 12px 20px; outline: none; }}
+.busca input::placeholder {{ color: var(--graf); font-weight: 500; }}
+.busca input:focus {{ border-color: var(--lar); box-shadow: 0 0 0 3px rgba(255, 91, 31, .25); }}
+.busca kbd {{ border: 1.5px solid var(--grade); border-radius: 6px; padding: 3px 8px; color: var(--graf); background: var(--bq); }}
 .resumo {{ display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--graf); }}
 .resumo b {{ color: var(--tinta); }}
 .limpar {{ font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; background: none; border: 0; padding: 0; color: var(--tinta); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }}
@@ -365,6 +380,9 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
   .numeros b {{ font-size: 24px; }}
   .numeros .mono {{ font-size: 9.5px; overflow-wrap: anywhere; }}
   .linha-f {{ grid-template-columns: 1fr; gap: 8px; }}
+  .busca {{ grid-template-columns: 1fr; gap: 8px; }}
+  .busca kbd {{ display: none; }}
+  .busca input {{ font-size: 17px; }}
   .linha-f > .mono {{ padding-top: 0; }}
   .regras, .sugira {{ padding: 24px 20px; }}
   .sugira {{ grid-template-columns: 1fr; }}
@@ -410,13 +428,14 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
 <main>
   <div class="wrap">
     <div class="filtros">
+      <div class="busca"><label class="mono" for="busca">Buscar</label><input id="busca" type="search" placeholder="Digite o que você quer fazer: vídeo, reunião, Figma, currículo…" autocomplete="off" spellcheck="false"><kbd class="mono" aria-hidden="true">/</kbd></div>
       <div class="linha-f"><span class="mono">Para quê</span><div class="chips" role="group" aria-label="Filtrar por finalidade"><button class="chip" data-g="c" data-v="all" aria-pressed="true">Todas<span>{n}</span></button>{chips_c}</div></div>
       <div class="linha-f"><span class="mono">Tipo</span><div class="chips" role="group" aria-label="Filtrar por tipo"><button class="chip" data-g="tipo" data-v="all" aria-pressed="true">Todos<span>{n}</span></button>{chips_t}</div></div>
       <div class="linha-f"><span class="mono">Precisa de</span><div class="chips" role="group" aria-label="Filtrar pelo que é preciso para usar"><button class="chip" data-g="p" data-v="all" aria-pressed="true">Tanto faz<span>{n}</span></button>{chips_p}</div></div>
       <div class="resumo mono"><span>Mostrando <b id="mostrando">{n}</b> de {n}</span><button class="limpar" id="limpar" type="button">Limpar filtros</button></div>
     </div>
 {secoes}
-    <p class="vazio" id="vazio" hidden>Nenhuma ferramenta com esses filtros juntos. Troque um deles.</p>
+    <p class="vazio" id="vazio" hidden>Nada encontrado com essa busca e esses filtros juntos. Tente outra palavra ou limpe os filtros.</p>
 
     <section class="tipos" aria-labelledby="tipos-h">
       <div class="sh"><h2 id="tipos-h">Os tipos.</h2><span class="mono">O que cada etiqueta quer dizer</span></div>
@@ -448,13 +467,17 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
 <script>
 (function () {{
   var estado = {{ tipo: 'all', c: 'all', p: 'all' }};
+  var campo = document.getElementById('busca');
+  var termos = [];
+  function normalizar(t) {{ return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim(); }}
   var chips = document.querySelectorAll('.chip');
   var fichas = document.querySelectorAll('.ficha');
   var secoes = document.querySelectorAll('.secao');
   function passa(f) {{
     return (estado.tipo === 'all' || f.dataset.tipo === estado.tipo)
       && (estado.c === 'all' || f.dataset.c === estado.c)
-      && (estado.p === 'all' || f.dataset.p.split('|').indexOf(estado.p) !== -1);
+      && (estado.p === 'all' || f.dataset.p.split('|').indexOf(estado.p) !== -1)
+      && termos.every(function (t) {{ return f.dataset.busca.indexOf(t) !== -1; }});
   }}
   function aplicar() {{
     chips.forEach(function (b) {{ b.setAttribute('aria-pressed', String(estado[b.dataset.g] === b.dataset.v)); }});
@@ -469,7 +492,12 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
     try {{ localStorage.setItem('prateleira-de-repos', JSON.stringify(estado)); }} catch (e) {{}}
   }}
   chips.forEach(function (b) {{ b.addEventListener('click', function () {{ estado[b.dataset.g] = b.dataset.v; aplicar(); }}); }});
-  document.getElementById('limpar').addEventListener('click', function () {{ estado = {{ tipo: 'all', c: 'all', p: 'all' }}; aplicar(); }});
+  campo.addEventListener('input', function () {{ termos = normalizar(campo.value).split(/\s+/).filter(Boolean); aplicar(); }});
+  document.addEventListener('keydown', function (ev) {{
+    if (ev.key === '/' && document.activeElement !== campo) {{ ev.preventDefault(); campo.focus(); }}
+    if (ev.key === 'Escape' && document.activeElement === campo) {{ campo.value = ''; termos = []; aplicar(); }}
+  }});
+  document.getElementById('limpar').addEventListener('click', function () {{ estado = {{ tipo: 'all', c: 'all', p: 'all' }}; campo.value = ''; termos = []; aplicar(); }});
   try {{ var s = JSON.parse(localStorage.getItem('prateleira-de-repos') || 'null'); if (s && s.tipo && s.c && s.p) estado = s; }} catch (e) {{}}
   aplicar();
 }})();
