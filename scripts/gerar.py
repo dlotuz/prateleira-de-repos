@@ -5,6 +5,7 @@ Uso: python3 scripts/gerar.py
 """
 import html
 import json
+import re
 from datetime import date
 from pathlib import Path
 
@@ -12,7 +13,7 @@ RAIZ = Path(__file__).resolve().parent.parent
 DADOS = json.loads((RAIZ / "data" / "ferramentas.json").read_text(encoding="utf-8"))
 HOJE = date.today().strftime("%d/%m/%Y")
 REPO_URL = "https://github.com/dlotuz/prateleira-de-repos"
-SITE_URL = "https://dlotuz.github.io/prateleira-de-repos/"
+SITE_URL = "https://productweekly.com.br/prateleira"
 
 TIPOS = [
     ("app", "App", "Programa com tela própria. Roda no computador, no navegador ou num servidor seu."),
@@ -295,215 +296,7 @@ PAGINA = """<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <style>
-/* Visual do Product Weekly: papel + tinta + laranja; topo escuro, filtros em pílula, fichas por destaque, rodapé laranja */
-:root {{
-  --papel:#EEEBE4; --tinta:#121212; --lar:#FF5B1F; --graf:#6F6B64; --bq:#F8F6F1; --creme:#F2ECE3; --grade:#DDD8CE; --linha:#3A3835;
-  --f-corpo:"Gabarito", ui-sans-serif, system-ui, sans-serif;
-  --f-serif:"Instrument Serif", Georgia, serif;
-  --f-mono:"JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  color-scheme: light;
-}}
-* {{ box-sizing: border-box; }}
-html {{ -webkit-text-size-adjust: 100%; }}
-body {{ margin: 0; background: var(--papel); color: var(--tinta); font-family: var(--f-corpo); font-size: 16px; line-height: 1.45; -webkit-font-smoothing: antialiased; }}
-[hidden] {{ display: none !important; }}
-a {{ color: inherit; text-decoration: none; }}
-h1, h2, h3 {{ font-weight: 900; letter-spacing: -.025em; line-height: 1; margin: 0; text-wrap: balance; }}
-.wrap {{ max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }}
-.mono {{ font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }}
-:focus-visible {{ outline: 3px solid var(--lar); outline-offset: 3px; }}
-
-.barra {{ background: var(--tinta); color: var(--bq); }}
-.barra .wrap {{ display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; flex-wrap: wrap; }}
-.logo {{ display: flex; align-items: center; gap: 12px; }}
-.logo .ico {{ width: 40px; height: 40px; border-radius: 10px; background: var(--creme); color: var(--tinta); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 19px; letter-spacing: -.04em; }}
-.logo .ico i {{ color: var(--lar); font-style: normal; }}
-.logo b {{ font-size: 22px; font-weight: 900; letter-spacing: -.025em; }}
-.logo .pil {{ background: var(--lar); color: var(--bq); border-radius: 999px; padding: 4px 12px; font-weight: 900; font-size: 17px; line-height: 1; letter-spacing: -.02em; }}
-.nav {{ display: flex; gap: 10px 20px; align-items: center; flex-wrap: wrap; font-weight: 600; }}
-.nav a:hover {{ color: var(--lar); }}
-.cta {{ background: var(--lar); color: var(--bq); border-radius: 999px; padding: 9px 16px; font-weight: 800; }}
-.nav .cta:hover {{ color: var(--bq); filter: brightness(1.05); }}
-
-.hero {{ background: var(--tinta); color: var(--bq); }}
-.hero .wrap {{ display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: end; padding-block: 40px 64px; }}
-.hero .mono {{ color: #B9B3A8; }}
-.hero h1 {{ font-size: clamp(52px, 10vw, 120px); letter-spacing: -.05em; line-height: .88; margin-top: 14px; }}
-.hero h1 span {{ color: var(--lar); }}
-.hero p {{ margin: 22px 0 0; max-width: 58ch; font-size: 18px; color: #D9D4CA; }}
-.hero p em {{ font-family: var(--f-serif); font-size: 21px; color: var(--bq); }}
-.numeros {{ display: grid; grid-template-columns: repeat(3, auto); border: 1px solid var(--linha); border-radius: 12px; }}
-.numeros div {{ padding: 14px 20px; display: grid; gap: 6px; min-width: 0; }}
-.numeros div + div {{ border-left: 1px solid var(--linha); }}
-.numeros b {{ font-size: 32px; font-weight: 900; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }}
-.numeros b.l {{ color: var(--lar); }}
-.numeros .mono {{ font-size: 10.5px; }}
-
-.faixa {{ background: var(--lar); color: var(--tinta); }}
-.faixa .wrap {{ display: flex; gap: 10px 18px; align-items: baseline; flex-wrap: wrap; padding-block: 16px; }}
-.faixa .mono {{ font-weight: 700; }}
-.faixa p {{ margin: 0; font-size: 17px; font-weight: 500; min-width: 0; flex: 1 1 320px; }}
-
-main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
-.filtros {{ display: grid; gap: 14px; }}
-.linha-f {{ display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; align-items: start; }}
-.linha-f > .mono {{ color: var(--graf); padding-top: 8px; }}
-.chips {{ display: flex; flex-wrap: wrap; gap: 8px; }}
-.chip {{ font-family: var(--f-mono); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; font-weight: 500; padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--tinta); background: transparent; color: var(--tinta); cursor: pointer; display: inline-flex; gap: 7px; align-items: center; }}
-.chip span {{ color: var(--graf); font-variant-numeric: tabular-nums; }}
-.chip:hover {{ background: var(--bq); }}
-.chip[aria-pressed="true"] {{ background: var(--tinta); color: var(--bq); }}
-.chip[aria-pressed="true"] span {{ color: var(--lar); }}
-.busca {{ display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 12px; align-items: center; }}
-.busca label {{ color: var(--graf); }}
-.busca input {{ width: 100%; min-width: 0; font-family: var(--f-corpo); font-size: 19px; font-weight: 600; color: var(--tinta); background: var(--bq); border: 2px solid var(--tinta); border-radius: 999px; padding: 12px 20px; outline: none; }}
-.busca input::placeholder {{ color: var(--graf); font-weight: 500; }}
-.busca input:focus {{ border-color: var(--lar); box-shadow: 0 0 0 3px rgba(255, 91, 31, .25); }}
-.busca kbd {{ border: 1.5px solid var(--grade); border-radius: 6px; padding: 3px 8px; color: var(--graf); background: var(--bq); }}
-.resumo {{ display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--graf); }}
-.resumo b {{ color: var(--tinta); }}
-.limpar {{ font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; background: none; border: 0; padding: 0; color: var(--tinta); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }}
-
-.filtros .tit {{ color: var(--graf); }}
-.sugestoes {{ display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; padding-left: 122px; margin-top: -4px; }}
-.sugestoes .mono {{ color: var(--graf); font-size: 11px; }}
-.sug {{ font: 600 15px/1.2 var(--f-corpo); color: var(--tinta); background: none; border: 0; padding: 0; text-decoration: underline; text-decoration-color: var(--lar); text-decoration-thickness: 2px; text-underline-offset: 4px; cursor: pointer; }}
-.sug:hover {{ color: var(--lar); }}
-.bloco {{ display: grid; gap: 12px; }}
-.tarefas {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }}
-@media (min-width: 1100px) {{ .tarefas {{ grid-template-columns: repeat(5, minmax(0, 1fr)); }} }}
-.tarefa {{ position: relative; text-align: left; font-family: var(--f-corpo); color: var(--tinta); background: var(--bq); border: 1.5px solid var(--grade); border-radius: 14px; padding: 14px 44px 14px 16px; cursor: pointer; display: grid; gap: 3px; min-width: 0; }}
-.tarefa b {{ font-weight: 900; font-size: 19px; letter-spacing: -.02em; line-height: 1.1; }}
-.tarefa .desc {{ font-size: 13px; color: var(--graf); line-height: 1.3; }}
-.tarefa .n {{ position: absolute; top: 14px; right: 14px; font-family: var(--f-mono); font-size: 12px; color: var(--graf); font-variant-numeric: tabular-nums; }}
-.tarefa:hover {{ border-color: var(--tinta); }}
-.tarefa[aria-pressed="true"] {{ background: var(--tinta); border-color: var(--tinta); color: var(--bq); }}
-.tarefa[aria-pressed="true"] .desc {{ color: #B9B3A8; }}
-.tarefa[aria-pressed="true"] .n {{ color: var(--lar); }}
-.linha2 {{ display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; }}
-.nivel, .tiposel {{ display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }}
-.seg {{ display: inline-flex; border: 1.5px solid var(--tinta); border-radius: 999px; padding: 3px; gap: 2px; flex-wrap: wrap; }}
-.segb {{ font: 700 15px/1 var(--f-corpo); color: var(--tinta); background: transparent; border: 0; border-radius: 999px; padding: 9px 14px; cursor: pointer; display: inline-flex; gap: 7px; align-items: baseline; }}
-.segb .n {{ font-family: var(--f-mono); font-size: 11px; font-weight: 500; color: var(--graf); font-variant-numeric: tabular-nums; }}
-.segb:hover {{ background: var(--bq); }}
-.segb[aria-pressed="true"] {{ background: var(--tinta); color: var(--bq); }}
-.segb[aria-pressed="true"] .n {{ color: var(--lar); }}
-.toggle {{ display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; cursor: pointer; position: relative; }}
-.toggle input {{ position: absolute; opacity: 0; width: 1px; height: 1px; }}
-.toggle .caixa {{ width: 40px; height: 24px; border-radius: 999px; background: var(--grade); position: relative; flex: none; transition: background .15s; }}
-.toggle .caixa::after {{ content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--bq); transition: transform .15s; }}
-.toggle input:checked + .caixa {{ background: var(--lar); }}
-.toggle input:checked + .caixa::after {{ transform: translateX(16px); }}
-.toggle input:focus-visible + .caixa {{ outline: 3px solid var(--lar); outline-offset: 3px; }}
-.toggle .n {{ font-style: normal; font-family: var(--f-mono); font-size: 11px; font-weight: 500; color: var(--graf); }}
-.drop {{ position: relative; }}
-.drop-btn {{ font: 700 15px/1 var(--f-corpo); color: var(--tinta); background: var(--bq); border: 1.5px solid var(--tinta); border-radius: 999px; padding: 10px 16px; cursor: pointer; display: inline-flex; align-items: baseline; gap: 8px; }}
-.drop-btn .n {{ font-family: var(--f-mono); font-size: 11px; font-weight: 500; color: var(--graf); }}
-.drop-btn::after {{ content: ""; width: 7px; height: 7px; border-right: 2px solid var(--tinta); border-bottom: 2px solid var(--tinta); transform: translateY(-2px) rotate(45deg); margin-left: 4px; align-self: center; transition: transform .15s; }}
-.drop-btn[aria-expanded="true"] {{ background: var(--tinta); color: var(--bq); }}
-.drop-btn[aria-expanded="true"]::after {{ border-color: var(--bq); transform: translateY(2px) rotate(-135deg); }}
-.drop-btn[aria-expanded="true"] .n {{ color: var(--lar); }}
-.drop-menu {{ position: absolute; top: calc(100% + 8px); left: 0; z-index: 30; margin: 0; padding: 6px; list-style: none; min-width: 300px; max-width: calc(100vw - 32px); background: var(--bq); border: 1.5px solid var(--tinta); border-radius: 16px; box-shadow: 0 12px 28px rgba(18, 18, 18, .14); }}
-.drop-menu:focus {{ outline: none; }}
-.drop-menu li {{ display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 9px 12px; border-radius: 10px; cursor: pointer; }}
-.drop-menu li b {{ display: block; font-weight: 800; font-size: 15px; }}
-.drop-menu li small {{ display: block; font-size: 12.5px; color: var(--graf); margin-top: 1px; }}
-.drop-menu li .n {{ font-family: var(--f-mono); font-size: 11px; color: var(--graf); font-variant-numeric: tabular-nums; }}
-.drop-menu li.ativo, .drop-menu li:hover {{ background: var(--papel); }}
-.drop-menu li[aria-selected="true"] .ok::before {{ content: ""; display: block; width: 6px; height: 11px; border-right: 2.5px solid var(--lar); border-bottom: 2.5px solid var(--lar); transform: rotate(45deg) translate(-1px, -2px); margin-left: 5px; }}
-.drop-menu li[aria-selected="true"] b {{ color: var(--tinta); }}
-.drop-menu li[aria-disabled="true"] {{ cursor: default; background: none; }}
-[aria-disabled="true"] {{ opacity: .38; }}
-.ativos {{ display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; min-height: 34px; }}
-.ativos > .mono {{ color: var(--graf); }}
-.ativos b {{ color: var(--tinta); }}
-.tokens {{ display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }}
-.token {{ font: 700 14px/1 var(--f-corpo); background: var(--lar); color: var(--tinta); border: 0; border-radius: 999px; padding: 8px 12px; cursor: pointer; display: inline-flex; gap: 8px; align-items: center; }}
-.token span {{ font-size: 16px; line-height: 0; }}
-.precisa .nv {{ font-weight: 800; }}
-.precisa .nv-facil {{ background: var(--tinta) !important; color: var(--bq); border-color: var(--tinta) !important; }}
-.vazio {{ display: grid; gap: 10px; }}
-.vazio p {{ margin: 0; }}
-.vazio .sug {{ margin: 0 8px; text-transform: none; letter-spacing: 0; }}
-.secao {{ display: grid; gap: 28px; }}
-.sh {{ display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 2px solid var(--tinta); padding-top: 22px; }}
-.sh h2 {{ font-size: clamp(34px, 5.5vw, 60px); letter-spacing: -.04em; }}
-.sh .mono {{ color: var(--graf); }}
-.sh .mono b {{ color: var(--tinta); }}
-.grade {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }}
-@media (max-width: 400px) {{ .grade {{ grid-template-columns: 1fr; }} }}
-
-.ficha {{ background: var(--bq); border: 1px solid var(--grade); border-radius: 14px; padding: 22px; display: grid; grid-template-rows: auto auto auto auto auto 1fr auto auto; gap: 10px; min-width: 0; }}
-.topo {{ display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }}
-.tipo {{ font-family: var(--f-mono); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: var(--tinta); color: var(--bq); border-radius: 999px; padding: 4px 10px; }}
-.ficha[data-tipo="skill"] .tipo {{ background: var(--lar); color: var(--tinta); }}
-.cat {{ font-family: var(--f-mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--graf); }}
-.ficha h3 {{ font-size: 25px; letter-spacing: -.03em; margin-top: 6px; }}
-.ficha h3 a:hover {{ color: var(--lar); }}
-.repo {{ font-family: var(--f-mono); font-size: 12px; color: var(--graf); overflow-wrap: anywhere; }}
-.alt {{ margin: 2px 0 0; font-weight: 800; font-size: 15px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }}
-.alt span {{ font-family: var(--f-mono); font-size: 11px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--graf); }}
-.oque {{ margin: 4px 0 0; }}
-.usos {{ display: grid; gap: 6px; align-content: start; margin-top: 4px; }}
-.rot {{ font-family: var(--f-mono); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--lar); }}
-.usos ul {{ margin: 0; padding-left: 18px; display: grid; gap: 4px; }}
-.usos li::marker {{ color: var(--lar); }}
-.nota {{ margin: 8px 0 0; font-size: 14px; background: var(--creme); border: 1px solid var(--grade); border-radius: 10px; padding: 9px 12px; }}
-.nota.forte {{ background: transparent; border: 1.5px solid var(--lar); }}
-.precisa {{ display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 4px; }}
-.precisa .rot {{ margin-right: 2px; }}
-.precisa span:not(.rot) {{ font-size: 13px; font-weight: 600; border: 1px solid var(--grade); background: var(--papel); border-radius: 999px; padding: 3px 10px; }}
-.meta {{ display: flex; flex-wrap: wrap; gap: 4px 14px; border-top: 1px solid var(--grade); padding-top: 12px; margin-top: 6px; font-family: var(--f-mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; color: var(--graf); font-variant-numeric: tabular-nums; }}
-.meta .aviso {{ color: var(--tinta); }}
-.meta .aviso::before {{ content: "●"; color: var(--lar); margin-right: 5px; }}
-.vazio {{ font-size: 18px; color: var(--graf); }}
-
-.tipos {{ display: grid; gap: 22px; }}
-.tipos .lista {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px 28px; }}
-.tipos b {{ font-weight: 900; font-size: 19px; }}
-.tipos p {{ margin: 4px 0 0; color: var(--graf); }}
-
-.regras {{ background: var(--tinta); color: var(--bq); border-radius: 18px; padding: 32px; display: grid; gap: 16px; }}
-.regras h2 {{ font-size: clamp(32px, 5vw, 48px); letter-spacing: -.04em; }}
-.regras h2 span {{ color: var(--lar); }}
-.regras ul {{ margin: 0; padding-left: 20px; display: grid; gap: 8px; max-width: 80ch; color: #D9D4CA; }}
-.regras li::marker {{ color: var(--lar); }}
-
-.sugira {{ display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; align-items: center; border: 2px solid var(--tinta); border-radius: 18px; padding: 28px 32px; }}
-.sugira h2 {{ font-size: clamp(28px, 4vw, 40px); letter-spacing: -.035em; }}
-.sugira p {{ margin: 8px 0 0; max-width: 60ch; color: var(--graf); }}
-.btn {{ display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; font-weight: 800; font-size: 17px; background: var(--tinta); color: var(--bq); white-space: nowrap; }}
-.btn:hover {{ background: var(--lar); color: var(--tinta); }}
-
-.rodape {{ background: var(--lar); color: var(--tinta); }}
-.rodape .wrap {{ display: flex; justify-content: space-between; gap: 8px 24px; flex-wrap: wrap; padding-block: 22px; font-size: 14px; }}
-.rodape b {{ font-weight: 800; }}
-.rodape a {{ text-decoration: underline; text-underline-offset: 3px; }}
-
-@media (max-width: 760px) {{
-  .hero .wrap {{ grid-template-columns: 1fr; padding-block: 32px 44px; }}
-  .hero p {{ font-size: 17px; }}
-  .numeros {{ grid-template-columns: repeat(3, minmax(0, 1fr)); }}
-  .numeros div {{ padding: 12px; }}
-  .numeros b {{ font-size: 24px; }}
-  .numeros .mono {{ font-size: 9.5px; overflow-wrap: anywhere; }}
-  .linha-f {{ grid-template-columns: 1fr; gap: 8px; }}
-  .busca {{ grid-template-columns: 1fr; gap: 8px; }}
-  .sugestoes {{ padding-left: 0; margin-top: 0; }}
-  .tarefas {{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }}
-  .tarefa {{ padding: 12px 34px 12px 12px; }}
-  .tarefa b {{ font-size: 16px; }}
-  .tarefa .desc {{ display: none; }}
-  .tarefa .n {{ top: 12px; right: 10px; }}
-  .linha2 {{ gap: 14px; }}
-  .busca kbd {{ display: none; }}
-  .busca input {{ font-size: 17px; }}
-  .linha-f > .mono {{ padding-top: 0; }}
-  .regras, .sugira {{ padding: 24px 20px; }}
-  .sugira {{ grid-template-columns: 1fr; }}
-  .logo b {{ display: none; }}
-  .nav a:not(.cta) {{ display: none; }}
-}}
+%%CSS%%
 </style>
 </head>
 <body>
@@ -518,6 +311,7 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
   </div>
 </header>
 
+<!--prat--><div class="prat">
 <section class="hero">
   <div class="wrap">
     <div>
@@ -575,6 +369,7 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
     </section>
   </div>
 </main>
+</div><!--/prat-->
 
 <footer class="rodape">
   <div class="wrap">
@@ -708,10 +503,60 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
 """
 
 
+VARS_PRAT = """.prat {
+  --linha: #3A3835;
+  --f-corpo: "Gabarito", ui-sans-serif, system-ui, sans-serif;
+  --f-serif: "Instrument Serif", Georgia, serif;
+  --f-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+"""
+
+
+def prefixar(css, pre=".prat "):
+    """Põe o prefixo na frente de cada seletor, inclusive dentro de @media."""
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    out, i = [], 0
+    while True:
+        j = css.find("{", i)
+        if j < 0:
+            break
+        sel = css[i:j].strip()
+        if sel.startswith("@"):
+            d, k = 1, j + 1
+            while d:
+                d += {"{": 1, "}": -1}.get(css[k], 0)
+                k += 1
+            out.append(sel + " {\n" + prefixar(css[j + 1:k - 1], pre) + "}")
+            i = k
+        else:
+            k = css.find("}", j)
+            sels = ", ".join(pre + x.strip() for x in sel.split(","))
+            out.append(sels + " {" + css[j + 1:k] + "}")
+            i = k + 1
+    return "\n".join(out) + "\n"
+
+
+def css_prateleira():
+    return VARS_PRAT + prefixar((RAIZ / "scripts" / "estilo-prateleira.css").read_text(encoding="utf-8"))
+
+
+def fragmento(pagina):
+    """Miolo da página para o site do Product Weekly (sem topo, rodapé nem fontes)."""
+    miolo = pagina[pagina.index("<!--prat-->") + len("<!--prat-->"):pagina.index("<!--/prat-->")]
+    script = pagina[pagina.index("<script>"):pagina.index("</script>") + len("</script>")]
+    return "<style>\n" + css_prateleira() + "</style>\n" + miolo.strip() + "\n" + script + "\n"
+
+
 def main():
     (RAIZ / "README.md").write_text(readme(), encoding="utf-8")
     pagina = site()
-    (RAIZ / "docs" / "index.html").write_text(pagina, encoding="utf-8")
+    base = (RAIZ / "scripts" / "estilo-base.css").read_text(encoding="utf-8")
+    (RAIZ / "docs" / "index.html").write_text(pagina.replace("%%CSS%%", base + css_prateleira()), encoding="utf-8")
+    # Se a pasta do site do Product Weekly estiver ao lado, atualiza a página de lá também
+    destino = RAIZ.parent / "site" / "src" / "data"
+    if destino.is_dir():
+        (destino / "prateleira.html").write_text(fragmento(pagina), encoding="utf-8")
+        print("Página do site do Product Weekly atualizada:", destino.name + "/prateleira.html")
     print(f"README.md e docs/index.html gerados com {len(DADOS)} ferramentas.")
 
 

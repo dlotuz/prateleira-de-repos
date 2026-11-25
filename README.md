@@ -2,7 +2,7 @@
 
 Repositórios de IA de código aberto, separados pelo que você quer fazer. São 69 até agora. Cada um diz o que faz, o que precisa para rodar, quanto custa e qual produto conhecido ele substitui.
 
-**Versão com filtros:** https://dlotuz.github.io/prateleira-de-repos/
+**Versão com filtros:** https://productweekly.com.br/prateleira
 
 Um projeto do [Product Weekly](https://productweekly.com.br), o que importa em produto, toda semana. Curadoria de Eduardo Oliveira.
 

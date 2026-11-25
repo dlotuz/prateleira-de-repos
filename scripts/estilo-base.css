@@ -1,0 +1,36 @@
+/* Só da página avulsa (docs/index.html): fontes, cores, topo e rodapé. No site do PW isso vem do próprio site. */
+:root {
+  --papel:#EEEBE4; --tinta:#121212; --lar:#FF5B1F; --graf:#6F6B64; --bq:#F8F6F1; --creme:#F2ECE3; --grade:#DDD8CE; --linha:#3A3835;
+  --f-corpo:"Gabarito", ui-sans-serif, system-ui, sans-serif;
+  --f-serif:"Instrument Serif", Georgia, serif;
+  --f-mono:"JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--papel); color: var(--tinta); font-family: var(--f-corpo); font-size: 16px; line-height: 1.45; -webkit-font-smoothing: antialiased; }
+[hidden] { display: none !important; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { font-weight: 900; letter-spacing: -.025em; line-height: 1; margin: 0; text-wrap: balance; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.mono { font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+:focus-visible { outline: 3px solid var(--lar); outline-offset: 3px; }
+.barra { background: var(--tinta); color: var(--bq); }
+.barra .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; flex-wrap: wrap; }
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo .ico { width: 40px; height: 40px; border-radius: 10px; background: var(--creme); color: var(--tinta); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 19px; letter-spacing: -.04em; }
+.logo .ico i { color: var(--lar); font-style: normal; }
+.logo b { font-size: 22px; font-weight: 900; letter-spacing: -.025em; }
+.logo .pil { background: var(--lar); color: var(--bq); border-radius: 999px; padding: 4px 12px; font-weight: 900; font-size: 17px; line-height: 1; letter-spacing: -.02em; }
+.nav { display: flex; gap: 10px 20px; align-items: center; flex-wrap: wrap; font-weight: 600; }
+.nav a:hover { color: var(--lar); }
+.cta { background: var(--lar); color: var(--bq); border-radius: 999px; padding: 9px 16px; font-weight: 800; }
+.nav .cta:hover { color: var(--bq); filter: brightness(1.05); }
+.rodape { background: var(--lar); color: var(--tinta); }
+.rodape .wrap { display: flex; justify-content: space-between; gap: 8px 24px; flex-wrap: wrap; padding-block: 22px; font-size: 14px; }
+.rodape b { font-weight: 800; }
+.rodape a { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 760px) {
+  .logo b { display: none; }
+  .nav a:not(.cta) { display: none; }
+}
