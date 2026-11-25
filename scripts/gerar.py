@@ -86,6 +86,15 @@ TAREFA_CURTA = {
 SUGESTOES = ["vídeo", "reunião", "Figma", "currículo", "legenda", "finanças"]
 
 
+ESTRELAS = [("1000", "+1 mil"), ("10000", "+10 mil"), ("50000", "+50 mil"), ("100000", "+100 mil")]
+
+
+def estrelas_num(i):
+    """'1,7k' -> 1700; '53' -> 53."""
+    t = i["estrelas"].strip().lower().replace(",", ".")
+    return int(float(t[:-1]) * 1000) if t.endswith("k") else int(float(t))
+
+
 def nivel_de(i):
     nivel = "facil"
     for k, _, _, req in NIVEIS:
@@ -239,7 +248,7 @@ def ficha(i):
     capa_img = (f'<img src="{e(i["imagem"])}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" width="1200" height="600">'
                 if i.get("imagem") else "")
     return f"""
-        <article class="ficha" id="{fid}" data-tipo="{t}" data-c="{i['categoria']}" data-n="{nivel_de(i)}" data-api="{1 if 'Chave de API paga' in i['precisa'] else 0}" data-busca="{e(busca)}">
+        <article class="ficha" id="{fid}" data-tipo="{t}" data-c="{i['categoria']}" data-n="{nivel_de(i)}" data-api="{1 if 'Chave de API paga' in i['precisa'] else 0}" data-e="{estrelas_num(i)}" data-busca="{e(busca)}">
           <a class="capa" href="{e(i['url'])}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><span class="capa-nome">{e(i['nome'])}<i>.</i></span>{capa_img}</a>
           <div class="topo"><span class="tipo">{TIPO_NOME[t]}</span><span class="cat">{CAT_NOME[i['categoria']]}</span></div>
           <h3><a href="{e(i['url'])}" target="_blank" rel="noopener">{e(i['nome'])}</a></h3>
@@ -268,6 +277,10 @@ def site():
     seg += "".join(
         f'<button class="segb" type="button" data-g="n" data-v="{k}" aria-pressed="false" title="{e(desc)}">{nome}<span class="n">{conta(lambda x: nivel_de(x) == k)}</span></button>'
         for k, nome, desc, _ in NIVEIS)
+    seg_e = f'<button class="segb" type="button" data-g="e" data-v="all" aria-pressed="true">Tudo<span class="n">{n}</span></button>'
+    seg_e += "".join(
+        f'<button class="segb" type="button" data-g="e" data-v="{v}" aria-pressed="false">{nome}<span class="n">{conta(lambda x: estrelas_num(x) >= int(v))}</span></button>'
+        for v, nome in ESTRELAS)
     opcoes = f'<li role="option" id="op-all" data-v="all" aria-selected="true"><span class="ok" aria-hidden="true"></span><span><b>Todos os tipos</b></span><span class="n">{n}</span></li>' + "".join(
         f'<li role="option" id="op-{k}" data-v="{k}" aria-selected="false"><span class="ok" aria-hidden="true"></span>'
         f'<span><b>{nome}</b><small>{TIPO_DICA[k]}</small></span><span class="n">{conta(lambda x: x["tipo"] == k)}</span></li>'
@@ -278,6 +291,7 @@ def site():
         "n": {k: f"Nível {nome.lower()}" for k, nome, _, _ in NIVEIS},
         "tipo": TIPO_NOME,
         "tipo_n": {k: nome for k, nome, _ in TIPOS},
+        "e": {v: f"{nome} estrelas" for v, nome in ESTRELAS},
     }, ensure_ascii=False)
     secoes = ""
     for k, titulo, sub in DESTAQUES:
@@ -290,7 +304,7 @@ def site():
     </section>"""
     legenda = "".join(f"<div><b>{nome}</b><p>{e(desc)}</p></div>" for _, nome, desc in TIPOS)
     regras = "".join(f"<li>{e(r)}</li>" for r in REGRAS)
-    return PAGINA.format(n=n, hoje=HOJE, hoje_curto=HOJE[:5], tarefas=tarefas, seg=seg, opcoes=opcoes,
+    return PAGINA.format(n=n, hoje=HOJE, hoje_curto=HOJE[:5], tarefas=tarefas, seg=seg, seg_e=seg_e, opcoes=opcoes,
                          sugestoes=sugestoes, rotulos=rotulos, secoes=secoes, legenda=legenda, regras=regras,
                          repo=REPO_URL, n_semapi=conta(lambda x: "Chave de API paga" not in x["precisa"]))
 
@@ -355,6 +369,7 @@ PAGINA = """<!doctype html>
       <div class="bloco"><span class="mono tit">O que você quer fazer?</span><div class="tarefas" role="group" aria-label="Filtrar pelo que você quer fazer">{tarefas}</div></div>
       <div class="linha2">
         <div class="nivel"><span class="mono tit">Nível</span><div class="seg" role="group" aria-label="Filtrar por nível">{seg}</div></div>
+        <div class="nivel"><span class="mono tit">Estrelas no GitHub</span><div class="seg" role="group" aria-label="Filtrar por estrelas no GitHub">{seg_e}</div></div>
         <label class="toggle" for="semapi"><input type="checkbox" id="semapi"><span class="caixa" aria-hidden="true"></span><span>Sem API paga <i class="n" id="n-semapi">{n_semapi}</i></span></label>
         <div class="tiposel"><span class="mono tit" id="tipo-rot">Tipo</span><div class="drop"><button type="button" class="drop-btn" id="tipo-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="tipo-menu" aria-labelledby="tipo-rot tipo-atual"><span id="tipo-atual">Todos os tipos</span><span class="n" id="tipo-n">{n}</span></button><ul class="drop-menu" id="tipo-menu" role="listbox" tabindex="-1" aria-labelledby="tipo-rot" hidden>{opcoes}</ul></div></div>
       </div>
@@ -394,7 +409,7 @@ PAGINA = """<!doctype html>
 <script>
 (function () {{
   var ROT = {rotulos};
-  var VAZIO = {{ c: 'all', n: 'all', tipo: 'all', api: false }};
+  var VAZIO = {{ c: 'all', n: 'all', e: 'all', tipo: 'all', api: false }};
   var estado = Object.assign({{}}, VAZIO);
   var termos = [];
   var campo = document.getElementById('busca');
@@ -410,6 +425,7 @@ PAGINA = """<!doctype html>
     return (ignora === 'c' || st.c === 'all' || f.dataset.c === st.c)
       && (ignora === 'n' || st.n === 'all' || f.dataset.n === st.n)
       && (ignora === 'tipo' || st.tipo === 'all' || f.dataset.tipo === st.tipo)
+      && (ignora === 'e' || st.e === 'all' || Number(f.dataset.e) >= Number(st.e))
       && (ignora === 'api' || !st.api || f.dataset.api === '0')
       && termos.every(function (t) {{ return f.dataset.busca.indexOf(t) !== -1; }});
   }}
@@ -431,6 +447,7 @@ PAGINA = """<!doctype html>
     if (campo.value.trim()) add('“' + campo.value.trim() + '”', function () {{ campo.value = ''; termos = []; }});
     if (estado.c !== 'all') add(ROT.c[estado.c], function () {{ estado.c = 'all'; }});
     if (estado.n !== 'all') add(ROT.n[estado.n], function () {{ estado.n = 'all'; }});
+    if (estado.e !== 'all') add(ROT.e[estado.e], function () {{ estado.e = 'all'; }});
     if (estado.api) add('Sem API paga', function () {{ estado.api = false; }});
     if (estado.tipo !== 'all') add(ROT.tipo[estado.tipo], function () {{ estado.tipo = 'all'; }});
     if (box.children.length > 1) {{
