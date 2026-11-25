@@ -13,7 +13,7 @@ RAIZ = Path(__file__).resolve().parent.parent
 DADOS = json.loads((RAIZ / "data" / "ferramentas.json").read_text(encoding="utf-8"))
 HOJE = date.today().strftime("%d/%m/%Y")
 REPO_URL = "https://github.com/dlotuz/prateleira-de-repos"
-SITE_URL = "https://productweekly.com.br/prateleira"
+SITE_URL = "https://www.productweekly.com.br/prateleira"
 
 TIPOS = [
     ("app", "App", "Programa com tela própria. Roda no computador, no navegador ou num servidor seu."),
@@ -318,6 +318,7 @@ PAGINA = """<!doctype html>
       <span class="mono">Lista aberta · Product Weekly</span>
       <h1>Prateleira <span>de repos.</span></h1>
       <p>Repositórios de IA de código aberto, separados pelo que você quer fazer. <em>Cada um diz o que precisa para rodar,</em> quanto custa e qual produto conhecido ele substitui.</p>
+      <div class="acoes"><a class="bt-gh" href="{repo}">Ver no GitHub</a><a class="bt-zip" href="{repo}/archive/refs/heads/main.zip">Baixar a lista (.zip)</a></div>
     </div>
     <div class="numeros">
       <div><b class="l">{n}</b><span class="mono">Repositórios</span></div>

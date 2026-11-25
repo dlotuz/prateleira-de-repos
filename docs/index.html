@@ -221,6 +221,12 @@ h1, h2, h3 { font-weight: 900; letter-spacing: -.025em; line-height: 1; margin: 
 .prat .regras, .prat .sugira { padding: 24px 20px; }
 .prat .sugira { grid-template-columns: 1fr; }
 }
+.prat .acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.prat .acoes a { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 12px 20px; font-weight: 800; font-size: 16px; line-height: 1; }
+.prat .acoes .bt-gh { background: var(--lar); color: var(--tinta); border: 1.5px solid var(--lar); }
+.prat .acoes .bt-zip { color: var(--bq); border: 1.5px solid #6F6B64; }
+.prat .acoes a:hover { filter: brightness(1.08); }
+.prat .acoes .bt-zip:hover { border-color: var(--bq); }
 
 </style>
 </head>
@@ -243,6 +249,7 @@ h1, h2, h3 { font-weight: 900; letter-spacing: -.025em; line-height: 1; margin: 
       <span class="mono">Lista aberta · Product Weekly</span>
       <h1>Prateleira <span>de repos.</span></h1>
       <p>Repositórios de IA de código aberto, separados pelo que você quer fazer. <em>Cada um diz o que precisa para rodar,</em> quanto custa e qual produto conhecido ele substitui.</p>
+      <div class="acoes"><a class="bt-gh" href="https://github.com/dlotuz/prateleira-de-repos">Ver no GitHub</a><a class="bt-zip" href="https://github.com/dlotuz/prateleira-de-repos/archive/refs/heads/main.zip">Baixar a lista (.zip)</a></div>
     </div>
     <div class="numeros">
       <div><b class="l">69</b><span class="mono">Repositórios</span></div>

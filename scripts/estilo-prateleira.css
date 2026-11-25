@@ -167,3 +167,9 @@ main .wrap { padding-block: 36px 72px; display: grid; gap: 56px; }
   .regras, .sugira { padding: 24px 20px; }
   .sugira { grid-template-columns: 1fr; }
 }
+.acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.acoes a { display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; padding: 12px 20px; font-weight: 800; font-size: 16px; line-height: 1; }
+.acoes .bt-gh { background: var(--lar); color: var(--tinta); border: 1.5px solid var(--lar); }
+.acoes .bt-zip { color: var(--bq); border: 1.5px solid #6F6B64; }
+.acoes a:hover { filter: brightness(1.08); }
+.acoes .bt-zip:hover { border-color: var(--bq); }
