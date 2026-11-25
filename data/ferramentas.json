@@ -206,14 +206,14 @@
     "o_que_faz": "Dá ao Claude a capacidade de assistir um vídeo: baixa, extrai quadros com horário e transcreve, e entrega tudo para ele analisar.",
     "para_que_serve": [
       "Mandar o link de um vídeo do YouTube e o Claude resumir, citar trechos e mostrar o que aparece na tela",
-      "Analisar vídeos de referência antes de criar os seus",
+      "Achar o nome de um repositório ou site que aparece na tela do vídeo",
       "Revisar o seu próprio vídeo antes de publicar"
     ],
     "alternativa_a": null,
     "precisa": [
       "Claude Code"
     ],
-    "atencao": "Funciona sem chave de API no modo local (ffmpeg e yt-dlp); a transcrição local usa WhisperX.",
+    "atencao": "Funciona sem chave de API, usando a legenda do vídeo e quadros da tela. Precisa de Python 3.10 ou mais novo, ffmpeg, yt-dlp e, para o YouTube, o Deno. Para ler texto pequeno na tela, peça um trecho curto em resolução maior.",
     "atencao_forte": false,
     "licenca": "MIT",
     "licenca_alerta": false,
@@ -222,7 +222,7 @@
     "situacao": "Ativo",
     "situacao_alerta": false,
     "imagem": "https://opengraph.githubassets.com/dd45433009448aeff41872d210b1fca6183e16d60fa1e624407aaec992209b13/bradautomates/claude-video",
-    "primeiro_passo": "Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/bradautomates/claude-video`"
+    "primeiro_passo": "No Claude Code: `/plugin marketplace add bradautomates/claude-video` e `/plugin install watch@claude-video`. Depois, mande o link do vídeo e a pergunta."
   },
   {
     "nome": "Postiz",

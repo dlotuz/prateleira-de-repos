@@ -221,14 +221,14 @@ Dá ao Claude a capacidade de assistir um vídeo: baixa, extrai quadros com hor�
 
 **Para que serve:**
 - Mandar o link de um vídeo do YouTube e o Claude resumir, citar trechos e mostrar o que aparece na tela
-- Analisar vídeos de referência antes de criar os seus
+- Achar o nome de um repositório ou site que aparece na tela do vídeo
 - Revisar o seu próprio vídeo antes de publicar
 
-**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/bradautomates/claude-video`
+**Como começar:** No Claude Code: `/plugin marketplace add bradautomates/claude-video` e `/plugin install watch@claude-video`. Depois, mande o link do vídeo e a pergunta.
 
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 21k · **Último push:** 25/09/2026 · **Situação:** Ativo
 
-> **Atenção:** Funciona sem chave de API no modo local (ffmpeg e yt-dlp); a transcrição local usa WhisperX.
+> **Atenção:** Funciona sem chave de API, usando a legenda do vídeo e quadros da tela. Precisa de Python 3.10 ou mais novo, ffmpeg, yt-dlp e, para o YouTube, o Deno. Para ler texto pequeno na tela, peça um trecho curto em resolução maior.
 
 ### Hyperframes
 
