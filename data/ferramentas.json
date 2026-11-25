@@ -1540,7 +1540,7 @@
     "repo": "BoardUI/boardui",
     "url": "https://github.com/BoardUI/boardui",
     "tipo": "comp",
-    "categoria": "ui",
+    "categoria": "apps",
     "destaque": "baixa",
     "o_que_faz": "Biblioteca de componentes React para produtos com IA: chat, indicador de \"pensando\", log de agente, tabelas e formulários, com tema claro e escuro.",
     "para_que_serve": [
@@ -1566,7 +1566,7 @@
     "repo": "MengTo/threeui",
     "url": "https://github.com/MengTo/threeui",
     "tipo": "comp",
-    "categoria": "ui",
+    "categoria": "apps",
     "destaque": "baixa",
     "o_que_faz": "Catálogo de componentes 3D e interativos para sites, com o código pronto para copiar.",
     "para_que_serve": [
@@ -1908,5 +1908,33 @@
     "situacao_alerta": false,
     "imagem": "https://opengraph.githubassets.com/5fffe187a9b695e339977e801065ba973534dc9dc210f2f6db192c4e11e36b5f/pbakaus/impeccable",
     "primeiro_passo": "Teste sem instalar: `npx impeccable detect .` na pasta do seu site. Para instalar: `npx impeccable install`."
+  },
+  {
+    "nome": "Icarus",
+    "repo": "tiberiolemes/icarus-area-de-membros",
+    "url": "https://github.com/tiberiolemes/icarus-area-de-membros",
+    "tipo": "app",
+    "categoria": "cursos",
+    "destaque": "media",
+    "o_que_faz": "Plataforma de código aberto para montar a sua área de membros e vender cursos online: aulas em texto, vídeo e áudio, certificados, suporte por chamados e comunidade com moderação manual.",
+    "para_que_serve": [
+      "Vender e entregar um curso sem pagar mensalidade de plataforma",
+      "Comunidade de alunos com aprovação manual de cada publicação",
+      "Certificado com verificação pública por código"
+    ],
+    "alternativa_a": "Hotmart Club, Kiwify e Memberkit",
+    "precisa": [
+      "Docker ou servidor"
+    ],
+    "atencao": "Projeto novo (nov/2026). Para vender de verdade, precisa configurar Supabase, e-mail, Asaas e Bunny; a cobrança fica bloqueada até essa homologação.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "1",
+    "ultimo_push": "25/11/2026",
+    "situacao": "Novo",
+    "situacao_alerta": false,
+    "primeiro_passo": "Teste a demonstração pública, com acesso de aluno e de administrador: `https://tiberiolemes.github.io/icarus-area-de-membros/`. Para instalar: `npm ci`, `npm run local:start` e `npm run dev`.",
+    "imagem": "https://opengraph.githubassets.com/74b785ac84786fe6e4639c099bf746d4f282fb190ad5c0b68808aae967ca2fbb/tiberiolemes/icarus-area-de-membros"
   }
 ]

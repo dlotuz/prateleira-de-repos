@@ -38,8 +38,8 @@ CATEGORIAS = [
     ("prod", "Organizar o dia a dia"),
     ("vida", "Finanças, viagem e currículo"),
     ("agent", "Agentes e automação"),
-    ("apps", "Construir apps"),
-    ("ui", "Componentes de interface"),
+    ("cursos", "Cursos, área de membros e comunidade"),
+    ("apps", "Construir apps e interfaces"),
 ]
 CAT_NOME = dict(CATEGORIAS)
 
@@ -81,7 +81,7 @@ TIPO_DICA = {
 TAREFA_CURTA = {
     "doc": "Texto e pesquisa", "audio": "Voz e transcrição", "video": "Vídeo", "visual": "Design e imagens",
     "skill": "Design sem cara de IA", "prod": "Dia a dia", "vida": "Finanças e vida", "agent": "Agentes",
-    "apps": "Construir apps", "ui": "Componentes",
+    "apps": "Construir apps", "cursos": "Cursos e comunidade",
 }
 SUGESTOES = ["vídeo", "reunião", "Figma", "currículo", "legenda", "finanças"]
 

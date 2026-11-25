@@ -1,6 +1,6 @@
 # Prateleira de Repositórios
 
-Repositórios de IA de código aberto, separados pelo que você quer fazer. São 70 até agora. Cada um diz o que faz, o que precisa para rodar, quanto custa e qual produto conhecido ele substitui.
+Repositórios de IA de código aberto, separados pelo que você quer fazer. São 71 até agora. Cada um diz o que faz, o que precisa para rodar, quanto custa e qual produto conhecido ele substitui.
 
 **Versão com filtros:** https://www.productweekly.com.br/prateleira
 
@@ -39,8 +39,8 @@ Um projeto do [Product Weekly](https://productweekly.com.br), o que importa em p
 - [Organizar o dia a dia](#organizar-o-dia-a-dia) (8)
 - [Finanças, viagem e currículo](#financas-viagem-e-curriculo) (4)
 - [Agentes e automação](#agentes-e-automacao) (6)
-- [Construir apps](#construir-apps) (3)
-- [Componentes de interface](#componentes-de-interface) (2)
+- [Cursos, área de membros e comunidade](#cursos-area-de-membros-e-comunidade) (1)
+- [Construir apps e interfaces](#construir-apps-e-interfaces) (5)
 
 ## Ler, pesquisar e escrever
 
@@ -1137,7 +1137,29 @@ Agente que escreve e roda código sozinho, num ambiente isolado.
 **Nível:** Avançado · **Precisa de:** Docker ou servidor, Chave de API paga · **Licença:** MIT · **Estrelas:** 93k · **Último push:** 03/11/2026 · **Situação:** Ativo
 
 
-## Construir apps
+## Cursos, área de membros e comunidade
+
+### Icarus
+
+`App` · [tiberiolemes/icarus-area-de-membros](https://github.com/tiberiolemes/icarus-area-de-membros)
+
+Plataforma de código aberto para montar a sua área de membros e vender cursos online: aulas em texto, vídeo e áudio, certificados, suporte por chamados e comunidade com moderação manual.
+
+**Alternativa a:** Hotmart Club, Kiwify e Memberkit
+
+**Para que serve:**
+- Vender e entregar um curso sem pagar mensalidade de plataforma
+- Comunidade de alunos com aprovação manual de cada publicação
+- Certificado com verificação pública por código
+
+**Como começar:** Teste a demonstração pública, com acesso de aluno e de administrador: `https://tiberiolemes.github.io/icarus-area-de-membros/`. Para instalar: `npm ci`, `npm run local:start` e `npm run dev`.
+
+**Nível:** Avançado · **Precisa de:** Docker ou servidor · **Licença:** MIT · **Estrelas:** 1 · **Último push:** 25/11/2026 · **Situação:** Novo
+
+> **Atenção:** Projeto novo (nov/2026). Para vender de verdade, precisa configurar Supabase, e-mail, Asaas e Bunny; a cobrança fica bloqueada até essa homologação.
+
+
+## Construir apps e interfaces
 
 ### BAMA
 
@@ -1151,40 +1173,6 @@ Skills para o agente pesquisar, desenhar, construir e testar apps nativos de Mac
 **Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/daveebbelaar/bama`
 
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** MIT · **Estrelas:** 1,9k · **Último push:** 05/11/2026 · **Situação:** Ativo
-
-### Exact
-
-`Biblioteca` · [expo/exact](https://github.com/expo/exact)
-
-Da Expo: escreve o app uma vez e ele roda nativo na web, no Mac, no iPhone e no Linux, e o agente consegue construir, rodar, ver e testar em todos.
-
-**Para que serve:**
-- Protótipo de app que funciona no celular e no computador
-
-**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/expo/exact`
-
-**Nível:** Avançado · **Precisa de:** Programar · **Licença:** MIT · **Estrelas:** 4,6k · **Último push:** 18/11/2026 · **Situação:** Novo
-
-> **Atenção:** Projeto de nov/2026, da mesma equipe do Expo.
-
-### Web Artifacts Builder
-
-`Skill` · [anthropics/skills · web-artifacts-builder](https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder)
-
-Skill oficial da Anthropic para artifacts grandes do claude.ai: monta um projeto em React, TypeScript, Tailwind e shadcn/ui, e no fim empacota tudo num único arquivo HTML.
-
-**Para que serve:**
-- Ferramenta interativa com várias telas, estado e navegação, publicada como artifact
-- Painel ou app pequeno que precisa de componentes prontos (tabelas, formulários, diálogos)
-
-**Como começar:** Sem instrução específica. Passe o link para a sua IA e peça para ela instalar a skill: `https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder`. Rode numa pasta separada.
-
-**Nível:** Médio · **Precisa de:** Claude Code, Terminal · **Licença:** Apache-2.0 · **Estrelas:** 200k · **Último push:** 20/04/2026 · **Situação:** Oficial
-
-> **Atenção:** Para página de leitura, como esta prateleira, HTML simples resolve e carrega mais rápido. A instalação baixa muita coisa (pnpm global, Vite, 40+ componentes): rodar numa pasta separada.
-
-
-## Componentes de interface
 
 ### BoardUI
 
@@ -1201,6 +1189,21 @@ Biblioteca de componentes React para produtos com IA: chat, indicador de "pensan
 
 > **Atenção:** Só vale se você for construir um produto em React. Esta é a parte grátis; o resto é pago.
 
+### Exact
+
+`Biblioteca` · [expo/exact](https://github.com/expo/exact)
+
+Da Expo: escreve o app uma vez e ele roda nativo na web, no Mac, no iPhone e no Linux, e o agente consegue construir, rodar, ver e testar em todos.
+
+**Para que serve:**
+- Protótipo de app que funciona no celular e no computador
+
+**Como começar:** Sem instrução específica. Passe o link para a sua IA (Claude Code, Codex…) e peça para ela instalar: `https://github.com/expo/exact`
+
+**Nível:** Avançado · **Precisa de:** Programar · **Licença:** MIT · **Estrelas:** 4,6k · **Último push:** 18/11/2026 · **Situação:** Novo
+
+> **Atenção:** Projeto de nov/2026, da mesma equipe do Expo.
+
 ### ThreeUI
 
 `Componentes` · [MengTo/threeui](https://github.com/MengTo/threeui)
@@ -1215,6 +1218,22 @@ Catálogo de componentes 3D e interativos para sites, com o código pronto para 
 **Nível:** Avançado · **Precisa de:** Programar · **Licença:** MIT · **Estrelas:** 7,2k · **Último push:** 03/09/2026 · **Situação:** Ativo
 
 > **Atenção:** Edição aberta de um produto pago: os componentes Pro ficam de fora.
+
+### Web Artifacts Builder
+
+`Skill` · [anthropics/skills · web-artifacts-builder](https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder)
+
+Skill oficial da Anthropic para artifacts grandes do claude.ai: monta um projeto em React, TypeScript, Tailwind e shadcn/ui, e no fim empacota tudo num único arquivo HTML.
+
+**Para que serve:**
+- Ferramenta interativa com várias telas, estado e navegação, publicada como artifact
+- Painel ou app pequeno que precisa de componentes prontos (tabelas, formulários, diálogos)
+
+**Como começar:** Sem instrução específica. Passe o link para a sua IA e peça para ela instalar a skill: `https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder`. Rode numa pasta separada.
+
+**Nível:** Médio · **Precisa de:** Claude Code, Terminal · **Licença:** Apache-2.0 · **Estrelas:** 200k · **Último push:** 20/04/2026 · **Situação:** Oficial
+
+> **Atenção:** Para página de leitura, como esta prateleira, HTML simples resolve e carrega mais rápido. A instalação baixa muita coisa (pnpm global, Vite, 40+ componentes): rodar numa pasta separada.
 
 
 ## Os tipos

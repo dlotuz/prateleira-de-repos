@@ -18,7 +18,7 @@ Use o formulário [Sugerir ferramenta](https://github.com/dlotuz/prateleira-de-r
 |---|---|
 | `nome`, `repo`, `url` | Nome da ferramenta, `dono/repositorio` e link |
 | `tipo` | `app`, `skill`, `terminal`, `lib`, `modelo`, `mcp`, `comp`, `plugin` ou `dados` |
-| `categoria` | `doc`, `audio`, `video`, `visual`, `skill`, `prod`, `vida`, `agent`, `apps` ou `ui` |
+| `categoria` | `doc`, `audio`, `video`, `visual`, `skill`, `prod`, `vida`, `agent`, `cursos` ou `apps` |
 | `destaque` | `alta`, `media` ou `baixa` (quem revisa pode mudar) |
 | `o_que_faz` | Uma ou duas frases, sem jargão |
 | `para_que_serve` | Lista com 1 a 3 usos concretos |
