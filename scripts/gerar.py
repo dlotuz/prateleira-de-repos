@@ -64,6 +64,30 @@ PRECISA = [
     ("Só Windows", "Só roda no Windows"),
 ]
 
+NIVEIS = [
+    ("facil", "Fácil", "Baixa e usa, abre no navegador ou só consulta", {"Instalar e usar", "Navegador", "Só consultar"}),
+    ("medio", "Médio", "Precisa do Claude Code, do Codex ou do terminal", {"Claude Code", "Codex", "Terminal", "DaVinci Resolve"}),
+    ("avancado", "Avançado", "Precisa de servidor, GPU ou saber programar", {"Docker ou servidor", "Programar", "GPU"}),
+]
+NIVEL_NOME = {k: n for k, n, _, _ in NIVEIS}
+
+# Nome curto de cada tarefa nos atalhos do site
+TAREFA_CURTA = {
+    "doc": "Texto e pesquisa", "audio": "Voz e transcrição", "video": "Vídeo", "visual": "Design e imagens",
+    "skill": "Design sem cara de IA", "prod": "Dia a dia", "vida": "Finanças e vida", "agent": "Agentes",
+    "apps": "Construir apps", "ui": "Componentes",
+}
+SUGESTOES = ["vídeo", "reunião", "Figma", "currículo", "legenda", "finanças"]
+
+
+def nivel_de(i):
+    nivel = "facil"
+    for k, _, _, req in NIVEIS:
+        if req & set(i["precisa"]):
+            nivel = k
+    return nivel
+
+
 REGRAS = [
     "Dado sensível, seu ou de cliente, não vai para versão de nuvem de terceiro. Várias destas ferramentas têm versão cloud; use a que roda na sua máquina.",
     "GPL e AGPL podem ser usadas por conta própria. Colocar dentro de um produto vendido exige cuidado com a licença.",
@@ -94,7 +118,8 @@ def readme():
         "## Como ler cada item",
         "",
         "- **Tipo:** App, Skill, Terminal e outros (explicados [no fim da página](#os-tipos)).",
-        "- **Precisa de:** o que você precisa ter para usar. \"Instalar e usar\" e \"Navegador\" são os mais fáceis para quem não programa.",
+        "- **Nível:** Fácil (baixa e usa, ou abre no navegador), Médio (precisa do Claude Code ou do terminal) ou Avançado (servidor, GPU ou programação).",
+        "- **Precisa de:** o que você precisa ter para usar.",
         "- **Alternativa a:** o produto pago ou fechado que ela substitui, quando existe.",
         "- **Atenção:** licença, custo escondido, projeto parado ou qualquer coisa que você deve saber antes.",
         "",
@@ -148,7 +173,7 @@ def item_md(i):
     out.append("**Para que serve:**")
     out += [f"- {u}" for u in i["para_que_serve"]]
     out.append("")
-    out.append(f"**Precisa de:** {', '.join(i['precisa'])} · **Licença:** {i['licenca']} · "
+    out.append(f"**Nível:** {NIVEL_NOME[nivel_de(i)]} · **Precisa de:** {', '.join(i['precisa'])} · **Licença:** {i['licenca']} · "
                f"**Estrelas:** {i['estrelas']} · **Último push:** {i['ultimo_push']} · **Situação:** {i['situacao']}")
     out.append("")
     if i["atencao"]:
@@ -198,28 +223,42 @@ def ficha(i):
     sit = f'<span class="aviso">{e(i["situacao"])}</span>' if i["situacao_alerta"] else f"<span>{e(i['situacao'])}</span>"
     usos = "".join(f"<li>{e(u)}</li>" for u in i["para_que_serve"])
     return f"""
-        <article class="ficha" data-tipo="{t}" data-c="{i['categoria']}" data-p="{e('|'.join(i['precisa']))}" data-busca="{e(busca)}">
+        <article class="ficha" data-tipo="{t}" data-c="{i['categoria']}" data-n="{nivel_de(i)}" data-api="{1 if 'Chave de API paga' in i['precisa'] else 0}" data-busca="{e(busca)}">
           <div class="topo"><span class="tipo">{TIPO_NOME[t]}</span><span class="cat">{CAT_NOME[i['categoria']]}</span></div>
           <h3><a href="{e(i['url'])}" target="_blank" rel="noopener">{e(i['nome'])}</a></h3>
           <span class="repo">{e(i['repo'])}</span>{alt}
           <p class="oque">{e(i['o_que_faz'])}</p>
           <div class="usos"><span class="rot">Para que serve</span><ul>{usos}</ul>{nota}</div>
-          <div class="precisa"><span class="rot">Precisa de</span>{precisa}</div>
+          <div class="precisa"><span class="rot">Precisa de</span><span class="nv nv-{nivel_de(i)}">Nível {NIVEL_NOME[nivel_de(i)].lower()}</span>{precisa}</div>
           <div class="meta">{lic}<span>{e(i['estrelas'])} estrelas</span><span>push {e(i['ultimo_push'])}</span>{sit}</div>
         </article>"""
 
 
+def exemplos(cat):
+    nomes = [x["nome"] for x in ordenadas([x for x in DADOS if x["categoria"] == cat])][:3]
+    return e(", ".join(nomes))
+
+
 def site():
     n = len(DADOS)
-    chips_t = "".join(
-        f'<button class="chip" data-g="tipo" data-v="{k}" aria-pressed="false">{nome}<span>{sum(1 for x in DADOS if x["tipo"] == k)}</span></button>'
-        for k, nome, _ in TIPOS if any(x["tipo"] == k for x in DADOS))
-    chips_c = "".join(
-        f'<button class="chip" data-g="c" data-v="{k}" aria-pressed="false">{nome}<span>{sum(1 for x in DADOS if x["categoria"] == k)}</span></button>'
-        for k, nome in CATEGORIAS if any(x["categoria"] == k for x in DADOS))
-    chips_p = "".join(
-        f'<button class="chip" data-g="p" data-v="{e(k)}" aria-pressed="false" title="{e(desc)}">{e(k)}<span>{sum(1 for x in DADOS if k in x["precisa"])}</span></button>'
-        for k, desc in PRECISA if any(k in x["precisa"] for x in DADOS))
+    conta = lambda f: sum(1 for x in DADOS if f(x))
+    tarefas = "".join(
+        f'<button class="tarefa" type="button" data-g="c" data-v="{k}" aria-pressed="false"><b>{TAREFA_CURTA[k]}</b>'
+        f'<span class="desc">{exemplos(k)}</span><span class="n">{conta(lambda x: x["categoria"] == k)}</span></button>'
+        for k, nome in CATEGORIAS if conta(lambda x: x["categoria"] == k))
+    seg = f'<button class="segb" type="button" data-g="n" data-v="all" aria-pressed="true">Tudo<span class="n">{n}</span></button>'
+    seg += "".join(
+        f'<button class="segb" type="button" data-g="n" data-v="{k}" aria-pressed="false" title="{e(desc)}">{nome}<span class="n">{conta(lambda x: nivel_de(x) == k)}</span></button>'
+        for k, nome, desc, _ in NIVEIS)
+    opcoes = '<option value="all">Todos os tipos</option>' + "".join(
+        f'<option value="{k}">{nome}</option>' for k, nome, _ in TIPOS if conta(lambda x: x["tipo"] == k))
+    sugestoes = "".join(f'<button class="sug" type="button">{e(t)}</button>' for t in SUGESTOES)
+    rotulos = json.dumps({
+        "c": {k: TAREFA_CURTA[k] for k, _ in CATEGORIAS},
+        "n": {k: f"Nível {nome.lower()}" for k, nome, _, _ in NIVEIS},
+        "tipo": TIPO_NOME,
+        "tipo_n": {k: nome for k, nome, _ in TIPOS},
+    }, ensure_ascii=False)
     secoes = ""
     for k, titulo, sub in DESTAQUES:
         itens = ordenadas([x for x in DADOS if x["destaque"] == k])
@@ -231,8 +270,9 @@ def site():
     </section>"""
     legenda = "".join(f"<div><b>{nome}</b><p>{e(desc)}</p></div>" for _, nome, desc in TIPOS)
     regras = "".join(f"<li>{e(r)}</li>" for r in REGRAS)
-    return PAGINA.format(n=n, hoje=HOJE, hoje_curto=HOJE[:5], chips_t=chips_t, chips_c=chips_c, chips_p=chips_p,
-                         secoes=secoes, legenda=legenda, regras=regras, repo=REPO_URL)
+    return PAGINA.format(n=n, hoje=HOJE, hoje_curto=HOJE[:5], tarefas=tarefas, seg=seg, opcoes=opcoes,
+                         sugestoes=sugestoes, rotulos=rotulos, secoes=secoes, legenda=legenda, regras=regras,
+                         repo=REPO_URL, n_semapi=conta(lambda x: "Chave de API paga" not in x["precisa"]))
 
 
 PAGINA = """<!doctype html>
@@ -298,7 +338,7 @@ h1, h2, h3 {{ font-weight: 900; letter-spacing: -.025em; line-height: 1; margin:
 .faixa p {{ margin: 0; font-size: 17px; font-weight: 500; min-width: 0; flex: 1 1 320px; }}
 
 main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
-.filtros {{ display: grid; gap: 14px; border-bottom: 2px solid var(--tinta); padding-bottom: 22px; }}
+.filtros {{ display: grid; gap: 14px; }}
 .linha-f {{ display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; align-items: start; }}
 .linha-f > .mono {{ color: var(--graf); padding-top: 8px; }}
 .chips {{ display: flex; flex-wrap: wrap; gap: 8px; }}
@@ -317,6 +357,52 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
 .resumo b {{ color: var(--tinta); }}
 .limpar {{ font-family: var(--f-mono); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; background: none; border: 0; padding: 0; color: var(--tinta); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }}
 
+.filtros .tit {{ color: var(--graf); }}
+.sugestoes {{ display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: baseline; padding-left: 122px; margin-top: -4px; }}
+.sugestoes .mono {{ color: var(--graf); font-size: 11px; }}
+.sug {{ font: 600 15px/1.2 var(--f-corpo); color: var(--tinta); background: none; border: 0; padding: 0; text-decoration: underline; text-decoration-color: var(--lar); text-decoration-thickness: 2px; text-underline-offset: 4px; cursor: pointer; }}
+.sug:hover {{ color: var(--lar); }}
+.bloco {{ display: grid; gap: 12px; }}
+.tarefas {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }}
+@media (min-width: 1100px) {{ .tarefas {{ grid-template-columns: repeat(5, minmax(0, 1fr)); }} }}
+.tarefa {{ position: relative; text-align: left; font-family: var(--f-corpo); color: var(--tinta); background: var(--bq); border: 1.5px solid var(--grade); border-radius: 14px; padding: 14px 44px 14px 16px; cursor: pointer; display: grid; gap: 3px; min-width: 0; }}
+.tarefa b {{ font-weight: 900; font-size: 19px; letter-spacing: -.02em; line-height: 1.1; }}
+.tarefa .desc {{ font-size: 13px; color: var(--graf); line-height: 1.3; }}
+.tarefa .n {{ position: absolute; top: 14px; right: 14px; font-family: var(--f-mono); font-size: 12px; color: var(--graf); font-variant-numeric: tabular-nums; }}
+.tarefa:hover {{ border-color: var(--tinta); }}
+.tarefa[aria-pressed="true"] {{ background: var(--tinta); border-color: var(--tinta); color: var(--bq); }}
+.tarefa[aria-pressed="true"] .desc {{ color: #B9B3A8; }}
+.tarefa[aria-pressed="true"] .n {{ color: var(--lar); }}
+.linha2 {{ display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; }}
+.nivel, .tiposel {{ display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }}
+.seg {{ display: inline-flex; border: 1.5px solid var(--tinta); border-radius: 999px; padding: 3px; gap: 2px; flex-wrap: wrap; }}
+.segb {{ font: 700 15px/1 var(--f-corpo); color: var(--tinta); background: transparent; border: 0; border-radius: 999px; padding: 9px 14px; cursor: pointer; display: inline-flex; gap: 7px; align-items: baseline; }}
+.segb .n {{ font-family: var(--f-mono); font-size: 11px; font-weight: 500; color: var(--graf); font-variant-numeric: tabular-nums; }}
+.segb:hover {{ background: var(--bq); }}
+.segb[aria-pressed="true"] {{ background: var(--tinta); color: var(--bq); }}
+.segb[aria-pressed="true"] .n {{ color: var(--lar); }}
+.toggle {{ display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; cursor: pointer; position: relative; }}
+.toggle input {{ position: absolute; opacity: 0; width: 1px; height: 1px; }}
+.toggle .caixa {{ width: 40px; height: 24px; border-radius: 999px; background: var(--grade); position: relative; flex: none; transition: background .15s; }}
+.toggle .caixa::after {{ content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--bq); transition: transform .15s; }}
+.toggle input:checked + .caixa {{ background: var(--lar); }}
+.toggle input:checked + .caixa::after {{ transform: translateX(16px); }}
+.toggle input:focus-visible + .caixa {{ outline: 3px solid var(--lar); outline-offset: 3px; }}
+.toggle .n {{ font-style: normal; font-family: var(--f-mono); font-size: 11px; font-weight: 500; color: var(--graf); }}
+.tiposel select {{ font: 700 15px/1 var(--f-corpo); color: var(--tinta); background: var(--bq); border: 1.5px solid var(--tinta); border-radius: 999px; padding: 10px 36px 10px 16px; appearance: none; -webkit-appearance: none; cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--tinta) 50%), linear-gradient(135deg, var(--tinta) 50%, transparent 50%); background-position: right 18px center, right 13px center; background-size: 5px 5px; background-repeat: no-repeat; }}
+[aria-disabled="true"] {{ opacity: .38; }}
+.ativos {{ display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; min-height: 34px; }}
+.ativos > .mono {{ color: var(--graf); }}
+.ativos b {{ color: var(--tinta); }}
+.tokens {{ display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }}
+.token {{ font: 700 14px/1 var(--f-corpo); background: var(--lar); color: var(--tinta); border: 0; border-radius: 999px; padding: 8px 12px; cursor: pointer; display: inline-flex; gap: 8px; align-items: center; }}
+.token span {{ font-size: 16px; line-height: 0; }}
+.precisa .nv {{ font-weight: 800; }}
+.precisa .nv-facil {{ background: var(--tinta) !important; color: var(--bq); border-color: var(--tinta) !important; }}
+.vazio {{ display: grid; gap: 10px; }}
+.vazio p {{ margin: 0; }}
+.vazio .sug {{ margin: 0 8px; text-transform: none; letter-spacing: 0; }}
 .secao {{ display: grid; gap: 28px; }}
 .sh {{ display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 2px solid var(--tinta); padding-top: 22px; }}
 .sh h2 {{ font-size: clamp(34px, 5.5vw, 60px); letter-spacing: -.04em; }}
@@ -381,6 +467,13 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
   .numeros .mono {{ font-size: 9.5px; overflow-wrap: anywhere; }}
   .linha-f {{ grid-template-columns: 1fr; gap: 8px; }}
   .busca {{ grid-template-columns: 1fr; gap: 8px; }}
+  .sugestoes {{ padding-left: 0; margin-top: 0; }}
+  .tarefas {{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }}
+  .tarefa {{ padding: 12px 34px 12px 12px; }}
+  .tarefa b {{ font-size: 16px; }}
+  .tarefa .desc {{ display: none; }}
+  .tarefa .n {{ top: 12px; right: 10px; }}
+  .linha2 {{ gap: 14px; }}
   .busca kbd {{ display: none; }}
   .busca input {{ font-size: 17px; }}
   .linha-f > .mono {{ padding-top: 0; }}
@@ -421,7 +514,7 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
 <div class="faixa">
   <div class="wrap">
     <span class="mono">Não programa?</span>
-    <p>Filtre por "Instalar e usar" ou "Navegador" em Precisa de: são as que você baixa ou abre e já usa.</p>
+    <p>Escolha o nível Fácil: são as que você baixa ou abre no navegador e já usa.</p>
   </div>
 </div>
 
@@ -429,13 +522,17 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
   <div class="wrap">
     <div class="filtros">
       <div class="busca"><label class="mono" for="busca">Buscar</label><input id="busca" type="search" placeholder="Digite o que você quer fazer: vídeo, reunião, Figma, currículo…" autocomplete="off" spellcheck="false"><kbd class="mono" aria-hidden="true">/</kbd></div>
-      <div class="linha-f"><span class="mono">Para quê</span><div class="chips" role="group" aria-label="Filtrar por finalidade"><button class="chip" data-g="c" data-v="all" aria-pressed="true">Todas<span>{n}</span></button>{chips_c}</div></div>
-      <div class="linha-f"><span class="mono">Tipo</span><div class="chips" role="group" aria-label="Filtrar por tipo"><button class="chip" data-g="tipo" data-v="all" aria-pressed="true">Todos<span>{n}</span></button>{chips_t}</div></div>
-      <div class="linha-f"><span class="mono">Precisa de</span><div class="chips" role="group" aria-label="Filtrar pelo que é preciso para usar"><button class="chip" data-g="p" data-v="all" aria-pressed="true">Tanto faz<span>{n}</span></button>{chips_p}</div></div>
-      <div class="resumo mono"><span>Mostrando <b id="mostrando">{n}</b> de {n}</span><button class="limpar" id="limpar" type="button">Limpar filtros</button></div>
+      <div class="sugestoes"><span class="mono">Experimente</span>{sugestoes}</div>
+      <div class="bloco"><span class="mono tit">O que você quer fazer?</span><div class="tarefas" role="group" aria-label="Filtrar pelo que você quer fazer">{tarefas}</div></div>
+      <div class="linha2">
+        <div class="nivel"><span class="mono tit">Nível</span><div class="seg" role="group" aria-label="Filtrar por nível">{seg}</div></div>
+        <label class="toggle" for="semapi"><input type="checkbox" id="semapi"><span class="caixa" aria-hidden="true"></span><span>Sem API paga <i class="n" id="n-semapi">{n_semapi}</i></span></label>
+        <label class="tiposel" for="tipo"><span class="mono tit">Tipo</span><select id="tipo">{opcoes}</select></label>
+      </div>
+      <div class="ativos"><div class="tokens" id="tokens"></div><span class="mono">Mostrando <b id="mostrando">{n}</b> de {n}</span></div>
     </div>
 {secoes}
-    <p class="vazio" id="vazio" hidden>Nada encontrado com essa busca e esses filtros juntos. Tente outra palavra ou limpe os filtros.</p>
+    <div class="vazio" id="vazio" hidden><p>Nada encontrado com essa busca e esses filtros juntos.</p><p class="mono">Tente: <button class="sug" type="button">vídeo</button><button class="sug" type="button">reunião</button><button class="sug" type="button">design</button> ou <button class="limpar" type="button" data-limpar>limpe os filtros</button></p></div>
 
     <section class="tipos" aria-labelledby="tipos-h">
       <div class="sh"><h2 id="tipos-h">Os tipos.</h2><span class="mono">O que cada etiqueta quer dizer</span></div>
@@ -466,39 +563,94 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
 
 <script>
 (function () {{
-  var estado = {{ tipo: 'all', c: 'all', p: 'all' }};
-  var campo = document.getElementById('busca');
+  var ROT = {rotulos};
+  var VAZIO = {{ c: 'all', n: 'all', tipo: 'all', api: false }};
+  var estado = Object.assign({{}}, VAZIO);
   var termos = [];
-  function normalizar(t) {{ return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim(); }}
-  var chips = document.querySelectorAll('.chip');
-  var fichas = document.querySelectorAll('.ficha');
+  var campo = document.getElementById('busca');
+  var semapi = document.getElementById('semapi');
+  var seltipo = document.getElementById('tipo');
+  var fichas = Array.prototype.slice.call(document.querySelectorAll('.ficha'));
   var secoes = document.querySelectorAll('.secao');
-  function passa(f) {{
-    return (estado.tipo === 'all' || f.dataset.tipo === estado.tipo)
-      && (estado.c === 'all' || f.dataset.c === estado.c)
-      && (estado.p === 'all' || f.dataset.p.split('|').indexOf(estado.p) !== -1)
+  var botoes = document.querySelectorAll('[data-g]');
+  function normalizar(t) {{ return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim(); }}
+  function passa(f, st, ignora) {{
+    return (ignora === 'c' || st.c === 'all' || f.dataset.c === st.c)
+      && (ignora === 'n' || st.n === 'all' || f.dataset.n === st.n)
+      && (ignora === 'tipo' || st.tipo === 'all' || f.dataset.tipo === st.tipo)
+      && (ignora === 'api' || !st.api || f.dataset.api === '0')
       && termos.every(function (t) {{ return f.dataset.busca.indexOf(t) !== -1; }});
   }}
+  function conta(g, v) {{
+    var st = Object.assign({{}}, estado); st[g] = v;
+    return fichas.filter(function (f) {{ return passa(f, st); }}).length;
+  }}
+  function marcar(el, n, ativo) {{
+    if (n === 0 && !ativo) el.setAttribute('aria-disabled', 'true'); else el.removeAttribute('aria-disabled');
+  }}
+  function tokens() {{
+    var box = document.getElementById('tokens'); box.innerHTML = '';
+    function add(txt, limpa) {{
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'token';
+      b.innerHTML = '<b></b><span aria-hidden="true">×</span>'; b.firstChild.textContent = txt;
+      b.setAttribute('aria-label', 'Tirar filtro ' + txt);
+      b.addEventListener('click', function () {{ limpa(); aplicar(); }}); box.appendChild(b);
+    }}
+    if (campo.value.trim()) add('“' + campo.value.trim() + '”', function () {{ campo.value = ''; termos = []; }});
+    if (estado.c !== 'all') add(ROT.c[estado.c], function () {{ estado.c = 'all'; }});
+    if (estado.n !== 'all') add(ROT.n[estado.n], function () {{ estado.n = 'all'; }});
+    if (estado.api) add('Sem API paga', function () {{ estado.api = false; }});
+    if (estado.tipo !== 'all') add(ROT.tipo[estado.tipo], function () {{ estado.tipo = 'all'; }});
+    if (box.children.length > 1) {{
+      var l = document.createElement('button'); l.type = 'button'; l.className = 'limpar'; l.textContent = 'Limpar tudo';
+      l.addEventListener('click', limparTudo); box.appendChild(l);
+    }}
+  }}
   function aplicar() {{
-    chips.forEach(function (b) {{ b.setAttribute('aria-pressed', String(estado[b.dataset.g] === b.dataset.v)); }});
+    botoes.forEach(function (b) {{
+      var g = b.dataset.g, v = b.dataset.v, ativo = estado[g] === v;
+      b.setAttribute('aria-pressed', String(ativo));
+      var n = conta(g, v); var el = b.querySelector('.n'); if (el) el.textContent = n; marcar(b, n, ativo);
+    }});
+    Array.prototype.forEach.call(seltipo.options, function (o) {{
+      var n = conta('tipo', o.value);
+      o.textContent = (o.value === 'all' ? 'Todos os tipos' : ROT.tipo_n[o.value]) + ' (' + n + ')';
+      o.disabled = n === 0 && o.value !== estado.tipo;
+    }});
+    seltipo.value = estado.tipo;
+    semapi.checked = estado.api;
+    var nApi = conta('api', true); document.getElementById('n-semapi').textContent = nApi;
     var total = 0;
-    fichas.forEach(function (f) {{ var ok = passa(f); f.hidden = !ok; if (ok) total++; }});
+    fichas.forEach(function (f) {{ var ok = passa(f, estado); f.hidden = !ok; if (ok) total++; }});
     secoes.forEach(function (s) {{
       var n = s.querySelectorAll('.ficha:not([hidden])').length;
       s.querySelector('.cont').textContent = n; s.hidden = n === 0;
     }});
     document.getElementById('mostrando').textContent = total;
     document.getElementById('vazio').hidden = total !== 0;
+    tokens();
     try {{ localStorage.setItem('prateleira-de-repos', JSON.stringify(estado)); }} catch (e) {{}}
   }}
-  chips.forEach(function (b) {{ b.addEventListener('click', function () {{ estado[b.dataset.g] = b.dataset.v; aplicar(); }}); }});
+  function limparTudo() {{ estado = Object.assign({{}}, VAZIO); campo.value = ''; termos = []; aplicar(); }}
+  botoes.forEach(function (b) {{
+    b.addEventListener('click', function () {{
+      if (b.getAttribute('aria-disabled') === 'true') return;
+      var g = b.dataset.g, v = b.dataset.v;
+      estado[g] = (g === 'c' && estado.c === v) ? 'all' : v; aplicar();
+    }});
+  }});
+  semapi.addEventListener('change', function () {{ estado.api = semapi.checked; aplicar(); }});
+  seltipo.addEventListener('change', function () {{ estado.tipo = seltipo.value; aplicar(); }});
   campo.addEventListener('input', function () {{ termos = normalizar(campo.value).split(/\s+/).filter(Boolean); aplicar(); }});
+  document.querySelectorAll('.sug').forEach(function (b) {{
+    b.addEventListener('click', function () {{ campo.value = b.textContent; termos = normalizar(campo.value).split(/\s+/); estado = Object.assign({{}}, VAZIO); aplicar(); campo.focus(); }});
+  }});
+  document.querySelectorAll('[data-limpar]').forEach(function (b) {{ b.addEventListener('click', limparTudo); }});
   document.addEventListener('keydown', function (ev) {{
-    if (ev.key === '/' && document.activeElement !== campo) {{ ev.preventDefault(); campo.focus(); }}
+    if (ev.key === '/' && document.activeElement !== campo && !/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) {{ ev.preventDefault(); campo.focus(); }}
     if (ev.key === 'Escape' && document.activeElement === campo) {{ campo.value = ''; termos = []; aplicar(); }}
   }});
-  document.getElementById('limpar').addEventListener('click', function () {{ estado = {{ tipo: 'all', c: 'all', p: 'all' }}; campo.value = ''; termos = []; aplicar(); }});
-  try {{ var s = JSON.parse(localStorage.getItem('prateleira-de-repos') || 'null'); if (s && s.tipo && s.c && s.p) estado = s; }} catch (e) {{}}
+  try {{ var s = JSON.parse(localStorage.getItem('prateleira-de-repos') || 'null'); if (s && 'c' in s && 'n' in s && 'tipo' in s) estado = Object.assign({{}}, VAZIO, s); }} catch (e) {{}}
   aplicar();
 }})();
 </script>
