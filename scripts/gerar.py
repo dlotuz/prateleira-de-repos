@@ -70,6 +70,11 @@ NIVEIS = [
     ("avancado", "Avançado", "Precisa de servidor, GPU ou saber programar", {"Docker ou servidor", "Programar", "GPU"}),
 ]
 NIVEL_NOME = {k: n for k, n, _, _ in NIVEIS}
+TIPO_DICA = {
+    "app": "Tem tela própria", "skill": "Ensina o Claude Code", "terminal": "Roda por comando",
+    "lib": "Para quem programa", "modelo": "IA no seu computador", "mcp": "O Claude controla outro programa",
+    "comp": "Peças de interface", "plugin": "Muda o Claude Code", "dados": "Para consultar",
+}
 
 # Nome curto de cada tarefa nos atalhos do site
 TAREFA_CURTA = {
@@ -250,8 +255,10 @@ def site():
     seg += "".join(
         f'<button class="segb" type="button" data-g="n" data-v="{k}" aria-pressed="false" title="{e(desc)}">{nome}<span class="n">{conta(lambda x: nivel_de(x) == k)}</span></button>'
         for k, nome, desc, _ in NIVEIS)
-    opcoes = '<option value="all">Todos os tipos</option>' + "".join(
-        f'<option value="{k}">{nome}</option>' for k, nome, _ in TIPOS if conta(lambda x: x["tipo"] == k))
+    opcoes = f'<li role="option" id="op-all" data-v="all" aria-selected="true"><span class="ok" aria-hidden="true"></span><span><b>Todos os tipos</b></span><span class="n">{n}</span></li>' + "".join(
+        f'<li role="option" id="op-{k}" data-v="{k}" aria-selected="false"><span class="ok" aria-hidden="true"></span>'
+        f'<span><b>{nome}</b><small>{TIPO_DICA[k]}</small></span><span class="n">{conta(lambda x: x["tipo"] == k)}</span></li>'
+        for k, nome, _ in TIPOS if conta(lambda x: x["tipo"] == k))
     sugestoes = "".join(f'<button class="sug" type="button">{e(t)}</button>' for t in SUGESTOES)
     rotulos = json.dumps({
         "c": {k: TAREFA_CURTA[k] for k, _ in CATEGORIAS},
@@ -389,8 +396,23 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
 .toggle input:checked + .caixa::after {{ transform: translateX(16px); }}
 .toggle input:focus-visible + .caixa {{ outline: 3px solid var(--lar); outline-offset: 3px; }}
 .toggle .n {{ font-style: normal; font-family: var(--f-mono); font-size: 11px; font-weight: 500; color: var(--graf); }}
-.tiposel select {{ font: 700 15px/1 var(--f-corpo); color: var(--tinta); background: var(--bq); border: 1.5px solid var(--tinta); border-radius: 999px; padding: 10px 36px 10px 16px; appearance: none; -webkit-appearance: none; cursor: pointer;
-  background-image: linear-gradient(45deg, transparent 50%, var(--tinta) 50%), linear-gradient(135deg, var(--tinta) 50%, transparent 50%); background-position: right 18px center, right 13px center; background-size: 5px 5px; background-repeat: no-repeat; }}
+.drop {{ position: relative; }}
+.drop-btn {{ font: 700 15px/1 var(--f-corpo); color: var(--tinta); background: var(--bq); border: 1.5px solid var(--tinta); border-radius: 999px; padding: 10px 16px; cursor: pointer; display: inline-flex; align-items: baseline; gap: 8px; }}
+.drop-btn .n {{ font-family: var(--f-mono); font-size: 11px; font-weight: 500; color: var(--graf); }}
+.drop-btn::after {{ content: ""; width: 7px; height: 7px; border-right: 2px solid var(--tinta); border-bottom: 2px solid var(--tinta); transform: translateY(-2px) rotate(45deg); margin-left: 4px; align-self: center; transition: transform .15s; }}
+.drop-btn[aria-expanded="true"] {{ background: var(--tinta); color: var(--bq); }}
+.drop-btn[aria-expanded="true"]::after {{ border-color: var(--bq); transform: translateY(2px) rotate(-135deg); }}
+.drop-btn[aria-expanded="true"] .n {{ color: var(--lar); }}
+.drop-menu {{ position: absolute; top: calc(100% + 8px); left: 0; z-index: 30; margin: 0; padding: 6px; list-style: none; min-width: 300px; max-width: calc(100vw - 32px); background: var(--bq); border: 1.5px solid var(--tinta); border-radius: 16px; box-shadow: 0 12px 28px rgba(18, 18, 18, .14); }}
+.drop-menu:focus {{ outline: none; }}
+.drop-menu li {{ display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 9px 12px; border-radius: 10px; cursor: pointer; }}
+.drop-menu li b {{ display: block; font-weight: 800; font-size: 15px; }}
+.drop-menu li small {{ display: block; font-size: 12.5px; color: var(--graf); margin-top: 1px; }}
+.drop-menu li .n {{ font-family: var(--f-mono); font-size: 11px; color: var(--graf); font-variant-numeric: tabular-nums; }}
+.drop-menu li.ativo, .drop-menu li:hover {{ background: var(--papel); }}
+.drop-menu li[aria-selected="true"] .ok::before {{ content: ""; display: block; width: 6px; height: 11px; border-right: 2.5px solid var(--lar); border-bottom: 2.5px solid var(--lar); transform: rotate(45deg) translate(-1px, -2px); margin-left: 5px; }}
+.drop-menu li[aria-selected="true"] b {{ color: var(--tinta); }}
+.drop-menu li[aria-disabled="true"] {{ cursor: default; background: none; }}
 [aria-disabled="true"] {{ opacity: .38; }}
 .ativos {{ display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; min-height: 34px; }}
 .ativos > .mono {{ color: var(--graf); }}
@@ -527,7 +549,7 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
       <div class="linha2">
         <div class="nivel"><span class="mono tit">Nível</span><div class="seg" role="group" aria-label="Filtrar por nível">{seg}</div></div>
         <label class="toggle" for="semapi"><input type="checkbox" id="semapi"><span class="caixa" aria-hidden="true"></span><span>Sem API paga <i class="n" id="n-semapi">{n_semapi}</i></span></label>
-        <label class="tiposel" for="tipo"><span class="mono tit">Tipo</span><select id="tipo">{opcoes}</select></label>
+        <div class="tiposel"><span class="mono tit" id="tipo-rot">Tipo</span><div class="drop"><button type="button" class="drop-btn" id="tipo-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="tipo-menu" aria-labelledby="tipo-rot tipo-atual"><span id="tipo-atual">Todos os tipos</span><span class="n" id="tipo-n">{n}</span></button><ul class="drop-menu" id="tipo-menu" role="listbox" tabindex="-1" aria-labelledby="tipo-rot" hidden>{opcoes}</ul></div></div>
       </div>
       <div class="ativos"><div class="tokens" id="tokens"></div><span class="mono">Mostrando <b id="mostrando">{n}</b> de {n}</span></div>
     </div>
@@ -569,7 +591,9 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
   var termos = [];
   var campo = document.getElementById('busca');
   var semapi = document.getElementById('semapi');
-  var seltipo = document.getElementById('tipo');
+  var dbtn = document.getElementById('tipo-btn');
+  var dmenu = document.getElementById('tipo-menu');
+  var dops = Array.prototype.slice.call(dmenu.querySelectorAll('li'));
   var fichas = Array.prototype.slice.call(document.querySelectorAll('.ficha'));
   var secoes = document.querySelectorAll('.secao');
   var botoes = document.querySelectorAll('[data-g]');
@@ -612,12 +636,11 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
       b.setAttribute('aria-pressed', String(ativo));
       var n = conta(g, v); var el = b.querySelector('.n'); if (el) el.textContent = n; marcar(b, n, ativo);
     }});
-    Array.prototype.forEach.call(seltipo.options, function (o) {{
-      var n = conta('tipo', o.value);
-      o.textContent = (o.value === 'all' ? 'Todos os tipos' : ROT.tipo_n[o.value]) + ' (' + n + ')';
-      o.disabled = n === 0 && o.value !== estado.tipo;
+    dops.forEach(function (o) {{
+      var v = o.dataset.v, n = conta('tipo', v), ativo = estado.tipo === v;
+      o.querySelector('.n').textContent = n; o.setAttribute('aria-selected', String(ativo)); marcar(o, n, ativo);
+      if (ativo) {{ document.getElementById('tipo-atual').textContent = v === 'all' ? 'Todos os tipos' : ROT.tipo_n[v]; document.getElementById('tipo-n').textContent = n; }}
     }});
-    seltipo.value = estado.tipo;
     semapi.checked = estado.api;
     var nApi = conta('api', true); document.getElementById('n-semapi').textContent = nApi;
     var total = 0;
@@ -640,7 +663,33 @@ main .wrap {{ padding-block: 36px 72px; display: grid; gap: 56px; }}
     }});
   }});
   semapi.addEventListener('change', function () {{ estado.api = semapi.checked; aplicar(); }});
-  seltipo.addEventListener('change', function () {{ estado.tipo = seltipo.value; aplicar(); }});
+  var foco = -1;
+  function realcar(i) {{
+    dops.forEach(function (o) {{ o.classList.remove('ativo'); }});
+    foco = i; if (i >= 0) {{ dops[i].classList.add('ativo'); dmenu.setAttribute('aria-activedescendant', dops[i].id); dops[i].scrollIntoView({{ block: 'nearest' }}); }}
+  }}
+  function abrir() {{
+    dmenu.hidden = false; dbtn.setAttribute('aria-expanded', 'true');
+    realcar(dops.findIndex(function (o) {{ return o.dataset.v === estado.tipo; }})); dmenu.focus();
+  }}
+  function fechar(devolver) {{ dmenu.hidden = true; dbtn.setAttribute('aria-expanded', 'false'); if (devolver) dbtn.focus(); }}
+  function escolher(o) {{ if (o.getAttribute('aria-disabled') === 'true') return; estado.tipo = o.dataset.v; fechar(true); aplicar(); }}
+  dbtn.addEventListener('click', function () {{ dmenu.hidden ? abrir() : fechar(false); }});
+  dbtn.addEventListener('keydown', function (ev) {{ if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') {{ ev.preventDefault(); abrir(); }} }});
+  dops.forEach(function (o, i) {{
+    o.addEventListener('click', function () {{ escolher(o); }});
+    o.addEventListener('mousemove', function () {{ if (foco !== i) realcar(i); }});
+  }});
+  dmenu.addEventListener('keydown', function (ev) {{
+    var passo = function (d) {{ var i = foco; do {{ i = (i + d + dops.length) % dops.length; }} while (dops[i].getAttribute('aria-disabled') === 'true' && i !== foco); realcar(i); }};
+    if (ev.key === 'ArrowDown') {{ ev.preventDefault(); passo(1); }}
+    else if (ev.key === 'ArrowUp') {{ ev.preventDefault(); passo(-1); }}
+    else if (ev.key === 'Home') {{ ev.preventDefault(); realcar(0); }}
+    else if (ev.key === 'End') {{ ev.preventDefault(); realcar(dops.length - 1); }}
+    else if (ev.key === 'Enter' || ev.key === ' ') {{ ev.preventDefault(); if (foco >= 0) escolher(dops[foco]); }}
+    else if (ev.key === 'Escape' || ev.key === 'Tab') {{ fechar(ev.key === 'Escape'); }}
+  }});
+  document.addEventListener('click', function (ev) {{ if (!dmenu.hidden && !ev.target.closest('.drop')) fechar(false); }});
   campo.addEventListener('input', function () {{ termos = normalizar(campo.value).split(/\s+/).filter(Boolean); aplicar(); }});
   document.querySelectorAll('.sug').forEach(function (b) {{
     b.addEventListener('click', function () {{ campo.value = b.textContent; termos = normalizar(campo.value).split(/\s+/); estado = Object.assign({{}}, VAZIO); aplicar(); campo.focus(); }});

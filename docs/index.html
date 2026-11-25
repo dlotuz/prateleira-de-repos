@@ -112,8 +112,23 @@ main .wrap { padding-block: 36px 72px; display: grid; gap: 56px; }
 .toggle input:checked + .caixa::after { transform: translateX(16px); }
 .toggle input:focus-visible + .caixa { outline: 3px solid var(--lar); outline-offset: 3px; }
 .toggle .n { font-style: normal; font-family: var(--f-mono); font-size: 11px; font-weight: 500; color: var(--graf); }
-.tiposel select { font: 700 15px/1 var(--f-corpo); color: var(--tinta); background: var(--bq); border: 1.5px solid var(--tinta); border-radius: 999px; padding: 10px 36px 10px 16px; appearance: none; -webkit-appearance: none; cursor: pointer;
-  background-image: linear-gradient(45deg, transparent 50%, var(--tinta) 50%), linear-gradient(135deg, var(--tinta) 50%, transparent 50%); background-position: right 18px center, right 13px center; background-size: 5px 5px; background-repeat: no-repeat; }
+.drop { position: relative; }
+.drop-btn { font: 700 15px/1 var(--f-corpo); color: var(--tinta); background: var(--bq); border: 1.5px solid var(--tinta); border-radius: 999px; padding: 10px 16px; cursor: pointer; display: inline-flex; align-items: baseline; gap: 8px; }
+.drop-btn .n { font-family: var(--f-mono); font-size: 11px; font-weight: 500; color: var(--graf); }
+.drop-btn::after { content: ""; width: 7px; height: 7px; border-right: 2px solid var(--tinta); border-bottom: 2px solid var(--tinta); transform: translateY(-2px) rotate(45deg); margin-left: 4px; align-self: center; transition: transform .15s; }
+.drop-btn[aria-expanded="true"] { background: var(--tinta); color: var(--bq); }
+.drop-btn[aria-expanded="true"]::after { border-color: var(--bq); transform: translateY(2px) rotate(-135deg); }
+.drop-btn[aria-expanded="true"] .n { color: var(--lar); }
+.drop-menu { position: absolute; top: calc(100% + 8px); left: 0; z-index: 30; margin: 0; padding: 6px; list-style: none; min-width: 300px; max-width: calc(100vw - 32px); background: var(--bq); border: 1.5px solid var(--tinta); border-radius: 16px; box-shadow: 0 12px 28px rgba(18, 18, 18, .14); }
+.drop-menu:focus { outline: none; }
+.drop-menu li { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 9px 12px; border-radius: 10px; cursor: pointer; }
+.drop-menu li b { display: block; font-weight: 800; font-size: 15px; }
+.drop-menu li small { display: block; font-size: 12.5px; color: var(--graf); margin-top: 1px; }
+.drop-menu li .n { font-family: var(--f-mono); font-size: 11px; color: var(--graf); font-variant-numeric: tabular-nums; }
+.drop-menu li.ativo, .drop-menu li:hover { background: var(--papel); }
+.drop-menu li[aria-selected="true"] .ok::before { content: ""; display: block; width: 6px; height: 11px; border-right: 2.5px solid var(--lar); border-bottom: 2.5px solid var(--lar); transform: rotate(45deg) translate(-1px, -2px); margin-left: 5px; }
+.drop-menu li[aria-selected="true"] b { color: var(--tinta); }
+.drop-menu li[aria-disabled="true"] { cursor: default; background: none; }
 [aria-disabled="true"] { opacity: .38; }
 .ativos { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; min-height: 34px; }
 .ativos > .mono { color: var(--graf); }
@@ -250,7 +265,7 @@ main .wrap { padding-block: 36px 72px; display: grid; gap: 56px; }
       <div class="linha2">
         <div class="nivel"><span class="mono tit">Nível</span><div class="seg" role="group" aria-label="Filtrar por nível"><button class="segb" type="button" data-g="n" data-v="all" aria-pressed="true">Tudo<span class="n">69</span></button><button class="segb" type="button" data-g="n" data-v="facil" aria-pressed="false" title="Baixa e usa, abre no navegador ou só consulta">Fácil<span class="n">12</span></button><button class="segb" type="button" data-g="n" data-v="medio" aria-pressed="false" title="Precisa do Claude Code, do Codex ou do terminal">Médio<span class="n">32</span></button><button class="segb" type="button" data-g="n" data-v="avancado" aria-pressed="false" title="Precisa de servidor, GPU ou saber programar">Avançado<span class="n">25</span></button></div></div>
         <label class="toggle" for="semapi"><input type="checkbox" id="semapi"><span class="caixa" aria-hidden="true"></span><span>Sem API paga <i class="n" id="n-semapi">62</i></span></label>
-        <label class="tiposel" for="tipo"><span class="mono tit">Tipo</span><select id="tipo"><option value="all">Todos os tipos</option><option value="app">App</option><option value="skill">Skill</option><option value="terminal">Terminal</option><option value="lib">Biblioteca</option><option value="modelo">Modelo</option><option value="mcp">MCP</option><option value="comp">Componentes</option><option value="plugin">Plugin</option><option value="dados">Dados</option></select></label>
+        <div class="tiposel"><span class="mono tit" id="tipo-rot">Tipo</span><div class="drop"><button type="button" class="drop-btn" id="tipo-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="tipo-menu" aria-labelledby="tipo-rot tipo-atual"><span id="tipo-atual">Todos os tipos</span><span class="n" id="tipo-n">69</span></button><ul class="drop-menu" id="tipo-menu" role="listbox" tabindex="-1" aria-labelledby="tipo-rot" hidden><li role="option" id="op-all" data-v="all" aria-selected="true"><span class="ok" aria-hidden="true"></span><span><b>Todos os tipos</b></span><span class="n">69</span></li><li role="option" id="op-app" data-v="app" aria-selected="false"><span class="ok" aria-hidden="true"></span><span><b>App</b><small>Tem tela própria</small></span><span class="n">27</span></li><li role="option" id="op-skill" data-v="skill" aria-selected="false"><span class="ok" aria-hidden="true"></span><span><b>Skill</b><small>Ensina o Claude Code</small></span><span class="n">23</span></li><li role="option" id="op-terminal" data-v="terminal" aria-selected="false"><span class="ok" aria-hidden="true"></span><span><b>Terminal</b><small>Roda por comando</small></span><span class="n">6</span></li><li role="option" id="op-lib" data-v="lib" aria-selected="false"><span class="ok" aria-hidden="true"></span><span><b>Biblioteca</b><small>Para quem programa</small></span><span class="n">6</span></li><li role="option" id="op-modelo" data-v="modelo" aria-selected="false"><span class="ok" aria-hidden="true"></span><span><b>Modelo</b><small>IA no seu computador</small></span><span class="n">2</span></li><li role="option" id="op-mcp" data-v="mcp" aria-selected="false"><span class="ok" aria-hidden="true"></span><span><b>MCP</b><small>O Claude controla outro programa</small></span><span class="n">1</span></li><li role="option" id="op-comp" data-v="comp" aria-selected="false"><span class="ok" aria-hidden="true"></span><span><b>Componentes</b><small>Peças de interface</small></span><span class="n">2</span></li><li role="option" id="op-plugin" data-v="plugin" aria-selected="false"><span class="ok" aria-hidden="true"></span><span><b>Plugin</b><small>Muda o Claude Code</small></span><span class="n">1</span></li><li role="option" id="op-dados" data-v="dados" aria-selected="false"><span class="ok" aria-hidden="true"></span><span><b>Dados</b><small>Para consultar</small></span><span class="n">1</span></li></ul></div></div>
       </div>
       <div class="ativos"><div class="tokens" id="tokens"></div><span class="mono">Mostrando <b id="mostrando">69</b> de 69</span></div>
     </div>
@@ -928,7 +943,9 @@ main .wrap { padding-block: 36px 72px; display: grid; gap: 56px; }
   var termos = [];
   var campo = document.getElementById('busca');
   var semapi = document.getElementById('semapi');
-  var seltipo = document.getElementById('tipo');
+  var dbtn = document.getElementById('tipo-btn');
+  var dmenu = document.getElementById('tipo-menu');
+  var dops = Array.prototype.slice.call(dmenu.querySelectorAll('li'));
   var fichas = Array.prototype.slice.call(document.querySelectorAll('.ficha'));
   var secoes = document.querySelectorAll('.secao');
   var botoes = document.querySelectorAll('[data-g]');
@@ -971,12 +988,11 @@ main .wrap { padding-block: 36px 72px; display: grid; gap: 56px; }
       b.setAttribute('aria-pressed', String(ativo));
       var n = conta(g, v); var el = b.querySelector('.n'); if (el) el.textContent = n; marcar(b, n, ativo);
     });
-    Array.prototype.forEach.call(seltipo.options, function (o) {
-      var n = conta('tipo', o.value);
-      o.textContent = (o.value === 'all' ? 'Todos os tipos' : ROT.tipo_n[o.value]) + ' (' + n + ')';
-      o.disabled = n === 0 && o.value !== estado.tipo;
+    dops.forEach(function (o) {
+      var v = o.dataset.v, n = conta('tipo', v), ativo = estado.tipo === v;
+      o.querySelector('.n').textContent = n; o.setAttribute('aria-selected', String(ativo)); marcar(o, n, ativo);
+      if (ativo) { document.getElementById('tipo-atual').textContent = v === 'all' ? 'Todos os tipos' : ROT.tipo_n[v]; document.getElementById('tipo-n').textContent = n; }
     });
-    seltipo.value = estado.tipo;
     semapi.checked = estado.api;
     var nApi = conta('api', true); document.getElementById('n-semapi').textContent = nApi;
     var total = 0;
@@ -999,7 +1015,33 @@ main .wrap { padding-block: 36px 72px; display: grid; gap: 56px; }
     });
   });
   semapi.addEventListener('change', function () { estado.api = semapi.checked; aplicar(); });
-  seltipo.addEventListener('change', function () { estado.tipo = seltipo.value; aplicar(); });
+  var foco = -1;
+  function realcar(i) {
+    dops.forEach(function (o) { o.classList.remove('ativo'); });
+    foco = i; if (i >= 0) { dops[i].classList.add('ativo'); dmenu.setAttribute('aria-activedescendant', dops[i].id); dops[i].scrollIntoView({ block: 'nearest' }); }
+  }
+  function abrir() {
+    dmenu.hidden = false; dbtn.setAttribute('aria-expanded', 'true');
+    realcar(dops.findIndex(function (o) { return o.dataset.v === estado.tipo; })); dmenu.focus();
+  }
+  function fechar(devolver) { dmenu.hidden = true; dbtn.setAttribute('aria-expanded', 'false'); if (devolver) dbtn.focus(); }
+  function escolher(o) { if (o.getAttribute('aria-disabled') === 'true') return; estado.tipo = o.dataset.v; fechar(true); aplicar(); }
+  dbtn.addEventListener('click', function () { dmenu.hidden ? abrir() : fechar(false); });
+  dbtn.addEventListener('keydown', function (ev) { if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') { ev.preventDefault(); abrir(); } });
+  dops.forEach(function (o, i) {
+    o.addEventListener('click', function () { escolher(o); });
+    o.addEventListener('mousemove', function () { if (foco !== i) realcar(i); });
+  });
+  dmenu.addEventListener('keydown', function (ev) {
+    var passo = function (d) { var i = foco; do { i = (i + d + dops.length) % dops.length; } while (dops[i].getAttribute('aria-disabled') === 'true' && i !== foco); realcar(i); };
+    if (ev.key === 'ArrowDown') { ev.preventDefault(); passo(1); }
+    else if (ev.key === 'ArrowUp') { ev.preventDefault(); passo(-1); }
+    else if (ev.key === 'Home') { ev.preventDefault(); realcar(0); }
+    else if (ev.key === 'End') { ev.preventDefault(); realcar(dops.length - 1); }
+    else if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); if (foco >= 0) escolher(dops[foco]); }
+    else if (ev.key === 'Escape' || ev.key === 'Tab') { fechar(ev.key === 'Escape'); }
+  });
+  document.addEventListener('click', function (ev) { if (!dmenu.hidden && !ev.target.closest('.drop')) fechar(false); });
   campo.addEventListener('input', function () { termos = normalizar(campo.value).split(/\s+/).filter(Boolean); aplicar(); });
   document.querySelectorAll('.sug').forEach(function (b) {
     b.addEventListener('click', function () { campo.value = b.textContent; termos = normalizar(campo.value).split(/\s+/); estado = Object.assign({}, VAZIO); aplicar(); campo.focus(); });
