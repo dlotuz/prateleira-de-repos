@@ -1,6 +1,6 @@
 # Prateleira de Repositórios
 
-Repositórios de IA de código aberto, separados pelo que você quer fazer. São 75 até agora. Cada um diz o que faz, o que precisa para rodar, quanto custa e qual produto conhecido ele substitui.
+Repositórios de IA de código aberto, separados pelo que você quer fazer. São 77 até agora. Cada um diz o que faz, o que precisa para rodar, quanto custa e qual produto conhecido ele substitui.
 
 **Versão com filtros:** https://www.productweekly.com.br/prateleira
 
@@ -30,6 +30,7 @@ Antes de instalar, verifique este repositório: <link do repositório>. Leia o R
 - [Emil Kowalski Skills](#emil-kowalski-skills): 19 skills de design engineering do Emil Kowalski (ex-Vercel e Linear) para animação e acabamento de interface: escolhem a curva e a duração certas, revisam animações, coordenam o que se mexe junto e testam a tela com dados extremos.
 - [Firecrawl](#firecrawl): Lê sites inteiros e devolve o conteúdo limpo, em Markdown ou JSON, pronto para um agente usar.
 - [Frontend Design](#frontend-design): Skill oficial da Anthropic que faz o agente agir como diretor de design.
+- [GSAP Skills](#gsap-skills): Skills oficiais do GSAP, a biblioteca de animação usada em sites como os da Apple: ensinam o agente a usar direito animação de entrada e saída, linha do tempo e efeito que acompanha a rolagem da página.
 - [Handy](#handy): Ditado por voz que roda inteiro no computador.
 - [Humanizer](#humanizer): Skill que reescreve texto gerado por IA para soar como uma pessoa escreveu, sem mudar o que ele diz.
 - [Hyperframes](#hyperframes): Transforma HTML em vídeo.
@@ -47,8 +48,8 @@ Antes de instalar, verifique este repositório: <link do repositório>. Leia o R
 - [Ler, pesquisar e escrever](#ler-pesquisar-e-escrever) (5)
 - [Transcrever e trabalhar com voz](#transcrever-e-trabalhar-com-voz) (6)
 - [Criar e editar vídeo](#criar-e-editar-video) (19)
-- [Design, apresentações e imagens](#design-apresentacoes-e-imagens) (9)
-- [Deixar o design feito com IA mais bonito](#deixar-o-design-feito-com-ia-mais-bonito) (11)
+- [Design, apresentações e imagens](#design-apresentacoes-e-imagens) (10)
+- [Deixar o design feito com IA mais bonito](#deixar-o-design-feito-com-ia-mais-bonito) (12)
 - [Organizar o dia a dia](#organizar-o-dia-a-dia) (8)
 - [Finanças, viagem e currículo](#financas-viagem-e-curriculo) (4)
 - [Agentes e automação](#agentes-e-automacao) (6)
@@ -618,6 +619,23 @@ Skill que faz apresentações bonitas na web, usando o que o agente sabe de fron
 
 > **Atenção:** Comparar com os Slides do Claude antes de adotar.
 
+### img2threejs
+
+`Skill` · [img2threejs/img2threejs](https://github.com/img2threejs/img2threejs)
+
+Skill que recria em 3D, só com código (Three.js), o objeto de uma foto de referência: você manda a imagem de um produto e recebe um modelo 3D que gira, anima e roda direto no navegador.
+
+**Para que serve:**
+- Pôr o produto em 3D no topo de uma landing page, sem modelar no Blender
+- Criar um elemento interativo que a pessoa gira com o mouse ou o dedo
+- Montar uma vitrine 3D leve, sem arquivo de modelo para baixar
+
+**Como começar:** No terminal: `npx --yes img2threejs@latest install` e confira com `npx --yes img2threejs@latest doctor`. Depois, mande a foto do objeto para o agente e peça a recriação em Three.js.
+
+**Nível:** Avançado · **Precisa de:** Claude Code, Terminal, Programar · **Licença:** Apache-2.0 · **Estrelas:** 22k · **Último push:** 25/11/2026 · **Situação:** Ativo
+
+> **Atenção:** Precisa de Node 18+ e Python 3.10+. O instalador liga a skill em todos os agentes que achar no computador. O resultado é uma recriação aproximada, não um modelo fiel ao produto.
+
 ### Penpot
 
 `App` · [penpot/penpot](https://github.com/penpot/penpot)
@@ -740,6 +758,23 @@ Skill oficial da Anthropic que faz o agente agir como diretor de design: parte d
 **Nível:** Médio · **Precisa de:** Claude Code · **Licença:** Apache-2.0 · **Estrelas:** 200k · **Último push:** 03/09/2026 · **Situação:** Oficial
 
 > **Atenção:** É a base de várias skills da lista (o Impeccable nasceu dela). Para revisar com regras automáticas, combine com o Impeccable.
+
+### GSAP Skills
+
+`Skill` · comece por esta · [greensock/gsap-skills](https://github.com/greensock/gsap-skills)
+
+Skills oficiais do GSAP, a biblioteca de animação usada em sites como os da Apple: ensinam o agente a usar direito animação de entrada e saída, linha do tempo e efeito que acompanha a rolagem da página.
+
+**Para que serve:**
+- Fazer elementos aparecerem, se moverem ou ficarem presos na tela conforme a pessoa rola a página
+- Montar sequências de animação sem o agente inventar código errado da biblioteca
+- Animar site em React, Vue, Svelte ou HTML puro
+
+**Como começar:** No Claude Code: `/plugin marketplace add greensock/gsap-skills`. Em outros agentes: `npx skills add https://github.com/greensock/gsap-skills`.
+
+**Nível:** Médio · **Precisa de:** Claude Code, Terminal · **Licença:** MIT · **Estrelas:** 19k · **Último push:** 29/07/2026 · **Situação:** Oficial
+
+> **Atenção:** O GSAP ficou 100% gratuito, inclusive os plugins que eram pagos. Animação demais pesa no celular: combine com as skills do Emil Kowalski para dosar.
 
 ### Impeccable
 
@@ -1348,4 +1383,4 @@ Conhece uma ferramenta de IA de código aberto que resolve um problema real? [Ab
 
 O conteúdo desta lista está sob [CC BY 4.0](LICENSE): pode copiar e adaptar, dando o crédito. Cada ferramenta tem a sua própria licença, indicada no item.
 
-Estrelas e data do último push conferidos no GitHub. Lista gerada em 25/11/2026.
+Estrelas e data do último push conferidos no GitHub. Lista gerada em 27/11/2026.

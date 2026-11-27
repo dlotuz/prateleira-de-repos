@@ -2124,5 +2124,66 @@
     "primeiro_passo": "Baixe em handy.computer (no Mac, também `brew install --cask handy`), dê as permissões e escolha o atalho de gravar.",
     "imagem": "https://repository-images.githubusercontent.com/931888694/1519efb0-ade3-433a-913a-ee7ddd8519a6",
     "testado": false
+  },
+  {
+    "nome": "GSAP Skills",
+    "repo": "greensock/gsap-skills",
+    "url": "https://github.com/greensock/gsap-skills",
+    "tipo": "skill",
+    "categoria": "skill",
+    "destaque": "alta",
+    "o_que_faz": "Skills oficiais do GSAP, a biblioteca de animação usada em sites como os da Apple: ensinam o agente a usar direito animação de entrada e saída, linha do tempo e efeito que acompanha a rolagem da página.",
+    "para_que_serve": [
+      "Fazer elementos aparecerem, se moverem ou ficarem presos na tela conforme a pessoa rola a página",
+      "Montar sequências de animação sem o agente inventar código errado da biblioteca",
+      "Animar site em React, Vue, Svelte ou HTML puro"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code",
+      "Terminal"
+    ],
+    "atencao": "O GSAP ficou 100% gratuito, inclusive os plugins que eram pagos. Animação demais pesa no celular: combine com as skills do Emil Kowalski para dosar.",
+    "atencao_forte": false,
+    "licenca": "MIT",
+    "licenca_alerta": false,
+    "estrelas": "19k",
+    "ultimo_push": "29/07/2026",
+    "situacao": "Oficial",
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/ff52ea96379f63b55e9d09d08e7d120c1196df37d7d21ea35894d2a928d51f4c/greensock/gsap-skills",
+    "primeiro_passo": "No Claude Code: `/plugin marketplace add greensock/gsap-skills`. Em outros agentes: `npx skills add https://github.com/greensock/gsap-skills`.",
+    "testado": false
+  },
+  {
+    "nome": "img2threejs",
+    "repo": "img2threejs/img2threejs",
+    "url": "https://github.com/img2threejs/img2threejs",
+    "tipo": "skill",
+    "categoria": "visual",
+    "destaque": "media",
+    "o_que_faz": "Skill que recria em 3D, só com código (Three.js), o objeto de uma foto de referência: você manda a imagem de um produto e recebe um modelo 3D que gira, anima e roda direto no navegador.",
+    "para_que_serve": [
+      "Pôr o produto em 3D no topo de uma landing page, sem modelar no Blender",
+      "Criar um elemento interativo que a pessoa gira com o mouse ou o dedo",
+      "Montar uma vitrine 3D leve, sem arquivo de modelo para baixar"
+    ],
+    "alternativa_a": null,
+    "precisa": [
+      "Claude Code",
+      "Terminal",
+      "Programar"
+    ],
+    "atencao": "Precisa de Node 18+ e Python 3.10+. O instalador liga a skill em todos os agentes que achar no computador. O resultado é uma recriação aproximada, não um modelo fiel ao produto.",
+    "atencao_forte": false,
+    "licenca": "Apache-2.0",
+    "licenca_alerta": false,
+    "estrelas": "22k",
+    "ultimo_push": "25/11/2026",
+    "situacao": "Ativo",
+    "situacao_alerta": false,
+    "imagem": "https://opengraph.githubassets.com/a419d745948393bf0d9e8c9de30586734653185096e5b25588d1a06b09cefc96/img2threejs/img2threejs",
+    "primeiro_passo": "No terminal: `npx --yes img2threejs@latest install` e confira com `npx --yes img2threejs@latest doctor`. Depois, mande a foto do objeto para o agente e peça a recriação em Three.js.",
+    "testado": false
   }
 ]
